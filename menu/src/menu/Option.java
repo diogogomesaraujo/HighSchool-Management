@@ -1,0 +1,35 @@
+package menu;
+
+public class Option
+{
+	private int number;
+	private String text;
+	private Executable executable;
+	
+	public Option(int number, String text, Executable executable) 
+	{
+		this.number = number;
+		this.text = text;
+		this.executable = executable;
+	}
+	
+	public int getNumber() 
+	{
+		return number;
+	}
+	
+	public String getText() 
+	{
+		return text;
+	}
+	
+	public Executable getExecutable() 
+	{
+		return executable;
+	}
+	
+	public void writeOptions() 
+	{
+		System.out.println(number + " - " + text);
+	}
+}
