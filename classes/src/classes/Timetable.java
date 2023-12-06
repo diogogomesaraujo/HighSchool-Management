@@ -1,33 +1,23 @@
 package classes;
-import java.util.*;
 
-public class Timetable // implement matrixes 
+public class Timetable implements Vector2 
 {
-	private ArrayList<Subject> subjects;
-	private Hour hour;
-	
-	public Timetable(Hour hour, ArrayList<Subject> subjects) 
-	{
-		this.subjects = subjects;
-		this.hour = hour;
-	}
-	
-	public Hour getHour() 
-	{
-        return hour;
-    }
+    private Object[][] schedule;
 
-    public void setHour(Hour hour) 
+    public Timetable(int rows, int columns) 
     {
-        this.hour = hour;
+        schedule = new Object[rows][columns];
     }
 
-    public ArrayList<Subject> getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(ArrayList<Subject> subjects) 
+    @Override
+    public Object getValue(int row, int column) 
     {
-        this.subjects = subjects;
+        return schedule[row][column];
+    }
+
+    @Override
+    public void setValue(int row, int column, Object value) 
+    {
+        schedule[row][column] = value;
     }
 }
