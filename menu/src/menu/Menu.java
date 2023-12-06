@@ -8,6 +8,8 @@ public class Menu
 	private ArrayList<Option> options;
 	private Stack<Menu> menuHistory;
 	
+	public int choice = 0;
+	
 	public Option exit;
 	public Option back;
 	
@@ -28,11 +30,12 @@ public class Menu
 	private void initDefaultOptions() 
 	{
         Action leave = () -> System.exit(0);
-        exit = new Option(options.size() + 1, "Leave", new Executable(leave));
+        exit = new Option(choice, "Leave", new Executable(leave));
+        choice++;
 
         Action comeBack = () -> back();
-        back = new Option(options.size(), "Return", new Executable(comeBack));
-        
+        back = new Option(choice, "Return", new Executable(comeBack));
+        choice++;
         
         options.add(back);
         options.add(exit);
@@ -49,19 +52,48 @@ public class Menu
 			System.out.println();
 		}
 		
-		int optionNumber = Read.anInt();
-		options.get(optionNumber).getExecutable().execute();
-	}
-	
-	public void menuToPastMenu() 
-	{
+		choice = Read.anInt();
+		options.get(choice).getExecutable().execute();
 		
+		System.out.println();
+		System.out.println("X - Return");
+		char x = Read.aChar();
+		
+		if(x == 'x' || x == 'X') this.build();
 	}
-	
 	public ArrayList<Option> getOptions()
 	{
 		return options;
 	}
+	
+	public void addOption(Option option) 
+	{
+		if(options.contains(back) || options.contains(exit)) {
+	        options.remove(back);
+	        options.remove(exit);
+	        
+	        choice -= 2;
+	    }
+	    
+	    options.add(option);
+	    option.setNumber(choice);
+	    choice++;
+	    
+	    options.add(back);
+	    options.add(exit);
+
+	    back.setNumber(choice);
+	    choice++;
+	    exit.setNumber(choice);
+	    choice++;
+	}
+	
+	public void removeOption(Option option)
+	{
+		options.remove(option);
+		
+		choice--;
+	}	
 	
 	public Stack<Menu> getMenuHistory()
 	{
@@ -72,6 +104,11 @@ public class Menu
 	{
         this.menuHistory = menuHistory;
     }
+	
+	public void addMenuHistory(Menu pastMenu) 
+	{
+		menuHistory.add(pastMenu);
+	}
 	
 	private void updateMenuState(Menu previousMenu) 
 	{
@@ -85,6 +122,8 @@ public class Menu
         {
         	Menu previousMenu = menuHistory.pop();
             updateMenuState(previousMenu);
+            this.build();
         }
+        else this.build();
     }
 }

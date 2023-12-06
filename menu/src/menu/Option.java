@@ -28,6 +28,18 @@ public class Option
 		return executable;
 	}
 	
+	public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setExecutable(Executable executable) {
+        this.executable = executable;
+    }
+	
 	public void writeOptions() 
 	{
 		System.out.println(number + " - " + text);
