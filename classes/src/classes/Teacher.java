@@ -14,6 +14,7 @@ public class Teacher
 		this.gender = gender;
 		this.birthday = birthday;
 		this.subject = subject;
+		this.address = address;
 	}
 	
 	public String getName() 
@@ -53,5 +54,15 @@ public class Teacher
     public void setSubject(Subject subject) 
     {
         this.subject = subject;
+    }
+    
+    public String getAddress() 
+    {
+    	return address;
+    }
+    
+    public void setAddress(String address) 
+    {
+    	this.address = address;
     }
 }

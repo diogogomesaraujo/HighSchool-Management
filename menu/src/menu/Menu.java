@@ -57,8 +57,9 @@ public class Menu
 		
 		System.out.println();
 		System.out.println("X - Return");
-		char x = Read.aChar();
+		System.out.println();
 		
+		char x = Read.aChar();
 		if(x == 'x' || x == 'X') this.build();
 	}
 	public ArrayList<Option> getOptions()

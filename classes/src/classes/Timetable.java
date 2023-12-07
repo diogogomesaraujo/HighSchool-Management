@@ -3,7 +3,12 @@ package classes;
 public class Timetable implements Vector2 
 {
     private Object[][] schedule;
-
+    
+    public Timetable() 
+    {
+    	schedule = new Object[7][5];
+    }
+    
     public Timetable(int rows, int columns) 
     {
         schedule = new Object[rows][columns];

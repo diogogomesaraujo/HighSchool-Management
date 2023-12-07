@@ -1,9 +1,5 @@
 package menu;
 
-import java.util.*;
-
-import myInputs.Read;
-
 public class TestMenu 
 {
     public static void main(String[] args) 
