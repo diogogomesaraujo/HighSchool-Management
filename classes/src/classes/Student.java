@@ -1,5 +1,7 @@
 package classes;
+
 import java.util.*;
+import java.time.LocalDateTime;
 
 public class Student 
 {
@@ -17,7 +19,7 @@ public class Student
 		this.gender = gender;
 		this.address = address;
 		this.subjects = subjects;
-		this.birthday = birthday;
+		this.birthday = LocalDateTime.now();
 	}
 	
 	public ArrayList<Subject> getSubjects()
@@ -70,12 +72,12 @@ public class Student
         this.address = address;
     }
 	
-    public Birthday getBirthday() 
+    public LocalDateTime getBirthday() 
     {
         return birthday;
     }
 
-    public void setBirthday(Birthday birthday) 
+    public void setBirthday(LocalDateTime birthday) 
     {
         this.birthday = birthday;
     }

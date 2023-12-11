@@ -1,14 +1,16 @@
 package classes;
 
+import java.time.LocalDateTime;
+
 public class Teacher 
 {
 	private String name;
 	private String gender;
 	private String address;
-	private Birthday birthday;
+	private LocalDateTime birthday;
 	private Subject subject;
 	
-	public Teacher(String name, String gender, String address, Birthday birthday, Subject subject) 
+	public Teacher(String name, String gender, String address, LocalDateTime birthday, Subject subject) 
 	{
 		this.name = name;
 		this.gender = gender;
@@ -37,12 +39,12 @@ public class Teacher
         this.gender = gender;
     }
 
-    public Birthday getBirthday() 
+    public LocalDateTime getBirthday() 
     {
         return birthday;
     }
 
-    public void setBirthday(Birthday birthday) 
+    public void setBirthday(LocalDateTime birthday) 
     {
         this.birthday = birthday;
     }
