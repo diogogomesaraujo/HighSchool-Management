@@ -5,24 +5,24 @@ import myInputs.Read;
 
 public class Menu 
 {
-	private ArrayList<Option> options;
+	private ArrayList<MenuOption> menuOptions;
 	private Stack<Menu> menuHistory;
 	
 	public int choice = 0;
 	
-	public Option exit;
-	public Option back;
+	public MenuOption exit;
+	public MenuOption back;
 	
 	public Menu() 
 	{
-		this.options = new ArrayList<Option>();
+		this.menuOptions = new ArrayList<MenuOption>();
 		this.menuHistory = new Stack<Menu>();
 		initDefaultOptions();
 	}
 	
-	public Menu(ArrayList<Option> options, Stack<Menu> menuHistory) 
+	public Menu(ArrayList<MenuOption> menuOptions, Stack<Menu> menuHistory) 
 	{
-		this.options = options;
+		this.menuOptions = menuOptions;
 		this.menuHistory = menuHistory;
 		initDefaultOptions();
 	}
@@ -30,15 +30,15 @@ public class Menu
 	private void initDefaultOptions() 
 	{
         Action leave = () -> System.exit(0);
-        exit = new Option(choice, "Leave", new Executable(leave));
+        exit = new MenuOption(choice, "Leave", new Executable(leave));
         choice++;
 
         Action comeBack = () -> back();
-        back = new Option(choice, "Return", new Executable(comeBack));
+        back = new MenuOption(choice, "Return", new Executable(comeBack));
         choice++;
         
-        options.add(back);
-        options.add(exit);
+        menuOptions.add(back);
+        menuOptions.add(exit);
     }
 	
 	public void build() 
@@ -46,14 +46,14 @@ public class Menu
 		System.out.println("Menu:");
 		System.out.println();
 		
-		for(int i = 0; i < options.size(); i++) 
+		for(int i = 0; i < menuOptions.size(); i++) 
 		{
-			options.get(i).writeOptions();
+			menuOptions.get(i).writeOptions();
 			System.out.println();
 		}
 		
 		choice = Read.anInt();
-		options.get(choice).getExecutable().execute();
+		menuOptions.get(choice).getExecutable().execute();
 		
 		System.out.println();
 		System.out.println("X - Return");
@@ -62,26 +62,26 @@ public class Menu
 		char x = Read.aChar();
 		if(x == 'x' || x == 'X') this.build();
 	}
-	public ArrayList<Option> getOptions()
+	public ArrayList<MenuOption> getOptions()
 	{
-		return options;
+		return menuOptions;
 	}
 	
-	public void addOption(Option option) 
+	public void addOption(MenuOption option) 
 	{
-		if(options.contains(back) || options.contains(exit)) {
-	        options.remove(back);
-	        options.remove(exit);
+		if(menuOptions.contains(back) || menuOptions.contains(exit)) {
+	        menuOptions.remove(back);
+	        menuOptions.remove(exit);
 	        
 	        choice -= 2;
 	    }
 	    
-	    options.add(option);
+	    menuOptions.add(option);
 	    option.setNumber(choice);
 	    choice++;
 	    
-	    options.add(back);
-	    options.add(exit);
+	    menuOptions.add(back);
+	    menuOptions.add(exit);
 
 	    back.setNumber(choice);
 	    choice++;
@@ -89,9 +89,9 @@ public class Menu
 	    choice++;
 	}
 	
-	public void removeOption(Option option)
+	public void removeOption(MenuOption option)
 	{
-		options.remove(option);
+		menuOptions.remove(option);
 		
 		choice--;
 	}	
@@ -113,7 +113,7 @@ public class Menu
 	
 	private void updateMenuState(Menu previousMenu) 
 	{
-        this.options = previousMenu.getOptions();
+        this.menuOptions = previousMenu.getOptions();
         this.menuHistory = previousMenu.getMenuHistory();
     }
 	

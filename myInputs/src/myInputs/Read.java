@@ -1,5 +1,7 @@
 package myInputs;
+
 import java.io.*;
+import java.time.LocalDateTime;
 
 public class Read 
 {
@@ -130,4 +132,19 @@ public class Read
 			}
 		}
 	} 
+	
+	public static LocalDateTime aLocalDateTime() 
+	{
+		while(true)
+		{
+			try
+			{
+				return LocalDateTime.parse(aString().trim());
+			}
+			catch(Exception e)
+		{
+				System.out.println("Error!");
+			}
+		}
+	}
 }

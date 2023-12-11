@@ -1,12 +1,12 @@
 package menu;
 
-public class Option
+public class MenuOption
 {
 	private int number;
 	private String text;
 	private Executable executable;
 	
-	public Option(int number, String text, Executable executable) 
+	public MenuOption(int number, String text, Executable executable) 
 	{
 		this.number = number;
 		this.text = text;
