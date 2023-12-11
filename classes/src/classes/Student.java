@@ -6,11 +6,11 @@ public class Student
 	private String name;
 	private int number;
 	private String gender;
-	private Birthday birthday;
+	private LocalDateTime birthday;
 	private String address;
 	private ArrayList<Subject> subjects;
 	
-	public Student(String name, int number, String gender, String address, ArrayList<Subject> subjects, Birthday birthday) 
+	public Student(String name, int number, String gender, String address, ArrayList<Subject> subjects, LocalDateTime birthday) 
 	{
 		this.name = name;
 		this.number = number;
