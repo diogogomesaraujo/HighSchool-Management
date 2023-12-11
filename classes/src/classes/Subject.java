@@ -8,6 +8,14 @@ public class Subject
 	private ArrayList<Student> students;
 	private ArrayList<Teacher> teachers;
 	
+	public Subject() 
+	{
+		this.name = "";
+		this.code = 0;
+		this.students = new ArrayList<Student>();
+		this.teachers = new ArrayList<Teacher>();
+	}
+	
 	public Subject(String name, int code, ArrayList<Student> students, ArrayList<Teacher> teachers) 
 	{
 		this.name = name;

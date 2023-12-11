@@ -1,6 +1,5 @@
 package classes;
 
-import java.util.*;
 import java.time.LocalDateTime;
 
 public class TimeCell 
@@ -8,25 +7,25 @@ public class TimeCell
 	private LocalDateTime startTime;
 	private LocalDateTime finishTime;
 	private Room room;
-	private ArrayList<Class> classes;
-	private ArrayList<Subject> subjects;
+	private Class studentClass;
+	private Subject subject;
 	
 	public TimeCell() 
 	{
 		this.startTime = LocalDateTime.now();
 		this.finishTime = LocalDateTime.now();
 		this.room = new Room();
-		this.classes = new ArrayList<Class>();
-		this.subjects = new ArrayList<Subject>();
+		this.studentClass = new Class();
+		this.subject = new Subject();
 	}
 	
-	public TimeCell(LocalDateTime startTime, LocalDateTime finishTime, Room room, ArrayList<Class> classes, ArrayList<Subject> subjects) 
+	public TimeCell(LocalDateTime startTime, LocalDateTime finishTime, Room room, Class studentClass, Subject subject) 
 	{
 		this.startTime = startTime;
 		this.finishTime = finishTime;
 		this.room = room;
-		this.classes = classes;
-		this.subjects = subjects;
+		this.studentClass = studentClass;
+		this.subject = subject;
 	}
 	
 	public void setStartTime(LocalDateTime startTime) 
@@ -59,23 +58,28 @@ public class TimeCell
         return this.room;
     }
 
-    public void setClasses(ArrayList<Class> classes) 
+    public void setStudentClass(Class studentClass) 
     {
-        this.classes = classes;
+        this.studentClass = studentClass;
     }
 
-    public ArrayList<Class> getClasses() 
+    public Class getStudentClasses() 
     {
-        return this.classes;
+        return this.studentClass;
     }
 
-    public void setSubjects(ArrayList<Subject> subjects) 
+    public void setSubjects(Subject subject) 
     {
-        this.subjects = subjects;
+        this.subject = subject;
     }
 
-    public ArrayList<Subject> getSubjects() 
+    public Subject getSubject() 
     {
-        return this.subjects;
+        return this.subject;
+    }
+    
+    public void writeTimeCell() 
+    {
+    	System.out.println(startTime.getHour() + ":" + startTime.getMinute() + " / " + finishTime.getHour() + ":" + finishTime.getMinute() + " - Disciplina - " + studentClass.getLetter() + " - Sala - " + room.getCode());
     }
 }

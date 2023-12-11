@@ -1,12 +1,20 @@
 package classes;
 import java.util.*;
 
-public class Class 
+public class Class
 {
 	private int year;
 	private char letter;
 	private ArrayList<Student> students;
 	private ArrayList<Teacher> teachers;
+	
+	public Class() 
+	{
+		this.year = 0;
+		this.letter = 'A';
+		this.students = new ArrayList<Student>();
+		this.teachers = new ArrayList<Teacher>();
+	}
 	
 	public Class(int year, char letter, ArrayList<Student> students, ArrayList<Teacher> teachers) 
 	{

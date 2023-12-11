@@ -1,28 +1,31 @@
 package classes;
 
-public class Timetable implements Vector2 
+import java.util.*;
+
+public class Timetable
 {
-    private Object[][] schedule;
+    private ArrayList<ArrayList<TimeCell>> schedule;
     
     public Timetable() 
     {
-    	schedule = new Object[7][5];
+    	schedule = new ArrayList<ArrayList<TimeCell>>();
     }
     
-    public Timetable(int rows, int columns) 
+    public Timetable(ArrayList<ArrayList<TimeCell>> schedule) 
     {
-        schedule = new Object[rows][columns];
+        this.schedule = schedule;
     }
-
-    @Override
-    public Object getValue(int row, int column) 
+    
+    public void writeTable() 
     {
-        return schedule[row][column];
-    }
-
-    @Override
-    public void setValue(int row, int column, Object value) 
-    {
-        schedule[row][column] = value;
+    	for(int i = 0; i < schedule.get(i).size(); i++) // for each of line
+    	{
+    		for(int j = 0; j < schedule.size(); j++) // for each column
+    		{
+    			schedule.get(i).get(j).writeTimeCell();
+    		}
+    		
+    		System.out.println("");
+    	} 
     }
 }
