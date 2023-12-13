@@ -84,8 +84,8 @@ public class MenuOption
     /**
      * Displays the menu option's number and text to the console.
      */
-    public void writeOptions() 
+    public void writeOption() 
     {
-        System.out.println(number + " - " + text);
+        System.out.println(number + ".	" + text);
     }
 }

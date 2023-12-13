@@ -16,11 +16,11 @@ public class TestMenu
     	sub.addMenuHistory(main);
     	
     	Action a1 = () -> System.out.println("Olá");
-    	MenuOption o1 = new MenuOption(main.choice, "Escrever: Olá", new Executable(a1));
+    	MenuOption o1 = new MenuOption(main.choice, "Escrever Olá", new Executable(a1));
     	main.addOption(o1);
     	
     	Action a2 = () -> System.out.println("Adeus");
-    	MenuOption o2 = new MenuOption(main.choice, "Escrever: Adeus", new Executable(a2));
+    	MenuOption o2 = new MenuOption(main.choice, "Escrever Adeus", new Executable(a2));
     	main.addOption(o2);
     	
     	Action a3 = () -> sub.build();

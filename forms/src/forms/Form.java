@@ -12,22 +12,22 @@ import java.time.LocalDateTime;
 public class Form 
 {
 	/**
-     * Name of the form.
+     * The name of the form.
      */
     private String name;
 
     /**
-     * List of questions in the form.
+     * The list of questions that belong to the form.
      */
     private ArrayList<Question> questions;
 
     /**
-     * The object to be updated based on form responses.
+     * The object that is going to be updated according to the forms answers.
      */
     private Object object;
 
     /**
-     * Constructs an empty form with no name, questions, or associated object.
+     * Constructs an empty form.
      */
     public Form() 
     {
@@ -37,11 +37,11 @@ public class Form
     }
 
     /**
-     * Constructs a form with the specified name, questions, and associated object.
+     * Constructs a form with a specified name, object and questions.
      * 
      * @param name      The name of the form.
-     * @param questions The list of questions for the form.
-     * @param object    The object to be updated based on form responses.
+     * @param questions The list of questions that belong to the form.
+     * @param object    The object that is going to be updated according to the forms answers.
      */
     public Form(String name, ArrayList<Question> questions, Object object)
     {
@@ -111,13 +111,13 @@ public class Form
     }
 	
 	/**
-     * Updates the associated object based on the responses to the form's questions.
+     * Updates the object based on the responses to the form's questions.
      * This is achieved by dynamically invoking setter methods of the object 
      * for each question answered.
      */
 	public void updateObject() 
 	{
-		for (Question question : questions) 
+		for (Question question : questions) // For each question that belongs to the list of questions
 		{
 	        String methodName = "set" + question.getParameter(); // Define the setter name by using the parameter
 	        Object answer = question.getOutput(); // The answer, which could be of any type that is accounted for
@@ -158,7 +158,6 @@ public class Form
 	/**
      * Builds and processes the form by displaying questions, reading answers, 
      * and updating the associated object.
-     * Outputs the form name and confirmation message upon successful completion.
      */
 	public void build() 
 	{

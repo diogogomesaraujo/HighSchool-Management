@@ -15,7 +15,7 @@ public class Menu
 	private Stack<Menu> menuHistory;
 
 	/**
-	 * The currently selected choice in the menu.
+	 * The number of the option and the value for its choice simultaneously.
 	 */
 	public int choice = 0;
 
@@ -75,21 +75,21 @@ public class Menu
      */
 	public void build() 
 	{
-		System.out.println("Menu:");
+		System.out.println("========= Menu =========");
 		System.out.println();
 		
 		for(int i = 0; i < menuOptions.size(); i++) 
 		{
-			menuOptions.get(i).writeOptions();
-			System.out.println();
+			menuOptions.get(i).writeOption();
 		}
+
+		System.out.print("\nEnter your choice: ");
 		
 		choice = Read.anInt();
 		menuOptions.get(choice).getExecutable().execute();
+		System.out.println();
 		
-		System.out.println();
-		System.out.println("X - Return");
-		System.out.println();
+		System.out.print("\nEnter x to return: ");
 		
 		char x = Read.aChar();
 		if(x == 'x' || x == 'X') this.build();

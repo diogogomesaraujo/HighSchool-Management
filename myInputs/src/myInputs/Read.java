@@ -139,7 +139,7 @@ public class Read
 		{
 			try
 			{
-				return LocalDateTime.parse(aString().trim());
+				return LocalDateTime.parse((aString() + "T00:00:00").trim());
 			}
 			catch(Exception e)
 		{
