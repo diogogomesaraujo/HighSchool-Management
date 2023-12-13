@@ -104,6 +104,7 @@ public class Question
      */
     public void readAnswer() 
     {
+    	System.out.print("-> ");
         if(type.equals("String")) output = Read.aString();
         if(type.equals("Int")) output = Read.anInt();
         if(type.equals("LocalDateTime")) output = Read.aLocalDateTime();

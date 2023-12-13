@@ -57,12 +57,13 @@ public class Menu
      */
 	private void initDefaultOptions() 
 	{
-        Action leave = () -> System.exit(0);
-        exit = new MenuOption(choice, "Leave", new Executable(leave));
-        choice++;
 
         Action comeBack = () -> back();
         back = new MenuOption(choice, "Return", new Executable(comeBack));
+        choice++;
+        
+        Action leave = () -> System.exit(0);
+        exit = new MenuOption(choice, "Leave", new Executable(leave));
         choice++;
         
         menuOptions.add(back);
@@ -75,7 +76,7 @@ public class Menu
      */
 	public void build() 
 	{
-		System.out.println("========= Menu =========");
+		System.out.println("\n========= Menu =========");
 		System.out.println();
 		
 		for(int i = 0; i < menuOptions.size(); i++) 
@@ -83,13 +84,13 @@ public class Menu
 			menuOptions.get(i).writeOption();
 		}
 
-		System.out.print("\nEnter your choice: ");
+		System.out.print("\nEnter your choice -> ");
 		
 		choice = Read.anInt();
 		menuOptions.get(choice).getExecutable().execute();
 		System.out.println();
 		
-		System.out.print("\nEnter x to return: ");
+		System.out.print("\nEnter x to return -> ");
 		
 		char x = Read.aChar();
 		if(x == 'x' || x == 'X') this.build();

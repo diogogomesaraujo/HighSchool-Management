@@ -161,17 +161,18 @@ public class Form
      */
 	public void build() 
 	{
-		System.out.println(name);
+		System.out.println("\n====== Formulário ========");
 		System.out.println();
 		
 		for(int i = 0; i < questions.size(); i++) 
 		{
 			questions.get(i).writeQuestion();
 			questions.get(i).readAnswer();
+			System.out.println();
 		}
 		
 		updateObject();
-		
-		System.out.println("O formulário foi preenchido com sucesso!");
+								
+		System.out.println("\n======= Sucedido ========");
 	}
 }

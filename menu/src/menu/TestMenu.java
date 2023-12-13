@@ -15,32 +15,20 @@ public class TestMenu
     	Menu sub = new Menu();
     	sub.addMenuHistory(main);
     	
-    	Action a1 = () -> System.out.println("Olá");
-    	MenuOption o1 = new MenuOption(main.choice, "Escrever Olá", new Executable(a1));
-    	main.addOption(o1);
-    	
-    	Action a2 = () -> System.out.println("Adeus");
-    	MenuOption o2 = new MenuOption(main.choice, "Escrever Adeus", new Executable(a2));
-    	main.addOption(o2);
-    	
     	Action a3 = () -> sub.build();
     	MenuOption o3 = new MenuOption(main.choice, "Mudar de Menu", new Executable(a3));
     	main.addOption(o3);
     	
-    	sub.addOption(o1);
-    	sub.addOption(o2);
-    	
-    	
-    	Question qName = new Question("Qual é o nome da Pessoa?", "Name", "String");
-    	Question qGender = new Question("Qual é o género?", "Gender", "String");
-    	Question qAddress = new Question("Qual é a Morada", "Address", "String");
-    	Question qBirthday = new Question("Qual é a data de Aniversário?", "Birthday", "LocalDateTime");
+    	Question qName = new Question("Escreva o nome da pessoa: ", "Name", "String");
+    	Question qGender = new Question("Escreva o género da pessoa", "Gender", "String");
+    	Question qAddress = new Question("Escreva a morada da pessoa: ", "Address", "String");
+    	Question qBirthday = new Question("Escreva o aniversário da pessoa: ", "Birthday", "LocalDateTime");
     	
     	ArrayList<Question> questions = new ArrayList<Question>();
-    	questions.add(qAddress);
-    	questions.add(qGender);
     	questions.add(qName);
+    	questions.add(qGender);
     	questions.add(qBirthday);
+    	questions.add(qAddress);
     	
     	Person person = new Person();
     	
