@@ -62,4 +62,23 @@ public class Class
     {
         this.teachers = teachers;
     }
+    
+    @Override
+    public boolean equals(Object obj) 
+    {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Class aClass = (Class) obj;
+        if (year != aClass.year) return false;
+        if (letter != aClass.letter) return false;
+        if (!students.equals(aClass.students)) return false;
+        if (!teachers.equals(aClass.teachers)) return false;
+        return true;
+    }
+    
+    public Object Clone() 
+    {
+        Class copy = new Class(this.year, this.letter, new ArrayList<Student>(this.students), new ArrayList<Teacher>(this.teachers));
+        return copy;
+    }
 }

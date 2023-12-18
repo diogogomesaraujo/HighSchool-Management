@@ -56,4 +56,17 @@ public class Person
     public void setAddress(String address) {
         this.address = address;
     }
+    
+    @Override
+    public boolean equals(Object obj) 
+    {
+        if(this == obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false;
+        Person aPerson = (Person) obj;
+        if (!name.equals(aPerson.name)) return false;
+        if (!gender.equals(aPerson.gender)) return false;
+        if (!birthday.equals(aPerson.birthday)) return false;
+        if (!address.equals(aPerson.address)) return false;
+        return true;
+    }
 }

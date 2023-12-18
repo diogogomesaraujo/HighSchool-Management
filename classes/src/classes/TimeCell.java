@@ -78,8 +78,8 @@ public class TimeCell
         return this.subject;
     }
     
-    public void writeTimeCell() 
+    public String toString() 
     {
-    	System.out.println(startTime.getHour() + ":" + startTime.getMinute() + " / " + finishTime.getHour() + ":" + finishTime.getMinute() + " - Disciplina - " + studentClass.getLetter() + " - Sala - " + room.getCode());
+    	return " - Disciplina - " + studentClass.getLetter() + " - Sala - " + room.getCode();
     }
 }
