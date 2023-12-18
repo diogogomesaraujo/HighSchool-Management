@@ -17,23 +17,15 @@
 ## Key Features
 
 * Easy-to-Use Command-Line Interface
-* Javadoc Documentation
 * Cross platform
   - Windows, macOS and Linux ready.
-* [LaTeX](https://khan.github.io/KaTeX/) Support
-* Dark/Light mode
-* Toolbar for basic Markdown formatting
-* Supports multiple cursors
-* Save the Markdown preview as PDF
-* Emoji support in preview :tada:
-* App will keep alive in tray for quick usage
-* Full screen mode
-  - Write distraction free.
-
+* Support
+  - [Javadoc](https://khan.github.io/KaTeX/)
+  - [LaTeX](https://khan.github.io/KaTeX/)
 
 ## How To Use
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+To clone and run this application, you'll need [Git](https://git-scm.com) installed on your computer. From your command line:
 
 ```bash
 # Clone this repository
