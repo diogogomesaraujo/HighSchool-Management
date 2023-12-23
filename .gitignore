@@ -1,1 +1,4 @@
 /.metadata/
+
+#Ignorar o ficheiro README
+*.md
