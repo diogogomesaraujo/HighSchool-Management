@@ -10,12 +10,14 @@ public class Read
 		String s = "";
 		try 
 		{
+			System.out.print("-> ");
 			BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
 			s= in.readLine();
 		}
 		catch (IOException e)
 		{
-			System.out.print("Error!");
+			System.out.print("Erro de Input!");
+			System.out.println();
 		}
 		
 		return s;
@@ -31,7 +33,8 @@ public class Read
 			}
 			catch(NumberFormatException e) 
 			{
-				System.out.println("Error!");
+				System.out.println("Erro de Input!");
+				System.out.println();
 			}
 			
 		}
@@ -47,7 +50,8 @@ public class Read
 			}
 			catch(NumberFormatException e)
 			{
-				System.out.println("Error!");
+				System.out.println("Erro de Input!");
+				System.out.println();
 			}
 		}
 	}
@@ -60,7 +64,8 @@ public class Read
 			}
 			catch(NumberFormatException e)
 			{
-				System.out.println("Error!");
+				System.out.println("Erro de Input!");
+				System.out.println();
 			}
 		}
 	}
@@ -73,7 +78,8 @@ public class Read
 			}
 			catch(NumberFormatException e)
 			{
-				System.out.println("Error!");
+				System.out.println("Erro de Input!");
+				System.out.println();
 			}
 		}
 	}
@@ -86,7 +92,8 @@ public class Read
 			}
 			catch(NumberFormatException e)
 			{
-				System.out.println("Error!");
+				System.out.println("Erro de Input!");
+				System.out.println();
 			}
 		}
 	}
@@ -100,7 +107,8 @@ public class Read
 			}
 			catch(NumberFormatException e)
 			{
-				System.out.println("Error!");
+				System.out.println("Erro de Input!");
+				System.out.println();
 			}
 		}
 	}
@@ -114,7 +122,8 @@ public class Read
 			}
 			catch(Exception e)
 			{
-				System.out.println("Error!");
+				System.out.println("Erro de Input!");
+				System.out.println();
 			}
 		}
 	}
@@ -128,7 +137,8 @@ public class Read
 			}
 			catch(Exception e)
 		{
-				System.out.println("Error!");
+				System.out.println("Erro de Input!");
+				System.out.println();
 			}
 		}
 	} 
@@ -143,7 +153,49 @@ public class Read
 			}
 			catch(Exception e)
 		{
-				System.out.println("Error!");
+				System.out.println("Erro de Input!");
+				System.out.println();
+			}
+		}
+	}
+	
+	public static String aGender() 
+	{
+		String s = "";
+		
+		while(true) 
+		{
+			try 
+			{
+				System.out.print("-> ");
+				BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
+				s= in.readLine();
+				
+				if (s.equalsIgnoreCase("masculino") || s.equalsIgnoreCase("Masculino")) 
+				{
+		            return "Masculino";
+		        } 
+				
+				else if (s.equalsIgnoreCase("feminino") || s.equalsIgnoreCase("Feminino")) 
+				{
+		            return "Feminino";
+		        } 
+				
+				else if (s.equalsIgnoreCase("outro") || s.equalsIgnoreCase("Outro")) 
+				{
+		            return "Outro";
+		        } 
+				
+				else 
+				{
+		            System.out.println("Género Inválido!");
+		        }
+			}
+			
+			catch (IOException e)
+			{
+				System.out.print("Erro de Input!");
+				System.out.println();
 			}
 		}
 	}

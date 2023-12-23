@@ -84,13 +84,13 @@ public class Menu
 			menuOptions.get(i).writeOption();
 		}
 
-		System.out.print("\nEnter your choice -> ");
+		System.out.print("\nEnter your choice ");
 		
 		choice = Read.anInt();
 		menuOptions.get(choice).getExecutable().execute();
 		System.out.println();
 		
-		System.out.print("\nEnter x to return -> ");
+		System.out.print("\nEnter x to return ");
 		
 		char x = Read.aChar();
 		if(x == 'x' || x == 'X') this.build();

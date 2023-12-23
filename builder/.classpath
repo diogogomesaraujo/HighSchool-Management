@@ -6,5 +6,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/classes"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/forms"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/menu"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/myInputs"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

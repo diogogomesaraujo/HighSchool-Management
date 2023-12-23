@@ -19,8 +19,8 @@ public class TestMenu
     	MenuOption o3 = new MenuOption(main.choice, "Mudar de Menu", new Executable(a3));
     	main.addOption(o3);
     	
-    	Question qName = new Question("Escreva o nome da pessoa: ", "Name", "String");
-    	Question qGender = new Question("Escreva o género da pessoa: ", "Gender", "String");
+    	Question qName = new Question("Escreva o nome da pessoa: ", "Name", "String"); //x
+    	Question qGender = new Question("Escreva o género da pessoa: ", "Gender", "Gender");
     	Question qAddress = new Question("Escreva a morada da pessoa: ", "Address", "String");
     	Question qBirthday = new Question("Escreva o aniversário da pessoa: ", "Birthday", "LocalDateTime");
     	
@@ -44,11 +44,6 @@ public class TestMenu
     	main.addOption(o5);
     	
     	main.build();
-    }
-    
-    public static void createTimeCell(Timetable timetable) 
-    {
-    	
     }
     
     public static void writePessoa(Person person) 
