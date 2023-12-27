@@ -4,19 +4,25 @@ import java.time.LocalDateTime;
 
 public class Teacher extends Person 
 {
+    private static int nextTeacherID = 1;
     private int teacherID;
     private Subject subjectTaught;
 
     public Teacher() 
     {
-    	this.teacherID = 0;
+    	this.teacherID = generateTeacherID();
+    	this.subjectTaught = null;
     }
     
     public Teacher(String name, String gender, String address, LocalDateTime birthday, int teacherID) 
     {
     	super(name, gender, address, birthday);
-        this.teacherID = teacherID;
         this.subjectTaught = null;
+    }
+    
+    private static int generateTeacherID() 
+    {
+        return nextTeacherID++;
     }
 
     // Getters and Setters
@@ -39,21 +45,6 @@ public class Teacher extends Person
     {
         this.subjectTaught = subjectTaught;
     }
-    
- // Method to add subject and update the Subject's list of teachers
-    public void addSubject(Subject subject) 
-    {
-        if (subjectTaught == null) 
-        {
-            subjectTaught = subject;
-            subject.addTeacher(this);
-        } 
-        
-        else 
-        {
-            System.out.println("The teacher is already assigned to a subject.");
-        }
-    }
 
     // Method to remove subject and update the Subject's list of teachers
     public void removeSubject(Subject subject) 
@@ -68,12 +59,6 @@ public class Teacher extends Person
         {
             System.out.println("The teacher is not currently assigned to any subject.");
         }
-    }
-
-    // Método estático para criar um professor a partir do input do usuário
-    public static Teacher createTeacherFromUserInput() 
-    {
-        return new Teacher();
     }
     
     @Override

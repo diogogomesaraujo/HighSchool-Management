@@ -1,12 +1,14 @@
 package classes;
 
 import java.util.ArrayList;
+import java.io.*;
 
 public class Subject 
 {
     private String subjectName;
     private ArrayList<Student> enrolledStudents;
     private ArrayList<Teacher> teachers;
+    private String typeOfRoom;
 
     // Constructor
     public Subject(String subjectName) 
@@ -16,18 +18,28 @@ public class Subject
         this.teachers = new ArrayList<>();
     }
     
-    public Subject(String subjectName, String subjectType) 
+    public Subject(String subjectName, String typeOfRoom) 
     {
         this.subjectName = subjectName;
         this.enrolledStudents = new ArrayList<>();
         this.teachers = new ArrayList<>();
+        this.typeOfRoom = typeOfRoom;
+    }
+    
+    public String getTypeOfRoom() 
+    {
+    	return typeOfRoom;
+    }
+    
+    public void setTypeOfRoom(String typeOfRoom) 
+    {
+    	this.typeOfRoom = typeOfRoom;
     }
     
     // Additional methods
     public void addTeacher(Teacher teacher) 
     {
         teachers.add(teacher);
-        teacher.addSubject(this);
     }
 
     public void removeTeacher(Teacher teacher) 
@@ -90,5 +102,43 @@ public class Subject
         }
 
         return result;
+    }
+    
+    public static Subject aSubject() 
+    {
+    	String s = "";
+    	
+    	while(true) 
+		{
+			try 
+			{
+				System.out.print("(");
+				
+				for(int i = 0; i < PredefinedSubjects.subjects.size(); i++) 
+				{
+					System.out.print(PredefinedSubjects.subjects.get(i).getSubjectName());
+					if(i < PredefinedSubjects.subjects.size() - 1) System.out.print("/");
+				}
+				
+				System.out.print(")");
+				
+				System.out.println("-> ");
+				BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
+				s = in.readLine();
+				
+				for(int i = 0; i < PredefinedSubjects.subjects.size(); i++) 
+				{
+					if(s.equalsIgnoreCase(PredefinedSubjects.subjects.get(i).getSubjectName())) return PredefinedSubjects.subjects.get(i);
+					
+					//if(i >= PredefinedSubjects.subjects.size() - 1) System.out.println("Disciplina Inválida");
+				}
+			}
+			
+			catch(IOException e) 
+			{
+				System.out.print("Erro de Input!");
+				System.out.println();
+			}
+		}
     }
 }

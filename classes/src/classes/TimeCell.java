@@ -1,47 +1,49 @@
 package classes;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class TimeCell 
 {
-	private LocalDateTime startTime;
-	private LocalDateTime finishTime;
+	private ArrayList<LocalTime> timePeriod;
+	private String dayOfWeek;
+	private SchoolClass schoolClass;
 	private Room room;
 	private Subject subject;
 	
-	public TimeCell() 
+	public TimeCell(ArrayList<LocalTime> timePeriod, String dayOfWeek) 
 	{
-		this.startTime = LocalDateTime.now();
-		this.finishTime = LocalDateTime.now();
-		this.room = new Room();
+		this.timePeriod = timePeriod;
+		this.dayOfWeek = dayOfWeek;
 	}
 	
-	public TimeCell(LocalDateTime startTime, LocalDateTime finishTime, Room room, Subject subject) 
+	public TimeCell(ArrayList<LocalTime> timePeriod, String dayOfWeek, Room room, Subject subject, SchoolClass schoolClass) 
 	{
-		this.startTime = startTime;
-		this.finishTime = finishTime;
+		this.timePeriod = timePeriod;
+		this.dayOfWeek = dayOfWeek;
 		this.room = room;
 		this.subject = subject;
+		this.schoolClass = schoolClass;
 	}
 	
-	public void setStartTime(LocalDateTime startTime) 
-	{
-        this.startTime = startTime;
+	public void setTimePeriod(ArrayList<LocalTime> timePeriod) 
+    {
+        this.timePeriod = timePeriod;
     }
 
-    public LocalDateTime getStartTime() 
+    public ArrayList<LocalTime> getTimePeriod() 
     {
-        return this.startTime;
+        return timePeriod;
+    }
+    
+    public void setDayOfWeek(String dayOfWeek) 
+    {
+        this.dayOfWeek = dayOfWeek;
     }
 
-    public void setFinishTime(LocalDateTime finishTime) 
+    public String getDayOfWeek() 
     {
-        this.finishTime = finishTime;
-    }
-
-    public LocalDateTime getFinishTime() 
-    {
-        return this.finishTime;
+        return dayOfWeek;
     }
 
     public void setRoom(Room room) 
@@ -55,7 +57,7 @@ public class TimeCell
     }
 
 
-    public void setSubjects(Subject subject) 
+    public void setSubject(Subject subject) 
     {
         this.subject = subject;
     }
@@ -65,8 +67,21 @@ public class TimeCell
         return this.subject;
     }
     
-    public String toString() 
+    public void setSchoolClass(SchoolClass schoolClass) 
     {
-    	return " - Disciplina - " + " - Sala - " + room.getCode();
+        this.schoolClass = schoolClass;
+    }
+
+    public SchoolClass getSchoolClass() 
+    {
+        return schoolClass;
+    }
+    
+    public String build() 
+    {
+    	String text = "(" + timePeriod.get(0).getHour() + ":" +timePeriod.get(0).getMinute()
+    				+ "/" + timePeriod.get(1).getHour() + ":" +timePeriod.get(1).getMinute()
+    				+ ") " + subject + " - " + room.getCode();
+    	return text;
     }
 }

@@ -4,6 +4,7 @@ import myInputs.Read;
 import java.util.ArrayList;
 
 import classes.Course;
+import classes.Subject;
 
 public class Question 
 {
@@ -73,6 +74,10 @@ public class Question
                 
             case "OptionalSubject":
             	output = Course.aOptionalSubject((Course)extraInfo);
+            	break;
+            	
+            case "Subject":
+            	output = Subject.aSubject();
             	break;
                 
             default:

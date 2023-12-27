@@ -25,17 +25,17 @@ public class SchoolClass
         return className;
     }
 
-    public List<Student> getStudents() 
+    public ArrayList<Student> getStudents() 
     {
         return students;
     }
 
-    public List<Teacher> getSubjectTeachers() 
+    public ArrayList<Teacher> getSubjectTeachers() 
     {
         return subjectTeachers;
     }
 
-    public List<Subject> getClassSubjects() 
+    public ArrayList<Subject> getClassSubjects() 
     {
         return classSubjects;
     }
