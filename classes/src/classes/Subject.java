@@ -1,13 +1,12 @@
 package classes;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Subject 
 {
     private String subjectName;
-    private List<Student> enrolledStudents;
-    private List<Teacher> teachers;
+    private ArrayList<Student> enrolledStudents;
+    private ArrayList<Teacher> teachers;
 
     // Constructor
     public Subject(String subjectName) 
@@ -48,22 +47,22 @@ public class Subject
         this.subjectName = subjectName;
     }
 
-    public List<Teacher> getTeachers() 
+    public ArrayList<Teacher> getTeachers() 
     {
         return teachers;
     }
 
-    public void setTeachers(List<Teacher> teachers) 
+    public void setTeachers(ArrayList<Teacher> teachers) 
     {
         this.teachers = teachers;
     }
 
-    public List<Student> getEnrolledStudents() 
+    public ArrayList<Student> getEnrolledStudents() 
     {
         return enrolledStudents;
     }
 
-    public void setEnrolledStudents(List<Student> enrolledStudents) 
+    public void setEnrolledStudents(ArrayList<Student> enrolledStudents) 
     {
         this.enrolledStudents = enrolledStudents;
     }

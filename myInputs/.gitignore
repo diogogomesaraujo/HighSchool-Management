@@ -1,4 +1,1 @@
-#ignorar arquivos que sejam do tipo ".prefs" e "project"
-*.prefs
-*.project
 /bin/

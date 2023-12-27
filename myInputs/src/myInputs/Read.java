@@ -1,9 +1,7 @@
 package myInputs;
 
 import java.io.*;
-import classes.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class Read 
 {
@@ -161,7 +159,7 @@ public class Read
 		}
 	}
 	
-	public static Course aCourse() 
+	/*public static Course aCourse() 
 	{
 		String s = "";
 		
@@ -266,7 +264,7 @@ public class Read
 				System.out.println();
 			}
 		}
-	}
+	}*/
 	
 	public static String aGender() 
 	{

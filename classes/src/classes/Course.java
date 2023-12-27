@@ -1,5 +1,8 @@
 package classes;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,6 +127,112 @@ public class Course
         this.classes = classes;
     }
     
+    public static Subject aOptionalSubject(Course course) 
+	{
+		String s = "";
+		
+		ArrayList<Subject> optionalSubjects = new ArrayList<Subject>();
+		
+		if(course.getCourseName().equals("Ciências")) 
+		{
+			optionalSubjects = PredefinedCourses.sciencesOptionalSubjects;
+		}
+		
+		if(course.getCourseName().equals("Artes")) 
+		{
+			optionalSubjects = PredefinedCourses.artsOptionalSubjects;
+		}
+		
+		if(course.getCourseName().equals("Economia")) 
+		{
+			optionalSubjects = PredefinedCourses.economyOptionalSubjects;
+		}
+		
+		if(course.getCourseName().equals("Humanidades")) 
+		{
+			optionalSubjects = PredefinedCourses.humanSciencesOptionalSubjects;
+		}
+		
+		while(true) 
+		{
+			try 
+			{
+				System.out.print("(");
+				
+				for(int i = 0; i < optionalSubjects.size(); i++) 
+				{
+					System.out.print(optionalSubjects.get(i).getSubjectName());
+					if(i < optionalSubjects.size() - 1) System.out.print("/");
+				}
+				
+				System.out.print(") ");
+				
+				System.out.print("-> ");
+				BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
+				s= in.readLine();
+				
+				for(int i = 0; i < optionalSubjects.size(); i++) 
+				{
+					if(s.equalsIgnoreCase(optionalSubjects.get(i).getSubjectName())) return optionalSubjects.get(i);
+					
+					if(i >= optionalSubjects.size() - 1) System.out.println("Opção Inválida");
+				}
+			}
+			
+			catch(IOException e) 
+			{
+				System.out.print("Erro de Input!");
+				System.out.println();
+			}
+		}
+	}
+    
+    public static Course aCourse() 
+	{
+		String s = "";
+		
+		while(true) 
+		{
+			try 
+			{
+				System.out.print("(Artes/Ciências/Humanidades/Economia) ");
+				System.out.print("-> ");
+				BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
+				s= in.readLine();
+				
+				if (s.equalsIgnoreCase("Ciências") || s.equalsIgnoreCase("ciências")) 
+				{
+		            return PredefinedCourses.sciences;
+		        } 
+				
+				else if (s.equalsIgnoreCase("Artes") || s.equalsIgnoreCase("artes")) 
+				{
+		            return PredefinedCourses.arts;
+		        } 
+				
+				else if (s.equalsIgnoreCase("Humanidades") || s.equalsIgnoreCase("humanidades")) 
+				{
+		            return PredefinedCourses.humanSciences;
+		        } 
+				
+				else if (s.equalsIgnoreCase("Economia") || s.equalsIgnoreCase("economia")) 
+				{
+		            return PredefinedCourses.economy;
+		        } 
+				
+				else 
+				{
+					System.out.println("Curso Inválido!");
+				}
+			}
+			
+			catch(IOException e) 
+			{
+				System.out.print("Erro de Input!");
+				System.out.println();
+			}
+		}
+	}
     
     @Override
     public String toString() 

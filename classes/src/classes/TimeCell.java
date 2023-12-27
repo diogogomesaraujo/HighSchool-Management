@@ -7,7 +7,6 @@ public class TimeCell
 	private LocalDateTime startTime;
 	private LocalDateTime finishTime;
 	private Room room;
-	private Class studentClass;
 	private Subject subject;
 	
 	public TimeCell() 
@@ -15,16 +14,13 @@ public class TimeCell
 		this.startTime = LocalDateTime.now();
 		this.finishTime = LocalDateTime.now();
 		this.room = new Room();
-		this.studentClass = new Class();
-		this.subject = new Subject();
 	}
 	
-	public TimeCell(LocalDateTime startTime, LocalDateTime finishTime, Room room, Class studentClass, Subject subject) 
+	public TimeCell(LocalDateTime startTime, LocalDateTime finishTime, Room room, Subject subject) 
 	{
 		this.startTime = startTime;
 		this.finishTime = finishTime;
 		this.room = room;
-		this.studentClass = studentClass;
 		this.subject = subject;
 	}
 	
@@ -58,15 +54,6 @@ public class TimeCell
         return this.room;
     }
 
-    public void setStudentClass(Class studentClass) 
-    {
-        this.studentClass = studentClass;
-    }
-
-    public Class getStudentClasses() 
-    {
-        return this.studentClass;
-    }
 
     public void setSubjects(Subject subject) 
     {
@@ -80,6 +67,6 @@ public class TimeCell
     
     public String toString() 
     {
-    	return " - Disciplina - " + studentClass.getLetter() + " - Sala - " + room.getCode();
+    	return " - Disciplina - " + " - Sala - " + room.getCode();
     }
 }

@@ -1,6 +1,5 @@
 package classes;
 
-import java.util.ArrayList;
 import java.time.LocalDateTime;
 
 public class Teacher extends Person 
@@ -75,30 +74,6 @@ public class Teacher extends Person
     public static Teacher createTeacherFromUserInput() 
     {
         return new Teacher();
-    }
-    
-    // Método fictício para obter disciplinas disponíveis
-    private static ArrayList<Subject> getAvailableSubjects() 
-    {
-        
-        ArrayList<Subject> availableSubjects = new ArrayList<>();
-        
-        availableSubjects.add(new Subject("Português"));
-        availableSubjects.add(new Subject("Matemática"));
-        availableSubjects.add(new Subject("Língua Estrangeira"));
-        availableSubjects.add(new Subject("Filosofia"));
-        availableSubjects.add(new Subject("Educação Física"));
-        availableSubjects.add(new Subject("Física e Química"));
-        availableSubjects.add(new Subject("Biologia e Geologia"));
-        availableSubjects.add(new Subject("História"));
-        availableSubjects.add(new Subject("Matemática Aplicada às Ciências Sociais"));
-        availableSubjects.add(new Subject("Geografia"));
-        availableSubjects.add(new Subject("Desenho"));
-        availableSubjects.add(new Subject("Geometria Descritiva"));
-        availableSubjects.add(new Subject("História da Cultura e das Artes"));
-        availableSubjects.add(new Subject("Economia"));
-
-        return availableSubjects;
     }
     
     @Override

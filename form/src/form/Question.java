@@ -1,6 +1,8 @@
-package forms;
+package form;
 
 import myInputs.Read;
+import java.util.ArrayList;
+
 import classes.Course;
 
 public class Question 
@@ -11,6 +13,13 @@ public class Question
     private Object output;
 
     public Question(String text, String parameter, String typeOfParameter) 
+    {
+        this.text = text;
+        this.parameter = parameter;
+        this.typeOfParameter = typeOfParameter;
+    }
+    
+    public Question(String text, String parameter, String typeOfParameter, ArrayList<String> availableObjects) 
     {
         this.text = text;
         this.parameter = parameter;
@@ -54,20 +63,17 @@ public class Question
                 output = Read.aLocalDateTime();
                 break;
                 
-            case "Course":
-                output = Read.aCourse();
-                break;
-                
             case "Gender":
             	output = Read.aGender();
                 break;
                 
+            case "Course":
+            	output = Course.aCourse();
+            	break;
+                
             case "OptionalSubject":
-                if (extraInfo instanceof Course) 
-                {
-                    output = Read.aOptionalSubject((Course) extraInfo);
-                }
-                break;
+            	output = Course.aOptionalSubject((Course)extraInfo);
+            	break;
                 
             default:
                 output = null;
