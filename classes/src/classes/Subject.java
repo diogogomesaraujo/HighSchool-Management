@@ -1,66 +1,95 @@
 package classes;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Subject 
 {
-	private int code;
-	private String name;
-	private ArrayList<Student> students;
-	private ArrayList<Teacher> teachers;
-	
-	public Subject() 
-	{
-		this.name = "";
-		this.code = 0;
-		this.students = new ArrayList<Student>();
-		this.teachers = new ArrayList<Teacher>();
-	}
-	
-	public Subject(String name, int code, ArrayList<Student> students, ArrayList<Teacher> teachers) 
-	{
-		this.name = name;
-		this.code = code;
-		this.students = students;
-		this.teachers = teachers;
-	}
-	
-	 public int getCode() 
-	 	{
-	        return code;
-	    }
+    private String subjectName;
+    private List<Student> enrolledStudents;
+    private List<Teacher> teachers;
 
-	    public void setCode(int code) 
-	    {
-	        this.code = code;
-	    }
+    // Constructor
+    public Subject(String subjectName) 
+    {
+        this.subjectName = subjectName;
+        this.enrolledStudents = new ArrayList<>();
+        this.teachers = new ArrayList<>();
+    }
+    
+    public Subject(String subjectName, String subjectType) 
+    {
+        this.subjectName = subjectName;
+        this.enrolledStudents = new ArrayList<>();
+        this.teachers = new ArrayList<>();
+    }
+    
+    // Additional methods
+    public void addTeacher(Teacher teacher) 
+    {
+        teachers.add(teacher);
+        teacher.addSubject(this);
+    }
 
-	    public String getName() 
-	    {
-	        return name;
-	    }
+    public void removeTeacher(Teacher teacher) 
+    {
+        teachers.remove(teacher);
+        teacher.removeSubject(this);
+    }
+    
+    // Getters and Setters
+    public String getSubjectName() 
+    {
+        return subjectName;
+    }
 
-	    public void setName(String name) 
-	    {
-	        this.name = name;
-	    }
+    public void setSubjectName(String subjectName) 
+    {
+        this.subjectName = subjectName;
+    }
 
-	    public ArrayList<Student> getStudents() 
-	    {
-	        return students;
-	    }
+    public List<Teacher> getTeachers() 
+    {
+        return teachers;
+    }
 
-	    public void setAlunos(ArrayList<Student> students) 
-	    {
-	        this.students = students;
-	    }
+    public void setTeachers(List<Teacher> teachers) 
+    {
+        this.teachers = teachers;
+    }
 
-	    public ArrayList<Teacher> getTeachers() 
-	    {
-	        return teachers;
-	    }
+    public List<Student> getEnrolledStudents() 
+    {
+        return enrolledStudents;
+    }
 
-	    public void setTeachers(ArrayList<Teacher> teachers) 
-	    {
-	        this.teachers = teachers;
-	    }
+    public void setEnrolledStudents(List<Student> enrolledStudents) 
+    {
+        this.enrolledStudents = enrolledStudents;
+    }
+
+    public void enrollStudent(Student student) 
+    {
+        enrolledStudents.add(student);
+    }
+    
+    @Override
+    public String toString() 
+    {
+        String result = "Subject: " + subjectName + "\n";
+
+        result += "Enrolled Students:\n";
+        for (Student student : enrolledStudents) 
+        {
+            result += "- " + student.getName() + "\n";
+        }
+
+        result += "Teachers:\n";
+        for (Teacher teacher : teachers) 
+        {
+            result += "- " + teacher.getName() + "\n";
+        }
+
+        return result;
+    }
 }
