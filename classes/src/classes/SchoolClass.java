@@ -9,6 +9,7 @@ public class SchoolClass
     private ArrayList<Student> students;
     private ArrayList<Teacher> subjectTeachers;
     private ArrayList<Subject> classSubjects;
+    private ArrayList<TimeCell> timetable;
 
     // Constructor
     public SchoolClass(String className, List<Subject> courseSubjects) 
@@ -17,6 +18,7 @@ public class SchoolClass
         this.students = new ArrayList<>();
         this.subjectTeachers = new ArrayList<>();
         this.classSubjects = new ArrayList<>(courseSubjects);
+        this.timetable = TimeCell.buildEmptyTimetable();
     }
 
     // Getters
@@ -28,6 +30,16 @@ public class SchoolClass
     public ArrayList<Student> getStudents() 
     {
         return students;
+    }
+    
+    public ArrayList<TimeCell> getTimetable() 
+    {
+        return timetable;
+    }
+
+    public void setTimetable(ArrayList<TimeCell> timetable) 
+    {
+        this.timetable = timetable;
     }
 
     public ArrayList<Teacher> getSubjectTeachers() 
@@ -71,7 +83,20 @@ public class SchoolClass
         
         else 
         {
-            System.out.println("Student is already in the class.");
+            System.out.println("O aluno já se encontra na turma!");
+        }
+    }
+    
+    public void addTeacher(Teacher teacher) 
+    {
+    	if (!subjectTeachers.contains(teacher)) {
+            subjectTeachers.add(teacher);
+            //teacher.setEnrolledClass(this);
+        } 
+        
+        else 
+        {
+            System.out.println("O professor já está atribuído a esta turma!");
         }
     }
 
@@ -150,6 +175,28 @@ public class SchoolClass
         return result;
     }
     
+    public ArrayList<Subject> getAvailableSubjects(TimeCell timeCell) 
+    {
+    	ArrayList<Subject> availableSubjects = new ArrayList<Subject>();
+    	
+    	if(subjectTeachers.size() != 0) 
+    	{
+    		for(Teacher teacher : subjectTeachers) 
+        	{
+        		for(TimeCell aux : teacher.getTimetable()) 
+        		{
+        			if(aux.getHasClass() == false && aux.getTimePeriod().equals(timeCell.getTimePeriod()) && aux.getDayOfWeek().equals(timeCell.getDayOfWeek())) 
+        			{
+        				availableSubjects.add(teacher.getSubjectTaught());
+        			}
+        		}
+        	}
+    	}
+    	
+    	else availableSubjects = classSubjects;
+    	
+    	return availableSubjects;
+    }
 }
 
 

@@ -1,6 +1,9 @@
 package form;
 
 import classes.*;
+import myInputs.Read;
+
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Forms 
@@ -22,10 +25,16 @@ public class Forms
 		
 		studentForm.build();
 		
-		student.getEnrolledCourse().enrollClass(student);
+		System.out.println(student.getName());
+		System.out.println(student.getAddress());
+		System.out.println(student.getGender());
+		System.out.println(student.getStudentID());
+		System.out.println(student.getBirthday());
+		System.out.println(student.getEnrolledCourse());
+		System.out.println(student.getOptionalSubject());
 	}
 	
-	public static void createTeacherForm() 
+	public static void createTeacherForm(SchoolClass schoolClass, SchoolClass schoolClass1) 
 	{
 		Teacher teacher = new Teacher();
 		
@@ -42,16 +51,64 @@ public class Forms
 		teacherForm.build();
 		
 		teacher.getSubjectTaught().addTeacher(teacher);
+		
+		schoolClass.addTeacher(teacher);
+		schoolClass1.addTeacher(teacher);
 	}
 	
 	public static void createTimetable(SchoolClass schoolClass) 
-	{
+	{	
+		System.out.println("\n====== Formulário ========\n");
 		
+		for(int i = 0; i < schoolClass.getTimetable().size(); i++) 
+		{
+			ArrayList<Subject> availableSubjects = schoolClass.getAvailableSubjects(schoolClass.getTimetable().get(i));
+			
+			if(schoolClass.getTimetable().get(i).getTimePeriod().get(0).equals(LocalTime.of(8, 30))) 
+			{
+				System.out.println(schoolClass.getTimetable().get(i).getDayOfWeek() + ": \n");
+			}
+			
+			System.out.println(schoolClass.getTimetable().get(i).timePeriodText() + "Adicionar Aula: \n");
+			String aux = Read.aQuestion();
+			
+			if(aux.equals("s") || aux.equals("S")) 
+			{
+				System.out.println();
+				System.out.println(schoolClass.getTimetable().get(i).timePeriodText() + "Escreva o nome da disciplina: ");
+				
+				Subject auxSubject = Subject.aSubject(availableSubjects);
+				
+				for(Teacher teacher : schoolClass.getSubjectTeachers()) 
+				{
+					if(teacher.getSubjectTaught().equals(auxSubject)) teacher.getTimetable().get(i).setHasClass(true);
+				}
+				
+				schoolClass.getTimetable().get(i).setSubject(auxSubject);
+				schoolClass.getTimetable().get(i).setHasClass(true);
+				
+				availableSubjects.remove(auxSubject);
+			}
+			
+			System.out.println();
+		}
+		
+		 System.out.println("\n======= Sucedido ========");
 	}
 	
 	public static void main(String[]args) 
 	{
-		createStudentForm();
+		SchoolClass schoolClass1 = new SchoolClass("10-A", PredefinedCourses.sciencesSubjects);
+		SchoolClass schoolClass2 = new SchoolClass("10-A", PredefinedCourses.sciencesSubjects);
+		
+		createTeacherForm(schoolClass1, schoolClass2);
+		createTimetable(schoolClass1);
+		
+		TimeCell.writeTimetable(schoolClass1.getTimetable());
+
+		createTimetable(schoolClass2);
+		
+		TimeCell.writeTimetable(schoolClass2.getTimetable());
 	}
 	
 	

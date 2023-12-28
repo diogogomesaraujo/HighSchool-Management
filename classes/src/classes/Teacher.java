@@ -1,23 +1,27 @@
 package classes;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Teacher extends Person 
 {
     private static int nextTeacherID = 1;
     private int teacherID;
     private Subject subjectTaught;
+    private ArrayList<TimeCell> timetable;
 
     public Teacher() 
     {
     	this.teacherID = generateTeacherID();
     	this.subjectTaught = null;
+    	this.timetable = TimeCell.buildEmptyTimetable();
     }
     
     public Teacher(String name, String gender, String address, LocalDateTime birthday, int teacherID) 
     {
     	super(name, gender, address, birthday);
         this.subjectTaught = null;
+        this.timetable = TimeCell.buildEmptyTimetable();
     }
     
     private static int generateTeacherID() 
@@ -34,6 +38,16 @@ public class Teacher extends Person
     public void setTeacherID(int teacherID) 
     {
         this.teacherID = teacherID;
+    }
+    
+    public ArrayList<TimeCell> getTimetable() 
+    {
+        return timetable;
+    }
+
+    public void setTimetable(ArrayList<TimeCell> timetable) 
+    {
+        this.timetable = timetable;
     }
 
     public Subject getSubjectTaught() 

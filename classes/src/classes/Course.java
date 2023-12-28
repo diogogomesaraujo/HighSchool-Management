@@ -161,7 +161,7 @@ public class Course
 				
 				for(int i = 0; i < optionalSubjects.size(); i++) 
 				{
-					System.out.print(optionalSubjects.get(i).getSubjectName());
+					System.out.print(optionalSubjects.get(i).getSubjectShortName());
 					if(i < optionalSubjects.size() - 1) System.out.print("/");
 				}
 				
@@ -173,10 +173,12 @@ public class Course
 				
 				for(int i = 0; i < optionalSubjects.size(); i++) 
 				{
-					if(s.equalsIgnoreCase(optionalSubjects.get(i).getSubjectName())) return optionalSubjects.get(i);
+					if(s.equalsIgnoreCase(optionalSubjects.get(i).getSubjectShortName())) return optionalSubjects.get(i);
 					
 					if(i >= optionalSubjects.size() - 1) System.out.println("Opção Inválida");
 				}
+				
+				System.out.println("Resposta Inválida!");
 			}
 			
 			catch(IOException e) 
