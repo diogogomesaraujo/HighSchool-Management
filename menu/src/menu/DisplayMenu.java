@@ -14,6 +14,7 @@ public class DisplayMenu {
         Menu subjectsMenu = new Menu(main);
         Menu gradesMenu = new Menu(main);
         Menu scheduleMenu = new Menu(main);
+        Menu editStudentMenu = new Menu(studentMenu);
 
         // Add menu history
 
@@ -52,6 +53,30 @@ public class DisplayMenu {
         Action a9 = () -> Forms.viewStudentDetails(); 
         MenuOption o9 = new MenuOption(studentMenu.getChoice(), "Ver Detalhes do Aluno", new Executable(a9));
         studentMenu.addOption(o9);
+        
+        Action a20 = () -> editStudentMenu.build(); 
+        MenuOption o20 = new MenuOption(studentMenu.getChoice(), "Editar Aluno", new Executable(a20));
+        studentMenu.addOption(o20);
+        
+        Action a21 = () -> Forms.editStudentDetails("Name"); 
+        MenuOption o21 = new MenuOption(studentMenu.getChoice(), "Alterar Nome", new Executable(a21));
+        editStudentMenu.addOption(o21);
+        
+        Action a22 = () -> Forms.editStudentDetails("Gender"); 
+        MenuOption o22 = new MenuOption(studentMenu.getChoice(), "Alterar Género", new Executable(a22));
+        editStudentMenu.addOption(o22);
+        
+        Action a23 = () -> Forms.editStudentDetails("Birthday"); 
+        MenuOption o23 = new MenuOption(studentMenu.getChoice(), "Alterar Data de Nascimento", new Executable(a23));
+        editStudentMenu.addOption(o23);
+        
+        Action a24 = () -> Forms.editStudentDetails("Address"); 
+        MenuOption o24 = new MenuOption(studentMenu.getChoice(), "Alterar Morada", new Executable(a24));
+        editStudentMenu.addOption(o24);
+        
+        Action a25 = () -> Forms.editStudentDetails("EnrolledCourse and SchoolClass"); 
+        MenuOption o25 = new MenuOption(studentMenu.getChoice(), "Alterar Curso e Turma", new Executable(a25));
+        editStudentMenu.addOption(o25);
 
         // Teacher submenu options
         Action a10 = () -> Forms.createTeacherForm();; 

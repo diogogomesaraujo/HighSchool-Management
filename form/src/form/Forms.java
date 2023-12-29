@@ -145,22 +145,39 @@ public class Forms
 	    {
 	        if(parameterName.equals("Name"))
 	        {
-	        	
+	        	System.out.println("\nEscreva o novo nome do aluno: \n");
+	        	studentToEdit.setName(Read.aString());
 	        }
 	        
-	        else if(parameterName.equals("Gender")) 
+	        if(parameterName.equals("Gender")) 
 	        {
-	        	
+	        	System.out.println("\nEscreva o novo género do aluno: \n");
+	        	studentToEdit.setGender(Read.aGender());
 	        }
 	        
-	        else if(parameterName.equals("Birthday")) 
+	        if(parameterName.equals("Birthday")) 
 	        {
-	        	
+	        	System.out.println("\nEscreva a nova data de nascimento do aluno: \n");
+	        	studentToEdit.setBirthday(Read.aLocalDate());
 	        }
 	        
-	        else if(parameterName.equals("Address")) 
+	        if(parameterName.equals("Address")) 
 	        {
+	        	System.out.println("\nEscreva a nova morada do aluno: \n");
+	        	studentToEdit.setGender(Read.aString());
+	        }
+	        
+	        if(parameterName.equals("EnrolledCourse and SchoolClass")) 
+	        {
+	        	studentToEdit.getEnrolledClass().removeStudent(studentToEdit);;
 	        	
+	        	System.out.println("\nEscreva o novo curso do aluno: \n");
+	        	studentToEdit.setEnrolledCourse(Course.aCourse());
+	        	
+	        	System.out.println("\nEscreva a disciplina opcional do aluno: \n");
+	        	studentToEdit.setOptionalSubject(Course.aOptionalSubject(studentToEdit.getEnrolledCourse()));
+	        	
+	        	studentToEdit.getEnrolledCourse().enrollClass(studentToEdit);
 	        }
 	    } 
 	     
