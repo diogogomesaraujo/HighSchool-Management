@@ -32,6 +32,10 @@ public class Forms
 		System.out.println(student.getBirthday());
 		System.out.println(student.getEnrolledCourse());
 		System.out.println(student.getOptionalSubject());
+		
+		student.getEnrolledCourse().enrollClass(student);
+		
+		System.out.println(student.getEnrolledCourse().getClasses().toString());
 	}
 	
 	public static void createTeacherForm(SchoolClass schoolClass, SchoolClass schoolClass1) 
@@ -77,17 +81,22 @@ public class Forms
 				System.out.println();
 				System.out.println(schoolClass.getTimetable().get(i).timePeriodText() + "Escreva o nome da disciplina: ");
 				
-				Subject auxSubject = Subject.aSubject(availableSubjects);
-				
-				for(Teacher teacher : schoolClass.getSubjectTeachers()) 
+				if(availableSubjects.size() != 0) 
 				{
-					if(teacher.getSubjectTaught().equals(auxSubject)) teacher.getTimetable().get(i).setHasClass(true);
+					Subject auxSubject = Subject.aSubject(availableSubjects);
+					
+					for(Teacher teacher : schoolClass.getSubjectTeachers()) 
+					{
+						if(teacher.getSubjectTaught().equals(auxSubject)) teacher.getTimetable().get(i).setHasClass(true);
+					}
+					
+					schoolClass.getTimetable().get(i).setSubject(auxSubject);
+					schoolClass.getTimetable().get(i).setHasClass(true);
+					
+					availableSubjects.remove(auxSubject);
 				}
 				
-				schoolClass.getTimetable().get(i).setSubject(auxSubject);
-				schoolClass.getTimetable().get(i).setHasClass(true);
-				
-				availableSubjects.remove(auxSubject);
+				else System.out.println("Não há professores disponíveis a essa hora!\n");
 			}
 			
 			System.out.println();
@@ -109,6 +118,8 @@ public class Forms
 		createTimetable(schoolClass2);
 		
 		TimeCell.writeTimetable(schoolClass2.getTimetable());
+		
+		//createStudentForm();
 	}
 	
 	
