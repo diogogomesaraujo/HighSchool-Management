@@ -177,10 +177,10 @@ public class Course
 		{
 			try 
 			{	
-				for(int i = 0; i < optionalSubjects.size(); i++) 
+				for(int i = 1; i <= optionalSubjects.size(); i++) 
 				{
-					System.out.println(i + ".	" + optionalSubjects.get(i).getSubjectName());
-					optionalSubjects.get(i).setAuxNumber(i);
+					System.out.println(i + ".	" + optionalSubjects.get(i - 1).getSubjectName());
+					optionalSubjects.get(i - 1).setAuxNumber(i);
 				}
 				
 				System.out.print("\n-> ");
@@ -213,31 +213,31 @@ public class Course
 		{
 			try 
 			{
-				System.out.println("0.	Artes ");
-				System.out.println("1.	Ciências ");
-				System.out.println("2.	Economia ");
-				System.out.println("3.	Humanidades ");
+				System.out.println("1.	Artes ");
+				System.out.println("2.	Ciências ");
+				System.out.println("3.	Economia ");
+				System.out.println("4.	Humanidades ");
 				
 				System.out.print("\n-> ");
 				BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
 				s= in.readLine();
 				
-				if (s.equalsIgnoreCase("0")) 
+				if (s.equalsIgnoreCase("1")) 
 				{
 		            return PredefinedCourses.arts;
 		        } 
 				
-				else if (s.equalsIgnoreCase("1")) 
+				else if (s.equalsIgnoreCase("2")) 
 				{
 		            return PredefinedCourses.sciences;
 		        } 
 				
-				else if (s.equalsIgnoreCase("2")) 
+				else if (s.equalsIgnoreCase("3")) 
 				{
 		            return PredefinedCourses.economy;
 		        } 
 				
-				else if (s.equalsIgnoreCase("3")) 
+				else if (s.equalsIgnoreCase("4")) 
 				{
 		            return PredefinedCourses.humanSciences;
 		        } 

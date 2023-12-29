@@ -116,12 +116,12 @@ public class DisplayMenu {
         subjectsMenu.addOption(o17);
 
         // Grades submenu options
-        Action a18 = () -> System.out.println("."); // Placeholder for assignGrade implementation
-        MenuOption o18 = new MenuOption(gradesMenu.getChoice(), "Assign Grade", new Executable(a18));
+        Action a18 = () -> Forms.assignGrade();
+        MenuOption o18 = new MenuOption(gradesMenu.getChoice(), "Atribuir Nota", new Executable(a18));
         gradesMenu.addOption(o18);
 
-        Action a19 = () -> System.out.println("."); // Placeholder for viewGrades implementation
-        MenuOption o19 = new MenuOption(gradesMenu.getChoice(), "View Grades", new Executable(a19));
+        Action a19 = () -> Forms.viewStudentGrades();
+        MenuOption o19 = new MenuOption(gradesMenu.getChoice(), "Ver Nota", new Executable(a19));
         gradesMenu.addOption(o19);
         
         main.build();

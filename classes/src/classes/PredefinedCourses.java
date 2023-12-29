@@ -19,5 +19,5 @@ public interface PredefinedCourses
 	public static final ArrayList<Subject> economyOptionalSubjects = new ArrayList<>(Arrays.asList(PredefinedSubjects.geography, PredefinedSubjects.history));
 	public static final ArrayList<Subject> humanSciencesOptionalSubjects = new ArrayList<>(Arrays.asList(PredefinedSubjects.macs, PredefinedSubjects.literature));
 	
-	public static final ArrayList<Course> courses = new ArrayList<Course>(Arrays.asList(sciences, arts, economy, humanSciences));
+	public static final ArrayList<Course> courses = new ArrayList<Course>(Arrays.asList(arts, sciences, economy, humanSciences));
 }

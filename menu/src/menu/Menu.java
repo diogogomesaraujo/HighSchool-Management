@@ -6,7 +6,7 @@ public class Menu
 {
     private ArrayList<MenuOption> menuOptions;
     private Menu parentMenu;
-    private int choice = 0;
+    private int choice = 1;
     
     public MenuOption exit;
     public MenuOption back;
@@ -42,18 +42,21 @@ public class Menu
     {
         System.out.println("\n========= Menu =========");
         System.out.println();
-        for (int i = 0; i < menuOptions.size(); i++) 
+        
+        for (int i = 1; i <= menuOptions.size(); i++) 
         {
-            menuOptions.get(i).writeOption();
+            if(i == menuOptions.size() - 1) System.out.println();
+            
+            menuOptions.get(i - 1).writeOption();
         }
         
         System.out.print("\nEscreva a opção ");
         
         int input = Read.anInt();
         
-        if (input >= 0 && input < menuOptions.size()) 
+        if (input >= 1 && input <= menuOptions.size()) 
         {
-            menuOptions.get(input).getExecutable().execute();
+            menuOptions.get(input - 1).getExecutable().execute();
         } 
         
         else 

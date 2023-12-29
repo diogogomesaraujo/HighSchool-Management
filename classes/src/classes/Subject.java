@@ -107,8 +107,8 @@ public class Subject
 			{
 				for(int i = 0; i < PredefinedSubjects.subjects.size(); i++) 
 				{
-					System.out.println(i + ".	" + PredefinedSubjects.subjects.get(i).getSubjectName());
-					PredefinedSubjects.subjects.get(i).setAuxNumber(i);
+					System.out.println((i + 1) + ".	" + PredefinedSubjects.subjects.get(i).getSubjectName());
+					PredefinedSubjects.subjects.get(i).setAuxNumber(i + 1);
 				}
 				
 				System.out.print("\n-> ");
@@ -145,8 +145,8 @@ public class Subject
 			{
 				for(int i = 0; i < subjects.size(); i++) 
 				{
-					System.out.println(i + ".	" + subjects.get(i).getSubjectName());
-					subjects.get(i).setAuxNumber(i);
+					System.out.println((i + 1) + ".	" + subjects.get(i).getSubjectName());
+					subjects.get(i).setAuxNumber(i + 1);
 				}
 				
 				System.out.print("\n-> ");

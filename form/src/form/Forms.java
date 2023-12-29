@@ -187,12 +187,16 @@ public class Forms
 	    }
 	}
 	
+	//VIEW THE DIFFERENT OBJECTS
+	
+	
+	
 	public static void viewTimetableDetails() 
 	{
 		System.out.println("\nEscolha um curso da turma para fazer o horário: ");
         
         displayCourseList(PredefinedCourses.courses);
-        int courseChoiceForClass = Read.anInt();
+        int courseChoiceForClass = Read.anInt() - 1;
         
         if (courseChoiceForClass >= 0 && courseChoiceForClass < PredefinedCourses.courses.size()) 
         {
@@ -204,7 +208,7 @@ public class Forms
             {
             	displayClassList(selectedCourse.getClasses());
                 
-                int classChoice = Read.anInt();
+                int classChoice = Read.anInt() - 1;
 
                 if (classChoice >= 0 && classChoice < selectedCourse.getClasses().size()) 
                 {
@@ -275,22 +279,10 @@ public class Forms
 		
 	    System.out.println("\nEscolha o curso para ver os detalhes:\n");
 	    
-	    displayCourseList(PredefinedCourses.courses);
+	    Course selectedCourse = Course.aCourse();
 	    
-	    System.out.print("\nEscreva o número da opção ");
-	    int courseChoice2 = Read.anInt();
-	    
-	    if (courseChoice2 >= 0 && courseChoice2 < PredefinedCourses.courses.size()) 
-	    {
-	    	System.out.println("\nDetalhes da disciplina para " + PredefinedCourses.courses.get(courseChoice2).getCourseName() + ":\n");
-	    	
-	    	System.out.println(PredefinedCourses.courses.get(courseChoice2).toString());
-	    } 
-	    
-	    else 
-	    {
-	        System.out.println("Escolha Inválida!");
-	    }
+	    System.out.println("\nDetalhes do Curso: ");
+	    System.out.println(selectedCourse.toString());
 	    
 	}
 
@@ -303,9 +295,10 @@ public class Forms
 	    displayCourseList(PredefinedCourses.courses);
 	    
 	    System.out.print("Escreva o número da opção ");
-	    int courseChoice = Read.anInt();
+	    int courseChoice = Read.anInt() - 1;
 	
-	    if (courseChoice >= 0 && courseChoice < PredefinedCourses.courses.size()) {
+	    if (courseChoice >= 0 && courseChoice < PredefinedCourses.courses.size()) 
+	    {
 	        Course selectedCourse = PredefinedCourses.courses.get(courseChoice);
 	
 	        // Display the list of subjects in the chosen course
@@ -314,7 +307,7 @@ public class Forms
 	
 	        // Enter the subject number
 	        System.out.print("\nEscreva o número da opção ");
-	        int subjectChoice = Read.anInt();
+	        int subjectChoice = Read.anInt() - 1;
 	        
 	        String subjectName = selectedCourse.getSubjects().get(subjectChoice).getSubjectName();
 	
@@ -346,7 +339,7 @@ public class Forms
 	    System.out.println("\nEscolha um curso para ver os detalhes da turma: ");
 	    
 	    displayCourseList(PredefinedCourses.courses);
-	    int courseChoiceForClass = Read.anInt();
+	    int courseChoiceForClass = Read.anInt() - 1;
 	    
 	    if (courseChoiceForClass >= 0 && courseChoiceForClass < PredefinedCourses.courses.size()) 
 	    {
@@ -358,7 +351,7 @@ public class Forms
 	        {
 	        	displayClassList(selectedCourse.getClasses());
 	            
-	            int classChoice = Read.anInt();
+	            int classChoice = Read.anInt() - 1;
 	
 	            if (classChoice >= 0 && classChoice < selectedCourse.getClasses().size()) 
 	            {
@@ -380,6 +373,38 @@ public class Forms
 	    }
 	    
 	}
+	
+	public static void viewStudentGrades() 
+	{
+        // Select a student
+        System.out.println("\nEscreva o ID do aluno para ver as notas: \n");
+        int studentID = Read.anInt();
+        Student selectedStudent = findStudentById(studentID);
+
+        if (selectedStudent != null) 
+        {
+            // Display grades for each subject
+            ArrayList<StudentGrade> studentGrades = selectedStudent.getStudentGrades();
+            
+            System.out.println("\n========= Notas =========\n");
+            
+            for (StudentGrade grade : studentGrades) 
+            {
+                System.out.println("Disciplina: " + grade.getSubject().getSubjectName() +
+                                   ", Nota: " + grade.getGradeValue());
+                
+                System.out.println("\n======= Sucedido ========");
+                
+                System.out.println();
+            }
+        } 
+        
+        else 
+        {
+            System.out.println("O aluno não foi encontrado!");
+        }
+        
+    }
 
 	private static Student findStudentById(int studentID) 
 	 {
@@ -416,7 +441,7 @@ public class Forms
      }
 	 
 	 private static Subject findSubjectByName(Course course, String subjectName) 
-	{
+	 {
 		for (Subject subject : course.getSubjects()) 
 		{
 			if (subject.getSubjectName().equalsIgnoreCase(subjectName)) 
@@ -425,9 +450,7 @@ public class Forms
             }
         }
         return null;
-    }
-	
-	
+	 }
 	
 	// METHODS FOR LISTING SOMETHING (COURSES, CLASSES AND SUBJECTS)
     
@@ -435,9 +458,9 @@ public class Forms
     {
         System.out.println("\nCursos Disponíveis:\n");
         
-        for (int i = 0; i < courses.size(); i++) 
+        for (int i = 1; i <= courses.size(); i++) 
         {
-            System.out.println((i) + ".	" + courses.get(i).getCourseName());
+            System.out.println((i) + ".	" + courses.get(i - 1).getCourseName());
         }
         
         System.out.println();
@@ -447,9 +470,9 @@ public class Forms
     {
         System.out.println("\nTurmas Disponíveis:\n");
         
-        for (int i = 0; i < list.size(); i++) 
+        for (int i = 1; i <= list.size(); i++) 
         {
-            System.out.println((i) + ".	" + list.get(i).getClassName());
+            System.out.println((i) + ".	" + list.get(i - 1).getClassName());
         }
         
         System.out.println();
@@ -457,11 +480,38 @@ public class Forms
 
     private static void displaySubjectList(ArrayList<Subject> subjects) 
     {
-        for (int i = 0; i < subjects.size(); i++) 
+        for (int i = 1; i <= subjects.size(); i++) 
         {
-            System.out.println((i) + ".	" + subjects.get(i).getSubjectName());
+            System.out.println((i) + ".	" + subjects.get(i - 1).getSubjectName());
         }
         
         System.out.println();
+    }
+    
+    public static void assignGrade() 
+    {
+        // Select a student
+        System.out.println("\nEscreva o ID do aluno que quer atribuir uma nota: \n");
+        int studentID = Read.anInt();
+        Student selectedStudent = findStudentById(studentID);
+
+        // Display available subjects
+        System.out.println("\nDisciplinas Disponíveis: \n");
+        displaySubjectList(selectedStudent.getEnrolledCourse().getSubjects());
+
+        // Select a subject by name
+        System.out.println("Escreva a opção da disciplina: \n");
+        int subjectNumber = Read.anInt();
+        Subject selectedSubject = selectedStudent.getEnrolledCourse().getSubjects().get(subjectNumber - 1);
+        
+        System.out.println("\nEscreva a nota para o aluno " + selectedStudent.getName() +
+                " a " + selectedSubject.getSubjectName() + ": \n");
+        double gradeValue = Read.aDouble();
+
+        // Create a new StudentGrade object and add it to the list
+        StudentGrade newGrade = new StudentGrade(selectedSubject, gradeValue);
+        selectedStudent.getStudentGrades().add(newGrade);
+
+        System.out.println("\nNota adicionada!");
     }
 }

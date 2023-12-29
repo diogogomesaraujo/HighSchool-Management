@@ -207,19 +207,19 @@ public class Read
 		{
 			try 
 			{
-				System.out.println("0.	Masculino");
-				System.out.println("1.	Feminino");
-				System.out.println("2.	Outro");
+				System.out.println("1.	Masculino");
+				System.out.println("2.	Feminino");
+				System.out.println("3.	Outro");
 				
 				System.out.print("\n-> ");
 				BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
 				s= in.readLine();
 				
-				if (s.equalsIgnoreCase("0")) return "Masculino";
+				if (s.equalsIgnoreCase("1")) return "Masculino";
 				
-				else if (s.equalsIgnoreCase("1")) return "Feminino";
+				else if (s.equalsIgnoreCase("2")) return "Feminino";
 				
-				else if (s.equalsIgnoreCase("2")) return "Outro";
+				else if (s.equalsIgnoreCase("3")) return "Outro";
 				
 				else 
 				{
@@ -242,16 +242,16 @@ public class Read
 		{
 			try 
 			{
-				System.out.println("0.	Sim");
-				System.out.println("1.	Não");
+				System.out.println("1.	Sim");
+				System.out.println("2.	Não");
 				
 				System.out.print("\n-> ");
 				BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
 				s = in.readLine();
 				
-				if(s.equalsIgnoreCase("0")) return "sim";
+				if(s.equalsIgnoreCase("1")) return "sim";
 				
-				else if(s.equalsIgnoreCase("1")) return "não";
+				else if(s.equalsIgnoreCase("2")) return "não";
 				
 				else System.out.println("Opção Inválida!");
 			}

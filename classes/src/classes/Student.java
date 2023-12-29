@@ -1,6 +1,7 @@
 package classes;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Student extends Person 
 {
@@ -9,6 +10,7 @@ public class Student extends Person
     private Course enrolledCourse;
     private Subject optionalSubject;
     private SchoolClass enrolledClass;
+    private ArrayList<StudentGrade> studentGrades;
 
     
     // Constructors
@@ -17,6 +19,7 @@ public class Student extends Person
     {
         super("", "", "", LocalDate.now());
         this.studentID = generateStudentID();
+        this.studentGrades = new ArrayList<StudentGrade>();
     }
     
     public Student(String name, String gender, String address, LocalDate birthday) 
@@ -31,6 +34,16 @@ public class Student extends Person
     }
     
     // Getters and setters for additional attributes
+    public ArrayList<StudentGrade> getStudentGrades()
+    {
+    	return studentGrades;
+    }
+    
+    public void setStudentGrades(ArrayList<StudentGrade> studentGrades) 
+    {
+    	this.studentGrades = studentGrades;
+    }
+    
     public int getStudentID() 
     {
         return studentID;
