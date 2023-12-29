@@ -22,11 +22,11 @@ public class Menu
     private void initDefaultOptions() 
     {
         Action comeBack = () -> back();
-        back = new MenuOption(choice, "Return", new Executable(comeBack));
+        back = new MenuOption(choice, "Voltar", new Executable(comeBack));
         choice++;
         
         Action leave = () -> System.exit(0);
-        exit = new MenuOption(choice, "Leave", new Executable(leave));
+        exit = new MenuOption(choice, "Sair", new Executable(leave));
         choice++;
         
         menuOptions.add(back);
@@ -62,7 +62,7 @@ public class Menu
             build();
         }
         
-        System.out.print("\nCarregue no enter para voltar ");
+        System.out.print("\nPressione enter para voltar -> ");
         
         String x = Read.aEnter();
         

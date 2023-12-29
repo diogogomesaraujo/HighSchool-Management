@@ -86,6 +86,8 @@ public class TimeCell
     {	
     	int inc = 0;
     	
+    	System.out.println("\n======= Horário =======\n");
+    	
     	for(int day = 0; day < DaysOfWeek.getUsefulDays().size(); day++) 
     	{
     		System.out.println(DaysOfWeek.getUsefulDays().get(day) + ":");
@@ -97,8 +99,9 @@ public class TimeCell
     			inc++;
         	}
     		
-    		System.out.println();
     	}
+    	
+    	System.out.println("\n======= Sucedido ========");
     }
     
     public static ArrayList<TimeCell> buildEmptyTimetable() 

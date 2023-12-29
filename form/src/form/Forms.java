@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 public class Forms 
 {
+	//METHODS TO CREATE DIFFERENT OBJECTS
+	
 	public static void createStudentForm() 
 	{
 		Student student = new Student();
@@ -25,7 +27,10 @@ public class Forms
 		
 		studentForm.build();
 		
+		System.out.println();
 		student.getEnrolledCourse().enrollClass(student);
+		
+		System.out.println("O ID do Aluno é: " + student.getStudentID() + "\n");
 	}
 	
 	public static void createTeacherForm() 
@@ -127,6 +132,44 @@ public class Forms
         }
 	}
 	
+	// METHODS TO EDIT DIFFERENT OBJECTS
+	
+	public static void editStudentDetails(String parameterName) 
+	{
+		System.out.println("\nEscreva o ID do aluno:\n");
+		int studentIdToEdit = Read.anInt();
+	     
+	    Student studentToEdit = findStudentById(studentIdToEdit);
+	     
+	    if (studentToEdit != null) 
+	    {
+	        if(parameterName.equals("Name"))
+	        {
+	        	
+	        }
+	        
+	        else if(parameterName.equals("Gender")) 
+	        {
+	        	
+	        }
+	        
+	        else if(parameterName.equals("Birthday")) 
+	        {
+	        	
+	        }
+	        
+	        else if(parameterName.equals("Address")) 
+	        {
+	        	
+	        }
+	    } 
+	     
+	    else 
+	    {
+	        System.out.println("\nAluno não foi encontrado!");
+	    }
+	}
+	
 	public static void viewTimetableDetails() 
 	{
 		System.out.println("\nEscolha um curso da turma para fazer o horário: ");
@@ -168,61 +211,27 @@ public class Forms
 	
 	//Find Functions:
 	
-	 private static Student findStudentById(int studentID) 
-	 {
-         for (Course course : PredefinedCourses.courses) 
-         {
-             for (SchoolClass schoolClass : course.getClasses()) 
-             {
-                 for (Student student : schoolClass.getStudents()) 
-                 {
-                     if (student.getStudentID() == studentID) 
-                     {
-                         return student;
-                     }
-                 }
-             }
-         }
-         return null;
-     }
-	 
 	 public static void viewStudentDetails() 
 	 {
-     	 // View Student Details
+	 	 // View Student Details
 		 System.out.println("\nEscreva o ID do aluno:\n");
-         int studentIdToView = Read.anInt();
-         
-         Student studentToView = findStudentById(studentIdToView);
-         
-         if (studentToView != null) 
-         {
-             System.out.println(studentToView.toString());
-         } 
-         
-         else 
-         {
-             System.out.println("\nAluno não foi encontrado!");
-         }
-         
-     }
-	 
-	 private static Teacher findTeacherById(int teacherID) 
-	 {
-		 for (Subject subject : PredefinedSubjects.subjects) 
-		 {
-             for (Teacher teacher : subject.getTeachers()) 
-             {
-                 if (teacher.getTeacherID() == teacherID) 
-                 {
-                     return teacher;
-                 }
-             }
-         }
-		 
-		 return null;
-     }
-	 
-	 public static void viewTeacherDetails() 
+	     int studentIdToView = Read.anInt();
+	     
+	     Student studentToView = findStudentById(studentIdToView);
+	     
+	     if (studentToView != null) 
+	     {
+	         System.out.println(studentToView.toString());
+	     } 
+	     
+	     else 
+	     {
+	         System.out.println("\nAluno não foi encontrado!");
+	     }
+	     
+	 }
+
+	public static void viewTeacherDetails() 
 	 {
 		 System.out.print("\nEscreva o ID do professor para ver os detalhes: \n");
 		 
@@ -243,7 +252,153 @@ public class Forms
 	 	
 	 }
 
-	private static Subject findSubjectByName(Course course, String subjectName) 
+	public static void viewCourseDetails() 
+	{
+		// View Course Details
+		
+	    System.out.println("\nEscolha o curso para ver os detalhes:\n");
+	    
+	    displayCourseList(PredefinedCourses.courses);
+	    
+	    System.out.print("\nEscreva o número da opção ");
+	    int courseChoice2 = Read.anInt();
+	    
+	    if (courseChoice2 >= 0 && courseChoice2 < PredefinedCourses.courses.size()) 
+	    {
+	    	System.out.println("\nDetalhes da disciplina para " + PredefinedCourses.courses.get(courseChoice2).getCourseName() + ":\n");
+	    	
+	    	System.out.println(PredefinedCourses.courses.get(courseChoice2).toString());
+	    } 
+	    
+	    else 
+	    {
+	        System.out.println("Escolha Inválida!");
+	    }
+	    
+	}
+
+	public static void viewSubjectDetails() 
+	{
+	
+	    // Choose a course
+	    System.out.println("\nEscolha o curso para ver os detalhes da disciplina:\n");
+	    
+	    displayCourseList(PredefinedCourses.courses);
+	    
+	    System.out.print("Escreva o número da opção ");
+	    int courseChoice = Read.anInt();
+	
+	    if (courseChoice >= 0 && courseChoice < PredefinedCourses.courses.size()) {
+	        Course selectedCourse = PredefinedCourses.courses.get(courseChoice);
+	
+	        // Display the list of subjects in the chosen course
+	        System.out.println("\nDisciplinas em " + selectedCourse.getCourseName() + ":");
+	        displaySubjectList(selectedCourse.getSubjects());
+	
+	        // Enter the subject number
+	        System.out.print("\nEscreva o número da opção ");
+	        int subjectChoice = Read.anInt();
+	        
+	        String subjectName = selectedCourse.getSubjects().get(subjectChoice).getSubjectName();
+	
+	        // Find the subject in the selected course
+	        Subject selectedSubject = findSubjectByName(selectedCourse, subjectName);
+	
+	        if (selectedSubject != null) 
+	        {
+	            // Print subject details
+	            System.out.println("\nDetalhes da disciplina para " + selectedSubject.getSubjectName() + ":");
+	            System.out.println(selectedSubject.toString());
+	        } 
+	        
+	        else 
+	        {
+	            System.out.println("Escolha Inválida!");
+	        }
+	    } 
+	    
+	    else 
+	    {
+	        System.out.println("Escolha Inválida!");
+	    }
+	}
+
+	public static void viewClassDetails() 
+	{
+		// View Class Details
+	    System.out.println("\nEscolha um curso para ver os detalhes da turma: ");
+	    
+	    displayCourseList(PredefinedCourses.courses);
+	    int courseChoiceForClass = Read.anInt();
+	    
+	    if (courseChoiceForClass >= 0 && courseChoiceForClass < PredefinedCourses.courses.size()) 
+	    {
+	        Course selectedCourse = PredefinedCourses.courses.get(courseChoiceForClass);
+	
+	        System.out.println("\nEscolha a turma para ver os detalhes:");
+	        
+	        if(selectedCourse.getClasses().size() != 0) 
+	        {
+	        	displayClassList(selectedCourse.getClasses());
+	            
+	            int classChoice = Read.anInt();
+	
+	            if (classChoice >= 0 && classChoice < selectedCourse.getClasses().size()) 
+	            {
+	                System.out.println(selectedCourse.getClasses().get(classChoice).toString());
+	            } 
+	            
+	            else 
+	            {
+	                System.out.println("\nEscolha Inválida!");
+	            }
+	        }
+	        
+	        else System.out.println("\nNão existem turmas inscritas neste curso!");
+	    } 
+	    
+	    else 
+	    {
+	        System.out.println("\nEscolha Inválida!");
+	    }
+	    
+	}
+
+	private static Student findStudentById(int studentID) 
+	 {
+         for (Course course : PredefinedCourses.courses) 
+         {
+             for (SchoolClass schoolClass : course.getClasses()) 
+             {
+                 for (Student student : schoolClass.getStudents()) 
+                 {
+                     if (student.getStudentID() == studentID) 
+                     {
+                         return student;
+                     }
+                 }
+             }
+         }
+         return null;
+     }
+	 
+	 private static Teacher findTeacherById(int teacherID) 
+	 {
+		 for (Subject subject : PredefinedSubjects.subjects) 
+		 {
+             for (Teacher teacher : subject.getTeachers()) 
+             {
+                 if (teacher.getTeacherID() == teacherID) 
+                 {
+                     return teacher;
+                 }
+             }
+         }
+		 
+		 return null;
+     }
+	 
+	 private static Subject findSubjectByName(Course course, String subjectName) 
 	{
 		for (Subject subject : course.getSubjects()) 
 		{
@@ -255,117 +410,7 @@ public class Forms
         return null;
     }
 	
-	public static void viewSubjectDetails() 
-	{
-
-        // Choose a course
-        System.out.println("\nEscolha o curso para ver os detalhes da disciplina:\n");
-        
-        displayCourseList(PredefinedCourses.courses);
-        
-        System.out.print("Escreva o número da opção ");
-        int courseChoice = Read.anInt();
-
-        if (courseChoice >= 0 && courseChoice < PredefinedCourses.courses.size()) {
-            Course selectedCourse = PredefinedCourses.courses.get(courseChoice);
-
-            // Display the list of subjects in the chosen course
-            System.out.println("\nDisciplinas em " + selectedCourse.getCourseName() + ":");
-            displaySubjectList(selectedCourse.getSubjects());
-
-            // Enter the subject number
-            System.out.print("\nEscreva o número da opção ");
-            int subjectChoice = Read.anInt();
-            
-            String subjectName = selectedCourse.getSubjects().get(subjectChoice).getSubjectName();
-
-            // Find the subject in the selected course
-            Subject selectedSubject = findSubjectByName(selectedCourse, subjectName);
-
-            if (selectedSubject != null) 
-            {
-                // Print subject details
-                System.out.println("\nDetalhes da disciplina para " + selectedSubject.getSubjectName() + ":");
-                System.out.println(selectedSubject.toString());
-            } 
-            
-            else 
-            {
-                System.out.println("Escolha Inválida!");
-            }
-        } 
-        
-        else 
-        {
-            System.out.println("Escolha Inválida!");
-        }
-	}
 	
-	public static void viewCourseDetails() 
-	{
-    	// View Course Details
-    	
-        System.out.println("\nEscolha o curso para ver os detalhes:\n");
-        
-        displayCourseList(PredefinedCourses.courses);
-        
-        System.out.print("\nEscreva o número da opção ");
-        int courseChoice2 = Read.anInt();
-        
-        if (courseChoice2 >= 0 && courseChoice2 < PredefinedCourses.courses.size()) 
-        {
-        	System.out.println("\nDetalhes da disciplina para " + PredefinedCourses.courses.get(courseChoice2).getCourseName() + ":\n");
-        	
-        	System.out.println(PredefinedCourses.courses.get(courseChoice2).toString());
-        } 
-        
-        else 
-        {
-            System.out.println("Escolha Inválida!");
-        }
-        
-    }
-	
-	public static void viewClassDetails() 
-	{
-    	// View Class Details
-        System.out.println("\nEscolha um curso para ver os detalhes da turma: ");
-        
-        displayCourseList(PredefinedCourses.courses);
-        int courseChoiceForClass = Read.anInt();
-        
-        if (courseChoiceForClass >= 0 && courseChoiceForClass < PredefinedCourses.courses.size()) 
-        {
-            Course selectedCourse = PredefinedCourses.courses.get(courseChoiceForClass);
-
-            System.out.println("\nEscolha a turma para ver os detalhes:");
-            
-            if(selectedCourse.getClasses().size() != 0) 
-            {
-            	displayClassList(selectedCourse.getClasses());
-                
-                int classChoice = Read.anInt();
-
-                if (classChoice >= 0 && classChoice < selectedCourse.getClasses().size()) 
-                {
-                    System.out.println(selectedCourse.getClasses().get(classChoice).toString());
-                } 
-                
-                else 
-                {
-                    System.out.println("\nEscolha Inválida!");
-                }
-            }
-            
-            else System.out.println("\nNão existem turmas inscritas neste curso!");
-        } 
-        
-        else 
-        {
-            System.out.println("\nEscolha Inválida!");
-        }
-        
-    }
 	
 	// METHODS FOR LISTING SOMETHING (COURSES, CLASSES AND SUBJECTS)
     
