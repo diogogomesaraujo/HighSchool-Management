@@ -6,22 +6,15 @@ import java.io.*;
 public class Subject 
 {
     private String subjectName;
-    private String subjectShortName;
     private ArrayList<Student> enrolledStudents;
     private ArrayList<Teacher> teachers;
+    
+    private int auxNumber;
 
     // Constructor
     public Subject(String subjectName) 
     {
         this.subjectName = subjectName;
-        this.enrolledStudents = new ArrayList<>();
-        this.teachers = new ArrayList<>();
-    }
-    
-    public Subject(String subjectName, String subjectShortName) 
-    {
-        this.subjectName = subjectName;
-        this.subjectShortName = subjectShortName;
         this.enrolledStudents = new ArrayList<>();
         this.teachers = new ArrayList<>();
     }
@@ -39,14 +32,14 @@ public class Subject
     }
     
     // Getters and Setters
-    public String getSubjectShortName() 
+    public int getAuxNumber() 
     {
-        return subjectShortName;
+        return auxNumber;
     }
 
-    public void setSubjectShortName(String subjectShortName) 
+    public void setAuxNumber(int auxNumber) 
     {
-        this.subjectShortName = subjectShortName;
+        this.auxNumber = auxNumber;
     }
     
     public String getSubjectName() 
@@ -112,33 +105,31 @@ public class Subject
 		{
 			try 
 			{
-				System.out.print("(");
-				
 				for(int i = 0; i < PredefinedSubjects.subjects.size(); i++) 
 				{
-					System.out.print(PredefinedSubjects.subjects.get(i).getSubjectShortName());
-					if(i < PredefinedSubjects.subjects.size() - 1) System.out.print("/");
+					System.out.println(i + ".	" + PredefinedSubjects.subjects.get(i).getSubjectName());
+					PredefinedSubjects.subjects.get(i).setAuxNumber(i);
 				}
 				
-				System.out.print(")");
-				
-				System.out.print("-> ");
+				System.out.print("\n-> ");
 				BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
 				s = in.readLine();
 				
 				for(int i = 0; i < PredefinedSubjects.subjects.size(); i++) 
 				{
-					if(s.equalsIgnoreCase(PredefinedSubjects.subjects.get(i).getSubjectShortName())) return PredefinedSubjects.subjects.get(i);
+					String aux = PredefinedSubjects.subjects.get(i).getAuxNumber() + "";
 					
-					if(i >= PredefinedSubjects.subjects.size() - 1) System.out.println("Disciplina Inválida");
+					if(s.equalsIgnoreCase(aux)) return PredefinedSubjects.subjects.get(i);
 				}
+				
+				System.out.println("Opção Inválida!");
 			}
 			
 	
 			
 			catch(IOException e) 
 			{
-				System.out.print("Erro de Input!");
+				System.out.print("\nErro de Input!");
 				System.out.println();
 			}
 		}
@@ -152,33 +143,31 @@ public class Subject
 		{
 			try 
 			{
-				System.out.print("(");
-				
 				for(int i = 0; i < subjects.size(); i++) 
 				{
-					System.out.print(subjects.get(i).getSubjectShortName());
-					if(i < subjects.size() - 1) System.out.print("/");
+					System.out.println(i + ".	" + subjects.get(i).getSubjectName());
+					subjects.get(i).setAuxNumber(i);
 				}
 				
-				System.out.print(")");
-				
-				System.out.print("-> ");
+				System.out.print("\n-> ");
 				BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
 				s = in.readLine();
 				
 				for(int i = 0; i < subjects.size(); i++) 
 				{
-					if(s.equalsIgnoreCase(subjects.get(i).getSubjectShortName())) return subjects.get(i);
+					String aux = subjects.get(i).getAuxNumber() + "";
 					
-					if(i >= subjects.size() - 1) System.out.println("Disciplina Inválida");
+					if(s.equalsIgnoreCase(aux)) return subjects.get(i);
 				}
+				
+				System.out.println("Opção Inválida!");
 			}
 			
 	
 			
 			catch(IOException e) 
 			{
-				System.out.print("Erro de Input!");
+				System.out.print("\nErro de Input!");
 				System.out.println();
 			}
 		}

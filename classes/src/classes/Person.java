@@ -1,23 +1,23 @@
 package classes;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Person 
 {
 	private String name;
 	private String gender;
-	private LocalDateTime birthday;
+	private LocalDate birthday;
 	private String address;
 	
 	public Person() 
 	{
 		this.name = "";
 		this.gender = "";
-		this.birthday = LocalDateTime.now();
+		this.birthday = LocalDate.now();
 		this.address = "";
 	}
 	
-	public Person(String name, String gender, String address, LocalDateTime birthday) 
+	public Person(String name, String gender, String address, LocalDate birthday) 
 	{
 		this.name = name;
 		this.gender = gender;
@@ -41,11 +41,11 @@ public class Person
         this.gender = gender;
     }
 
-    public LocalDateTime getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDateTime birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 

@@ -60,8 +60,8 @@ public class Question
                 output = Read.anInt();
                 break;
                 
-            case "LocalDateTime":
-                output = Read.aLocalDateTime();
+            case "LocalDate":
+                output = Read.aLocalDate();
                 break;
                 
             case "Gender":

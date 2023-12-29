@@ -45,49 +45,49 @@ public class DisplayMenu {
         // Submenu options
 
         // Student submenu options
-        Action a8 = () -> form.Forms.createStudentForm();; // Placeholder for createStudentAndEnroll implementation
+        Action a8 = () -> Forms.createStudentForm();; 
         MenuOption o8 = new MenuOption(studentMenu.getChoice(), "Criar Aluno e Inserir no Curso", new Executable(a8));
         studentMenu.addOption(o8);
 
-        Action a9 = () -> System.out.println("."); // Placeholder for viewStudentDetails implementation
-        MenuOption o9 = new MenuOption(studentMenu.getChoice(), "Ver Aluno", new Executable(a9));
+        Action a9 = () -> Forms.viewStudentDetails(); 
+        MenuOption o9 = new MenuOption(studentMenu.getChoice(), "Ver Detalhes do Aluno", new Executable(a9));
         studentMenu.addOption(o9);
 
         // Teacher submenu options
-        Action a10 = () -> System.out.println("."); // Placeholder for createTeacher implementation
-        MenuOption o10 = new MenuOption(teacherMenu.getChoice(), "Create Teacher", new Executable(a10));
+        Action a10 = () -> Forms.createTeacherForm();; 
+        MenuOption o10 = new MenuOption(teacherMenu.getChoice(), "Criar Professor e Inserir no Curso", new Executable(a10));
         teacherMenu.addOption(o10);
 
-        Action a11 = () -> System.out.println("."); // Placeholder for viewTeacherDetails implementation
-        MenuOption o11 = new MenuOption(teacherMenu.getChoice(), "View Teacher Details", new Executable(a11));
+        Action a11 = () -> Forms.viewTeacherDetails(); 
+        MenuOption o11 = new MenuOption(teacherMenu.getChoice(), "Ver Detalhes do Professor", new Executable(a11));
         teacherMenu.addOption(o11);
 
         // Course submenu options
-        Action a12 = () -> System.out.println("."); // Placeholder for viewCourseDetails implementation
-        MenuOption o12 = new MenuOption(courseMenu.getChoice(), "View Course Details", new Executable(a12));
+        Action a12 = () -> Forms.viewCourseDetails(); 
+        MenuOption o12 = new MenuOption(courseMenu.getChoice(), "Ver Detalhes do Curso", new Executable(a12));
         courseMenu.addOption(o12);
 
         // Class submenu options
-        Action a13 = () -> System.out.println("."); // Placeholder for viewClassDetails implementation
-        MenuOption o13 = new MenuOption(classMenu.getChoice(), "View Class Details", new Executable(a13));
+        Action a13 = () -> Forms.viewClassDetails();
+        MenuOption o13 = new MenuOption(classMenu.getChoice(), "Ver Detalhes da Turma", new Executable(a13));
         classMenu.addOption(o13);
         
         Action a14 = () -> scheduleMenu.build();
-        MenuOption o14 = new MenuOption(classMenu.getChoice(), "Schedule", new Executable(a14));
+        MenuOption o14 = new MenuOption(classMenu.getChoice(), "Horário", new Executable(a14));
         classMenu.addOption(o14);
         
         // Schedule submenu options
-        Action a15 = () -> System.out.println("."); // Placeholder for criarHorario
+        Action a15 = () -> Forms.createTimetableForm();
         MenuOption o15 = new MenuOption(scheduleMenu.getChoice(), "Criar Horário", new Executable(a15));
         scheduleMenu.addOption(o15);
         
-        Action a16 = () -> System.out.println("."); // Placeholder for editarHorario
-        MenuOption o16 = new MenuOption(scheduleMenu.getChoice(), "Editar Horário", new Executable(a16));
+        Action a16 = () -> Forms.viewTimetableDetails();;
+        MenuOption o16 = new MenuOption(scheduleMenu.getChoice(), "Ver Horário", new Executable(a16));
         scheduleMenu.addOption(o16);
 
         // Subjects submenu options
-        Action a17 = () -> System.out.println("."); // Placeholder for viewSubjectDetails implementation
-        MenuOption o17 = new MenuOption(subjectsMenu.getChoice(), "View Subject Details", new Executable(a17));
+        Action a17 = () -> Forms.viewSubjectDetails();
+        MenuOption o17 = new MenuOption(subjectsMenu.getChoice(), "Ver Detalhes da Disciplina", new Executable(a17));
         subjectsMenu.addOption(o17);
 
         // Grades submenu options

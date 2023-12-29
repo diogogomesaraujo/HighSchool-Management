@@ -1,6 +1,6 @@
 package classes;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Student extends Person 
 {
@@ -15,11 +15,11 @@ public class Student extends Person
     
     public Student() 
     {
-        super("", "", "", LocalDateTime.now());
+        super("", "", "", LocalDate.now());
         this.studentID = generateStudentID();
     }
     
-    public Student(String name, String gender, String address, LocalDateTime birthday) 
+    public Student(String name, String gender, String address, LocalDate birthday) 
     {
         super(name, gender, address, birthday);
         this.studentID = generateStudentID();

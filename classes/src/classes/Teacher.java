@@ -1,6 +1,6 @@
 package classes;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Teacher extends Person 
@@ -17,7 +17,7 @@ public class Teacher extends Person
     	this.timetable = TimeCell.buildEmptyTimetable();
     }
     
-    public Teacher(String name, String gender, String address, LocalDateTime birthday, int teacherID) 
+    public Teacher(String name, String gender, String address, LocalDate birthday, int teacherID) 
     {
     	super(name, gender, address, birthday);
         this.subjectTaught = null;

@@ -71,12 +71,14 @@ public class SchoolClass
     // Methods
     public void addStudent(Student student) 
     {
-        if (!students.contains(student)) {
+        if (!students.contains(student)) 
+        {
             students.add(student);
             student.setEnrolledClass(this);
 
             // Automatically enroll the student in subjects taught in this class
-            for (Subject subject : classSubjects) {
+            for (Subject subject : classSubjects) 
+            {
                 subject.enrollStudent(student);
             }
         } 

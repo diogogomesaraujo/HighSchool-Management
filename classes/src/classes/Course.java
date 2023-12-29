@@ -84,14 +84,34 @@ public class Course
                 {
                     classSubjects.add(subject);
                 }
+                
+                if (courseName == "Artes" && !PredefinedCourses.artsOptionalSubjects.contains(subject)) 
+                {
+                    classSubjects.add(subject);
+                }
+                
+                if (courseName == "Economia" && !PredefinedCourses.economyOptionalSubjects.contains(subject)) 
+                {
+                    classSubjects.add(subject);
+                }
+                
+                if (courseName == "Humanidades" && !PredefinedCourses.humanSciencesOptionalSubjects.contains(subject)) 
+                {
+                    classSubjects.add(subject);
+                }
             }
         	
         	classSubjects.add(student.getOptionalSubject());
         	
-            SchoolClass newClass = new SchoolClass("10" + (char) ('A' + classes.size()), classSubjects);
+            SchoolClass newClass = new SchoolClass("10" + (char) (GlobalVariables.letter), classSubjects);
+            
+            GlobalVariables.updateLetter();
+            
             classes.add(newClass);
+            
             student.setEnrolledClass(newClass);
             student.setEnrolledCourse(this);
+            
             newClass.addStudent(student);
         }
     }
@@ -107,7 +127,7 @@ public class Course
         this.courseName = courseName;
     }
 
-    public List<Subject> getSubjects() 
+    public ArrayList<Subject> getSubjects() 
     {
         return subjects;
     }
@@ -117,7 +137,7 @@ public class Course
         this.subjects = subjects;
     }
 
-    public List<SchoolClass> getClasses() 
+    public ArrayList<SchoolClass> getClasses() 
     {
         return classes;
     }
@@ -156,34 +176,30 @@ public class Course
 		while(true) 
 		{
 			try 
-			{
-				System.out.print("(");
-				
+			{	
 				for(int i = 0; i < optionalSubjects.size(); i++) 
 				{
-					System.out.print(optionalSubjects.get(i).getSubjectShortName());
-					if(i < optionalSubjects.size() - 1) System.out.print("/");
+					System.out.println(i + ".	" + optionalSubjects.get(i).getSubjectName());
+					optionalSubjects.get(i).setAuxNumber(i);
 				}
 				
-				System.out.print(") ");
-				
-				System.out.print("-> ");
+				System.out.print("\n-> ");
 				BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
-				s= in.readLine();
+				s = in.readLine();
 				
 				for(int i = 0; i < optionalSubjects.size(); i++) 
 				{
-					if(s.equalsIgnoreCase(optionalSubjects.get(i).getSubjectShortName())) return optionalSubjects.get(i);
+					String aux = optionalSubjects.get(i).getAuxNumber() + "";
 					
-					if(i >= optionalSubjects.size() - 1) System.out.println("Opção Inválida");
+					if(s.equalsIgnoreCase(aux)) return optionalSubjects.get(i);
 				}
 				
-				System.out.println("Resposta Inválida!");
+				System.out.println("Opção Inválida!");
 			}
 			
 			catch(IOException e) 
 			{
-				System.out.print("Erro de Input!");
+				System.out.print("\nErro de Input!");
 				System.out.println();
 			}
 		}
@@ -197,40 +213,44 @@ public class Course
 		{
 			try 
 			{
-				System.out.print("(Artes/Ciências/Humanidades/Economia) ");
-				System.out.print("-> ");
+				System.out.println("0.	Artes ");
+				System.out.println("1.	Ciências ");
+				System.out.println("2.	Economia ");
+				System.out.println("3.	Humanidades ");
+				
+				System.out.print("\n-> ");
 				BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
 				s= in.readLine();
 				
-				if (s.equalsIgnoreCase("Ciências") || s.equalsIgnoreCase("ciências")) 
-				{
-		            return PredefinedCourses.sciences;
-		        } 
-				
-				else if (s.equalsIgnoreCase("Artes") || s.equalsIgnoreCase("artes")) 
+				if (s.equalsIgnoreCase("0")) 
 				{
 		            return PredefinedCourses.arts;
 		        } 
 				
-				else if (s.equalsIgnoreCase("Humanidades") || s.equalsIgnoreCase("humanidades")) 
+				else if (s.equalsIgnoreCase("1")) 
 				{
-		            return PredefinedCourses.humanSciences;
+		            return PredefinedCourses.sciences;
 		        } 
 				
-				else if (s.equalsIgnoreCase("Economia") || s.equalsIgnoreCase("economia")) 
+				else if (s.equalsIgnoreCase("2")) 
 				{
 		            return PredefinedCourses.economy;
 		        } 
 				
+				else if (s.equalsIgnoreCase("3")) 
+				{
+		            return PredefinedCourses.humanSciences;
+		        } 
+				
 				else 
 				{
-					System.out.println("Curso Inválido!");
+					System.out.println("Opção Inválida!");
 				}
 			}
 			
 			catch(IOException e) 
 			{
-				System.out.print("Erro de Input!");
+				System.out.print("\nErro de Input!");
 				System.out.println();
 			}
 		}

@@ -91,6 +91,6 @@ public class Form
             }
         }
 
-        System.out.println("\n======= Sucedido ========");
+        System.out.println("======= Sucedido ========");
 	}
 }

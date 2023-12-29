@@ -62,11 +62,11 @@ public class Menu
             build();
         }
         
-        System.out.print("\nEscreva x para voltar ");
+        System.out.print("\nCarregue no enter para voltar ");
         
-        char x = Read.aChar();
+        String x = Read.aEnter();
         
-        if (x == 'x' || x == 'X') this.build();
+        this.build();
     }
 
     public ArrayList<MenuOption> getOptions() 

@@ -1,26 +1,53 @@
 package myInputs;
 
 import java.io.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Read 
 {
 	public static String aString() 
 	{
 		String s = "";
-		try 
+		while(true) 
 		{
-			System.out.print("-> ");
-			BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
-			s= in.readLine();
+			try 
+			{
+				System.out.print("-> ");
+				BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
+				s= in.readLine();
+				
+				if(!s.equals("")) return s;
+				
+				else System.out.println("\nErro de Input!\n");
+			}
+			
+			catch (IOException e)
+			{
+				System.out.print("\nErro de Input!");
+				System.out.println();
+			}
 		}
-		catch (IOException e)
+	}
+	
+	public static String aEnter() 
+	{
+		String s = "";
+		while(true) 
 		{
-			System.out.print("Erro de Input!");
-			System.out.println();
+			try 
+			{
+				BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
+				s = in.readLine();
+				
+				return "";
+			}
+			
+			catch (IOException e)
+			{
+				System.out.print("\nErro de Input!");
+				System.out.println();
+			}
 		}
-		
-		return s;
 	}
 	
 	public static int anInt() 
@@ -31,9 +58,10 @@ public class Read
 			{
 				return Integer.parseInt(aString().trim());
 			}
+			
 			catch(NumberFormatException e) 
 			{
-				System.out.println("Erro de Input!");
+				System.out.println("\nErro de Input!");
 				System.out.println();
 			}
 			
@@ -41,79 +69,90 @@ public class Read
 		
 	}
 	
-	public static byte aByte(){
+	public static byte aByte()
+	{
 		while(true)
 		{
 			try
 			{
 				return Byte.parseByte(aString().trim());
 			}
+			
 			catch(NumberFormatException e)
 			{
-				System.out.println("Erro de Input!");
+				System.out.println("\nErro de Input!");
 				System.out.println();
 			}
 		}
 	}
 	
-	public static short aShort(){
+	public static short aShort()
+	{
 		while(true){
 			try
 			{
 				return Short.parseShort(aString().trim());
 			}
+			
 			catch(NumberFormatException e)
 			{
-				System.out.println("Erro de Input!");
+				System.out.println("\nErro de Input!");
 				System.out.println();
 			}
 		}
 	}
 	
-	public static long aLong(){
+	public static long aLong()
+	{
 		while(true){
 			try
 			{
 				return Long.parseLong(aString().trim());
 			}
+			
 			catch(NumberFormatException e)
 			{
-				System.out.println("Erro de Input!");
+				System.out.println("\nErro de Input!");
 				System.out.println();
 			}
 		}
 	}
 	
-	public static float aFloat(){
+	public static float aFloat()
+	{
 		while(true){
 			try
 			{
 				return Float.parseFloat(aString().trim());
 			}
+			
 			catch(NumberFormatException e)
 			{
-				System.out.println("Erro de Input!");
+				System.out.println("\nErro de Input!");
 				System.out.println();
 			}
 		}
 	}
 	
-	public static double aDouble(){
+	public static double aDouble()
+	{
 		while(true)
 		{
 			try
 			{
 				return Double.valueOf(aString().trim());
 			}
+			
 			catch(NumberFormatException e)
 			{
-				System.out.println("Erro de Input!");
+				System.out.println("\nErro de Input!");
 				System.out.println();
 			}
 		}
 	}
 	
-	public static char aChar(){
+	public static char aChar()
+	{
 		while(true)
 		{
 			try
@@ -122,13 +161,14 @@ public class Read
 			}
 			catch(Exception e)
 			{
-				System.out.println("Erro de Input!");
+				System.out.println("\nErro de Input!");
 				System.out.println();
 			}
 		}
 	}
 	
-	public static boolean aBoolean(){
+	public static boolean aBoolean()
+	{
 		while(true)
 		{
 			try
@@ -137,23 +177,23 @@ public class Read
 			}
 			catch(Exception e)
 		{
-				System.out.println("Erro de Input!");
+				System.out.println("\nErro de Input!");
 				System.out.println();
 			}
 		}
 	} 
 	
-	public static LocalDateTime aLocalDateTime() 
+	public static LocalDate aLocalDate() 
 	{
 		while(true)
 		{
 			try
-			{
-				return LocalDateTime.parse((aString() + "T00:00:00").trim());
+			{	
+				return LocalDate.parse((aString()).trim());
 			}
 			catch(Exception e)
 		{
-				System.out.println("Erro de Input!");
+				System.out.println("\nErro de Input!");
 				System.out.println();
 			}
 		}
@@ -167,35 +207,29 @@ public class Read
 		{
 			try 
 			{
-				System.out.print("(Masculino/Feminino) ");
-				System.out.print("-> ");
+				System.out.println("0.	Masculino");
+				System.out.println("1.	Feminino");
+				System.out.println("2.	Outro");
+				
+				System.out.print("\n-> ");
 				BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
 				s= in.readLine();
 				
-				if (s.equalsIgnoreCase("masculino") || s.equalsIgnoreCase("Masculino")) 
-				{
-		            return "Masculino";
-		        } 
+				if (s.equalsIgnoreCase("0")) return "Masculino";
 				
-				else if (s.equalsIgnoreCase("feminino") || s.equalsIgnoreCase("Feminino")) 
-				{
-		            return "Feminino";
-		        } 
+				else if (s.equalsIgnoreCase("1")) return "Feminino";
 				
-				else if (s.equalsIgnoreCase("outro") || s.equalsIgnoreCase("Outro")) 
-				{
-		            return "Outro";
-		        } 
+				else if (s.equalsIgnoreCase("2")) return "Outro";
 				
 				else 
 				{
-		            System.out.println("Género Inválido!");
+		            System.out.println("Opção Inválido!");
 		        }
 			}
 			
 			catch (IOException e)
 			{
-				System.out.print("Erro de Input!");
+				System.out.print("\nErro de Input!");
 				System.out.println();
 			}
 		}
@@ -208,20 +242,22 @@ public class Read
 		{
 			try 
 			{
-				System.out.print("(S/N) ");
+				System.out.println("0.	Sim");
+				System.out.println("1.	Não");
 				
-				System.out.print("-> ");
+				System.out.print("\n-> ");
 				BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
-				s= in.readLine();
+				s = in.readLine();
 				
-				if(s.equalsIgnoreCase("s") || s.equalsIgnoreCase("S") || s.equalsIgnoreCase("n") || s.equalsIgnoreCase("N") ||
-						s.equalsIgnoreCase("Sim") || s.equalsIgnoreCase("sim") || s.equalsIgnoreCase("não") || s.equalsIgnoreCase("Não")) return s;
+				if(s.equalsIgnoreCase("0")) return "sim";
 				
-				else System.out.println("Resposta Inválida!");
+				else if(s.equalsIgnoreCase("1")) return "não";
+				
+				else System.out.println("Opção Inválida!");
 			}
 			catch (IOException e)
 			{
-				System.out.print("Erro de Input!");
+				System.out.print("\nErro de Input!");
 				System.out.println();
 			}
 		}
