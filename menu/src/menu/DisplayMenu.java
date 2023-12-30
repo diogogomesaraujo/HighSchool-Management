@@ -59,13 +59,17 @@ public class DisplayMenu
         MenuOption o9 = new MenuOption(studentMenu.getChoice(), "Ver Detalhes do Aluno", new Executable(a9));
         studentMenu.addOption(o9);
         
+        Action a20 = () -> editStudentMenu.build(); 
+        MenuOption o20 = new MenuOption(studentMenu.getChoice(), "Editar Detalhes do Aluno", new Executable(a20));
+        studentMenu.addOption(o20);
+        
         Action a90 = () -> Forms.deleteStudent(); 
         MenuOption o90 = new MenuOption(studentMenu.getChoice(), "Remover Aluno", new Executable(a90));
         studentMenu.addOption(o90);
         
-        Action a20 = () -> editStudentMenu.build(); 
-        MenuOption o20 = new MenuOption(studentMenu.getChoice(), "Editar Detalhes do Aluno", new Executable(a20));
-        studentMenu.addOption(o20);
+        Action a91 = () -> Forms.deleteStudent(); 
+        MenuOption o91 = new MenuOption(studentMenu.getChoice(), "Remover Aluno", new Executable(a91));
+        studentMenu.addOption(o91);
         
         Action a21 = () -> Forms.editStudentDetails("Name"); 
         MenuOption o21 = new MenuOption(studentMenu.getChoice(), "Alterar Nome", new Executable(a21));
