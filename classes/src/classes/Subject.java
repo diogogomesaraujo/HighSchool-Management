@@ -3,8 +3,10 @@ package classes;
 import java.util.ArrayList;
 import java.io.*;
 
-public class Subject 
+public class Subject implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+	
     private String subjectName;
     private ArrayList<Student> enrolledStudents;
     private ArrayList<Teacher> teachers;

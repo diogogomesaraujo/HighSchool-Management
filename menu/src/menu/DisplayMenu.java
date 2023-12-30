@@ -15,6 +15,7 @@ public class DisplayMenu {
         Menu gradesMenu = new Menu(main);
         Menu scheduleMenu = new Menu(main);
         Menu editStudentMenu = new Menu(studentMenu);
+        Menu editTeacherMenu = new Menu(teacherMenu);
 
         // Add menu history
 
@@ -55,7 +56,7 @@ public class DisplayMenu {
         studentMenu.addOption(o9);
         
         Action a20 = () -> editStudentMenu.build(); 
-        MenuOption o20 = new MenuOption(studentMenu.getChoice(), "Editar Aluno", new Executable(a20));
+        MenuOption o20 = new MenuOption(studentMenu.getChoice(), "Editar Detalhes do Aluno", new Executable(a20));
         studentMenu.addOption(o20);
         
         Action a21 = () -> Forms.editStudentDetails("Name"); 
@@ -86,7 +87,31 @@ public class DisplayMenu {
         Action a11 = () -> Forms.viewTeacherDetails(); 
         MenuOption o11 = new MenuOption(teacherMenu.getChoice(), "Ver Detalhes do Professor", new Executable(a11));
         teacherMenu.addOption(o11);
-
+        
+        Action a26 = () -> editTeacherMenu.build(); 
+        MenuOption o26 = new MenuOption(teacherMenu.getChoice(), "Editar Detalhes do Professor", new Executable(a26));
+        teacherMenu.addOption(o26);
+        
+        Action a28 = () -> Forms.editTeacherDetails("Name"); 
+        MenuOption o28 = new MenuOption(studentMenu.getChoice(), "Alterar Nome", new Executable(a28));
+        editTeacherMenu.addOption(o28);
+        
+        Action a29 = () -> Forms.editTeacherDetails("Gender"); 
+        MenuOption o29 = new MenuOption(studentMenu.getChoice(), "Alterar Género", new Executable(a29));
+        editTeacherMenu.addOption(o29);
+        
+        Action a30 = () -> Forms.editTeacherDetails("Birthday"); 
+        MenuOption o30 = new MenuOption(studentMenu.getChoice(), "Alterar Data de Nascimento", new Executable(a30));
+        editTeacherMenu.addOption(o30);
+        
+        Action a31 = () -> Forms.editTeacherDetails("Address"); 
+        MenuOption o31 = new MenuOption(studentMenu.getChoice(), "Alterar Morada", new Executable(a31));
+        editTeacherMenu.addOption(o31);
+        
+        Action a32 = () -> Forms.editTeacherDetails("SubjectTaught"); 
+        MenuOption o32 = new MenuOption(studentMenu.getChoice(), "Alterar Disciplina", new Executable(a32));
+        editTeacherMenu.addOption(o32);
+        
         // Course submenu options
         Action a12 = () -> Forms.viewCourseDetails(); 
         MenuOption o12 = new MenuOption(courseMenu.getChoice(), "Ver Detalhes do Curso", new Executable(a12));

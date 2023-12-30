@@ -2,9 +2,12 @@ package classes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Serializable;
 
-public class SchoolClass 
+public class SchoolClass implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+	
     private String className;  // e.g., "10A"
     private ArrayList<Student> students;
     private ArrayList<Teacher> subjectTeachers;

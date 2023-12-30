@@ -2,9 +2,12 @@ package classes;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class TimeCell 
+public class TimeCell implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+	
 	private ArrayList<LocalTime> timePeriod;
 	private String dayOfWeek;
 	private SchoolClass schoolClass;

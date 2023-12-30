@@ -1,7 +1,11 @@
 package classes;
 
-public class StudentGrade 
+import java.io.Serializable;
+
+public class StudentGrade implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+	
     Subject subject;
     private double gradeValue;
     

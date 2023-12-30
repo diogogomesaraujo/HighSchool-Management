@@ -1,13 +1,15 @@
 package classes;
 
 import java.io.BufferedReader;
+import java.io.Serializable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 
-public class Course 
+public class Course implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+	
     private String courseName;
     private ArrayList<Subject> subjects;
     private ArrayList<SchoolClass> classes;

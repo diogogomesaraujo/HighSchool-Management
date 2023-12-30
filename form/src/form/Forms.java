@@ -50,6 +50,8 @@ public class Forms
 		teacherForm.build();
 		
 		teacher.getSubjectTaught().addTeacher(teacher);
+		
+		System.out.println("O ID do Professor é: " + teacher.getTeacherID() + "\n");
 	}
 	
 	private static void createTimetable(SchoolClass schoolClass) 
@@ -95,42 +97,35 @@ public class Forms
 	
 	public static void createTimetableForm() 
 	{
-		System.out.println("\nEscolha um curso da turma para fazer o horário: ");
-        
-        displayCourseList(PredefinedCourses.courses);
-        int courseChoiceForClass = Read.anInt();
-        
-        if (courseChoiceForClass >= 0 && courseChoiceForClass < PredefinedCourses.courses.size()) 
-        {
-            Course selectedCourse = PredefinedCourses.courses.get(courseChoiceForClass);
+	    System.out.println("\nEscolha um curso da turma para fazer o horário: ");
 
-            System.out.println("\nEscolha a turma para fazer o horário:");
-            
-            if(selectedCourse.getClasses().size() != 0) 
-            {
-            	displayClassList(selectedCourse.getClasses());
-                
-                int classChoice = Read.anInt();
+	    Course selectedCourse = Course.aCourse();
 
-                if (classChoice >= 0 && classChoice < selectedCourse.getClasses().size()) 
-                {
-                    createTimetable(selectedCourse.getClasses().get(classChoice));
-                } 
-                
-                else 
-                {
-                    System.out.println("\nEscolha Inválida!");
-                }
-            }
-            
-            else System.out.println("\nNão existem turmas inscritas neste curso!");
-        } 
-        
-        else 
-        {
-            System.out.println("\nEscolha Inválida!");
-        }
+	    System.out.println("\nEscolha a turma para fazer o horário:");
+
+	    if (selectedCourse.getClasses().size() != 0) 
+	    {
+	        displayClassList(selectedCourse.getClasses());
+
+	        int classChoice = Read.anInt();
+
+	        if (classChoice >= 0 && classChoice < selectedCourse.getClasses().size()) 
+	        {
+	            createTimetable(selectedCourse.getClasses().get(classChoice));
+	        } 
+	        
+	        else 
+	        {
+	            System.out.println("\nEscolha Inválida!");
+	        }
+	    } 
+	    
+	    else 
+	    {
+	        System.out.println("\nNão existem turmas inscritas neste curso!");
+	    }
 	}
+
 	
 	// METHODS TO EDIT DIFFERENT OBJECTS
 	
@@ -143,43 +138,45 @@ public class Forms
 	     
 	    if (studentToEdit != null) 
 	    {
-	        if(parameterName.equals("Name"))
+	        switch (parameterName) 
 	        {
-	        	System.out.println("\nEscreva o novo nome do aluno: \n");
-	        	studentToEdit.setName(Read.aString());
+	            case "Name":
+	                System.out.println("\nEscreva o novo nome do aluno: \n");
+	                studentToEdit.setName(Read.aString());
+	                break;
+
+	            case "Gender":
+	                System.out.println("\nEscreva o novo género do aluno: \n");
+	                studentToEdit.setGender(Read.aGender());
+	                break;
+
+	            case "Birthday":
+	                System.out.println("\nEscreva a nova data de nascimento do aluno: \n");
+	                studentToEdit.setBirthday(Read.aLocalDate());
+	                break;
+
+	            case "Address":
+	                System.out.println("\nEscreva a nova morada do aluno: \n");
+	                studentToEdit.setAddress(Read.aString());
+	                break;
+
+	            case "EnrolledCourse and SchoolClass":
+	                studentToEdit.getEnrolledClass().removeStudent(studentToEdit);
+
+	                System.out.println("\nEscreva o novo curso do aluno: \n");
+	                studentToEdit.setEnrolledCourse(Course.aCourse());
+
+	                System.out.println("\nEscreva a disciplina opcional do aluno: \n");
+	                studentToEdit.setOptionalSubject(Course.aOptionalSubject(studentToEdit.getEnrolledCourse()));
+
+	                studentToEdit.getEnrolledCourse().enrollClass(studentToEdit);
+	                break;
+
+	            default:
+	                System.out.println("Parâmetro desconhecido: " + parameterName);
+	                break;
 	        }
-	        
-	        if(parameterName.equals("Gender")) 
-	        {
-	        	System.out.println("\nEscreva o novo género do aluno: \n");
-	        	studentToEdit.setGender(Read.aGender());
-	        }
-	        
-	        if(parameterName.equals("Birthday")) 
-	        {
-	        	System.out.println("\nEscreva a nova data de nascimento do aluno: \n");
-	        	studentToEdit.setBirthday(Read.aLocalDate());
-	        }
-	        
-	        if(parameterName.equals("Address")) 
-	        {
-	        	System.out.println("\nEscreva a nova morada do aluno: \n");
-	        	studentToEdit.setGender(Read.aString());
-	        }
-	        
-	        if(parameterName.equals("EnrolledCourse and SchoolClass")) 
-	        {
-	        	studentToEdit.getEnrolledClass().removeStudent(studentToEdit);;
-	        	
-	        	System.out.println("\nEscreva o novo curso do aluno: \n");
-	        	studentToEdit.setEnrolledCourse(Course.aCourse());
-	        	
-	        	System.out.println("\nEscreva a disciplina opcional do aluno: \n");
-	        	studentToEdit.setOptionalSubject(Course.aOptionalSubject(studentToEdit.getEnrolledCourse()));
-	        	
-	        	studentToEdit.getEnrolledCourse().enrollClass(studentToEdit);
-	        }
-	    } 
+	    }
 	     
 	    else 
 	    {
@@ -187,9 +184,54 @@ public class Forms
 	    }
 	}
 	
-	//VIEW THE DIFFERENT OBJECTS
+	public static void editTeacherDetails(String parameterName) 
+	{
+		System.out.println("\nEscreva o ID do professor:\n");
+		int teacherIdToEdit = Read.anInt();
+	     
+	    Teacher teacherToEdit = findTeacherById(teacherIdToEdit);
+	     
+	    if (teacherToEdit != null) 
+	    {
+	        if(parameterName.equals("Name"))
+	        {
+	        	System.out.println("\nEscreva o novo nome do professor: \n");
+	        	teacherToEdit.setName(Read.aString());
+	        }
+	        
+	        if(parameterName.equals("Gender")) 
+	        {
+	        	System.out.println("\nEscreva o novo género do professor: \n");
+	        	teacherToEdit.setGender(Read.aGender());
+	        }
+	        
+	        if(parameterName.equals("Birthday")) 
+	        {
+	        	System.out.println("\nEscreva a nova data de nascimento do professor: \n");
+	        	teacherToEdit.setBirthday(Read.aLocalDate());
+	        }
+	        
+	        if(parameterName.equals("Address")) 
+	        {
+	        	System.out.println("\nEscreva a nova morada do professor: \n");
+	        	teacherToEdit.setGender(Read.aString());
+	        }
+	        
+	        if(parameterName.equals("SubjectTaught")) 
+	        {	
+	        	teacherToEdit.setSubjectTaught(Subject.aSubject());
+	        	
+	        	teacherToEdit.getSubjectTaught().addTeacher(teacherToEdit); //fazer clone para o professor e depois eleminar o professor
+	        }
+	    } 
+	     
+	    else 
+	    {
+	        System.out.println("\nProfessor não foi encontrado!");
+	    }
+	}
 	
-	
+	//VIEW THE DIFFERENT OBJECTs
 	
 	public static void viewTimetableDetails() 
 	{
