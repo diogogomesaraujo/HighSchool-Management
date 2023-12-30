@@ -99,12 +99,13 @@ public class Student extends Person implements Serializable
     
     @Override
     public String toString() {
-        return "Student Details:\n" +
-                "Name: " + getName() + "\n" +
-                "Birthdate: " + getBirthday() + "\n" +
-                "Address: " + getAddress() + "\n" +
-                "Student ID: " + studentID + "\n" +
-                "Enrolled Course: " + (enrolledCourse != null ? enrolledCourse.getCourseName() : "Not Enrolled") + "\n" +
-                "Enrolled Class: " + (enrolledClass != null ? enrolledClass.getClassName() : "Not Enrolled");
+        return "=========================\n" + "Nome: " + getName() + "\n" +
+               "Género: " + getGender() + "\n" +
+               "Data de Nascimento: " + getBirthday() + "\n" +
+               "Endereço: " + getAddress() + "\n" +
+               "ID do Aluno: " + studentID + "\n" +
+               "Curso Matriculado: " + (enrolledCourse != null ? enrolledCourse.getCourseName() : "Não Matriculado") + "\n" +
+               "Classe Matriculada: " + (enrolledClass != null ? enrolledClass.getClassName() : "Não Matriculado") 
+               + "\n=========================";
     }
 }

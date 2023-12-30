@@ -30,7 +30,6 @@ public class Subject implements Serializable
     public void removeTeacher(Teacher teacher) 
     {
         teachers.remove(teacher);
-        teacher.removeSubject(this);
     }
     
     // Getters and Setters
@@ -80,23 +79,21 @@ public class Subject implements Serializable
     }
     
     @Override
-    public String toString() 
-    {
-        String result = "Subject: " + subjectName + "\n";
+    public String toString() {
+        String result = "=========================\n\n";
+        result += "Disciplina: " + subjectName + "\n";
 
-        result += "Enrolled Students:\n";
-        for (Student student : enrolledStudents) 
-        {
+        result += "Alunos Matriculados:\n";
+        for (Student student : enrolledStudents) {
             result += "- " + student.getName() + "\n";
         }
 
-        result += "Teachers:\n";
-        for (Teacher teacher : teachers) 
-        {
+        result += "Professores:\n";
+        for (Teacher teacher : teachers) {
             result += "- " + teacher.getName() + "\n";
         }
 
-        return result;
+        return "\n\n=========================" + result;
     }
     
     public static Subject aSubject() 

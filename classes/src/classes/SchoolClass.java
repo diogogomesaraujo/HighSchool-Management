@@ -143,21 +143,22 @@ public class SchoolClass implements Serializable
             else 
             {
                 // Handle the case where the index is out of bounds (this can be logged or reported)
-                System.err.println("Error: Invalid index when removing corresponding teacher.");
+                System.err.println("Opção Inválida!");
             }
         } 
         
         else 
         {
             // Handle the case where the subject was not found in the list (this can be logged or reported)
-            System.err.println("Error: Subject not found in the list.");
+            System.err.println("Opção Inválida!");
         }
     }
 
     @Override
     public String toString() 
     {
-        String result = "Class Name: " + className + "\n\n";
+        String result = "=========================\n\n" + 
+        		"Class Name: " + className + "\n\n";
 
         result += "Students:\n";
         for (Student student : students) 
@@ -177,7 +178,7 @@ public class SchoolClass implements Serializable
             result += "- " + subject.getSubjectName() + "\n";
         }
 
-        return result;
+        return "\n\n=========================" + result;
     }
     
     public ArrayList<Subject> getAvailableSubjects(TimeCell timeCell) 

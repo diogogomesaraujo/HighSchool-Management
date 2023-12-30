@@ -87,16 +87,13 @@ public class Teacher extends Person implements Serializable
     }
     
     @Override
-    public String toString() 
-    {
-        return "Teacher{" +
-                "name='" + getName() + '\'' +
-                ", birthdate='" + getBirthday() + '\'' +
-                ", address='" + getAddress() + '\'' +
-                ", teacherID=" + teacherID +
-                ", subjectTaught=" + subjectTaught +
-                '}';
+    public String toString() {
+        return "=========================\n\n" + "ID: " + teacherID + "\n" +
+               "Nome: " + getName() + "\n" +
+               "Género: " + getGender() + "\n" +
+               "Data de Nascimento: " + getBirthday() + "\n" +
+               "Endereço: " + getAddress() + "\n" +
+               "Disciplina Lecionada: " + (subjectTaught != null ? subjectTaught.getSubjectName() : "Não atribuída")
+               + "\n\n=========================";
     }
-
-    // Outros métodos e atributos...
 }

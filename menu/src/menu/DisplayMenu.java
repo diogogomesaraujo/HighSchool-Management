@@ -59,6 +59,10 @@ public class DisplayMenu
         MenuOption o9 = new MenuOption(studentMenu.getChoice(), "Ver Detalhes do Aluno", new Executable(a9));
         studentMenu.addOption(o9);
         
+        Action a90 = () -> Forms.deleteStudent(); 
+        MenuOption o90 = new MenuOption(studentMenu.getChoice(), "Remover Aluno", new Executable(a90));
+        studentMenu.addOption(o90);
+        
         Action a20 = () -> editStudentMenu.build(); 
         MenuOption o20 = new MenuOption(studentMenu.getChoice(), "Editar Detalhes do Aluno", new Executable(a20));
         studentMenu.addOption(o20);
@@ -91,6 +95,11 @@ public class DisplayMenu
         Action a11 = () -> Forms.viewTeacherDetails(); 
         MenuOption o11 = new MenuOption(teacherMenu.getChoice(), "Ver Detalhes do Professor", new Executable(a11));
         teacherMenu.addOption(o11);
+        
+        Action a111 = () -> Forms.deleteTeacher(); 
+        MenuOption o111 = new MenuOption(teacherMenu.getChoice(), "Remover Professor", new Executable(a111));
+        teacherMenu.addOption(o11);
+        
         
         Action a26 = () -> editTeacherMenu.build(); 
         MenuOption o26 = new MenuOption(teacherMenu.getChoice(), "Editar Detalhes do Professor", new Executable(a26));
@@ -154,7 +163,7 @@ public class DisplayMenu
         gradesMenu.addOption(o18);
 
         Action a19 = () -> Forms.viewStudentGrades();
-        MenuOption o19 = new MenuOption(gradesMenu.getChoice(), "Ver Nota", new Executable(a19));
+        MenuOption o19 = new MenuOption(gradesMenu.getChoice(), "Ver Notas", new Executable(a19));
         gradesMenu.addOption(o19);
         
         main.build();

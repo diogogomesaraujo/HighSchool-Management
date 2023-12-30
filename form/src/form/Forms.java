@@ -106,7 +106,7 @@ public class Forms
 		System.out.println();
 		student.getEnrolledCourse().enrollClass(student);
 		
-		System.out.println("O ID do Aluno é: " + student.getStudentID() + "\n");
+		System.out.println("O ID do Aluno é: " + student.getStudentID());
 	}
 	
 	public static void createTeacherForm() 
@@ -127,7 +127,7 @@ public class Forms
 		
 		teacher.getSubjectTaught().addTeacher(teacher);
 		
-		System.out.println("O ID do Professor é: " + teacher.getTeacherID() + "\n");
+		System.out.println("\nO ID do Professor é: " + teacher.getTeacherID());
 	}
 	
 	private static void createTimetable(SchoolClass schoolClass) 
@@ -164,7 +164,7 @@ public class Forms
 					schoolClass.getTimetable().get(i).setHasClass(true);
 				}
 				
-				else System.out.println("Não há professores disponíveis a essa hora!\n");
+				else System.out.println("\nNão há professores disponíveis a essa hora!\n");
 			}
 		}
 		
@@ -447,7 +447,7 @@ System.out.println("\nEscolha um curso da turma: ");
 	    
 	    Course selectedCourse = Course.aCourse();
 	    
-	    System.out.println("\nDetalhes do Curso: ");
+	    System.out.println("\nDetalhes do Curso: \n");
 	    System.out.println(selectedCourse.toString());
 	    
 	}
@@ -654,8 +654,7 @@ System.out.println("\nEscolha um curso da turma: ");
         System.out.println();
     }
     
-    public static void assignGrade() 
-    {
+    public static void assignGrade() {
         // Select a student
         System.out.println("\nEscreva o ID do aluno que quer atribuir uma nota: \n");
         int studentID = Read.anInt();
@@ -669,15 +668,106 @@ System.out.println("\nEscolha um curso da turma: ");
         System.out.println("Escreva a opção da disciplina: \n");
         int subjectNumber = Read.anInt();
         Subject selectedSubject = selectedStudent.getEnrolledCourse().getSubjects().get(subjectNumber - 1);
-        
-        System.out.println("\nEscreva a nota para o aluno " + selectedStudent.getName() +
-                " a " + selectedSubject.getSubjectName() + ": \n");
-        double gradeValue = Read.aDouble();
 
-        // Create a new StudentGrade object and add it to the list
-        StudentGrade newGrade = new StudentGrade(selectedSubject, gradeValue);
-        selectedStudent.getStudentGrades().add(newGrade);
+        // Check if the student already has a grade for the selected subject
+        if (hasGradeForSubject(selectedStudent, selectedSubject)) {
+            System.out.println("\nO aluno já tem uma nota para esta disciplina.");
+        } else {
+            System.out.println("\nEscreva a nota para o aluno " + selectedStudent.getName() +
+                    " a " + selectedSubject.getSubjectName() + ": \n");
+            double gradeValue = Read.aDouble();
 
-        System.out.println("\nNota adicionada!");
+            // Create a new StudentGrade object and add it to the list
+            StudentGrade newGrade = new StudentGrade(selectedSubject, gradeValue);
+            selectedStudent.getStudentGrades().add(newGrade);
+
+            System.out.println("\nNota adicionada!");
+        }
+    }
+
+    // Helper method to check if the student already has a grade for the selected subject
+    private static boolean hasGradeForSubject(Student student, Subject subject) {
+        for (StudentGrade grade : student.getStudentGrades()) {
+            if (grade.getSubject().equals(subject)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    //METHODS TO REMOVE OBJECTS
+    
+    public static void deleteStudent() {
+        System.out.println("Escreva o ID do aluno que quer apagar:");
+        int aluno = Read.anInt();
+        Student astudent = findStudentById(aluno);
+        if(astudent != null) {
+            astudent.getEnrolledClass().removeStudent(astudent);
+            for(Course course : courses) {
+                for(SchoolClass schoolClass : course.getClasses()) {
+                    schoolClass.removeStudent(astudent);
+                }
+            }
+            System.out.println("Aluno removido com sucesso!");
+        } else {
+            System.out.println("Aluno não encontrado com o ID fornecido!");
+        }
+    }
+    
+    public static void deleteTeacher() {
+        System.out.println("Escreva o ID do professor que quer apagar:");
+        int teacher = Read.anInt();
+        Teacher ateacher = findTeacherById(teacher);
+        if(ateacher != null) {
+            ateacher.getSubjectTaught().removeTeacher(ateacher);
+            System.out.println("Professor removido!\n");
+        } else {
+            System.out.println("Professor não encontrado com o ID fornecido!");
+        }
+    }
+    
+    //METHODS TO GET ALL THE STUDENTS AND THE TEACHERS AND THE CLASSES
+    
+    private static ArrayList<Student> getAllStudentsEnrolled() {
+        ArrayList<Student> allStudents = new ArrayList<>();
+        for(Course course : PredefinedCourses.courses) 
+        {
+            for (SchoolClass schoolClass : course.getClasses()) 
+            {
+                allStudents.addAll(schoolClass.getStudents());
+            }
+        }
+        return allStudents;
+    }
+    
+    public static void showAllStudents() {
+        ArrayList<Student> students = getAllStudentsEnrolled();
+        if(students.size() != 0) {
+            for(int i = 0; i < students.size(); i++) {
+                System.out.println(students.get(i).toString() + "\n");
+            }
+        }
+            else {
+            System.out.println("Não foram criados alunos!");
+        }
+    }
+    
+    public static ArrayList<Teacher> getAllTeacher() {
+        ArrayList<Teacher> allTeachers = new ArrayList<>();
+        for(Subject subject : PredefinedSubjects.subjects) {
+            allTeachers.addAll(subject.getTeachers());
+        }
+        return allTeachers;
+    }
+    
+    public static void showAllTeachers() {
+        ArrayList<Teacher> teachers = getAllTeacher();
+        if(teachers.size() != 0) {
+            for(int i = 0; i < teachers.size(); i++) {
+                System.out.println(teachers.get(i).toString() + "\n");
+            }
+        } else {
+            System.out.println("Não foram criados professores!");
+        }
     }
 }

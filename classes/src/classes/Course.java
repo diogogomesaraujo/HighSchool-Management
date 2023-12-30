@@ -261,7 +261,7 @@ public class Course implements Serializable
     @Override
     public String toString() 
     {
-        String result = "Curso: " + courseName + "\n\nDisciplinas:\n";
+        String result = "=========================\n\n" + "Curso: " + courseName + "\n\nDisciplinas:\n";
 
         for (Subject subject : subjects) 
         {
@@ -274,7 +274,7 @@ public class Course implements Serializable
             result += "- " + schoolClass.getClassName() + "\n";
         }
 
-        return result;
+        return "\n\n=========================" + result;
     }
 }
 
