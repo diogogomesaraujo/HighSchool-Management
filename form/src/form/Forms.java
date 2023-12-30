@@ -11,26 +11,36 @@ public class Forms
 {
 	public static ArrayList <Course> courses = PredefinedCourses.courses;
 	
-	public static void writeInFile() {
-        try{
+	public static void writeInFile() 
+	{
+        try
+        {
             FileOutputStream ficheiro = new FileOutputStream("Courses");
             ObjectOutputStream out = new ObjectOutputStream(ficheiro);
             out.writeObject(PredefinedCourses.courses);
             out.writeInt(Student.getNextStudentID());
             out.writeInt(Teacher.getNextTeacherID());
+            out.writeChar(GlobalVariables.getLetter());
             out.close();
             ficheiro.close();
-        } catch (IOException e) {
+        } 
+        
+        catch (IOException e) 
+        {
             e.printStackTrace();
         }
     }
 	
 	@SuppressWarnings("unchecked")
-	public static void readFile() {
-	    try {
+	public static void readFile() 
+	{
+	    try 
+	    {
 	    	File file = new File("Courses");
             if(!file.exists()) {
                 file.createNewFile();
+                
+                System.out.println("A criar o ficheiro...\n");
             }
 	    	
 	            FileInputStream fis = new FileInputStream(file);
@@ -38,24 +48,37 @@ public class Forms
 	            courses = (ArrayList<Course>) ois.readObject();   
 	            Student.setNextStudentID(ois.readInt());
 	            Teacher.setNextTeacherID(ois.readInt());
+	            GlobalVariables.setLetter(ois.readChar());
 	            ois.close();
 	            fis.close();
 	            
 	            updatePredefinedCourses(courses);
-	        } catch (FileNotFoundException e) {
-	            e.printStackTrace();
-	        } catch (IOException e1) {
-	            // TODO Auto-generated catch block
-	            e1.printStackTrace();
-	        } catch (ClassNotFoundException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        }
+	        } 
+	    
+	    catch (FileNotFoundException e) 
+	    {
+	    	e.printStackTrace();
+	    } 
+	    
+	    catch (IOException e1) 
+	    {
+	        // TODO Auto-generated catch block
+	    	e1.printStackTrace();
+	    } 
+	    
+	    catch (ClassNotFoundException e) 
+	    {
+	        // TODO Auto-generated catch block
+	        e.printStackTrace();
 	    }
+	}
 
-	public static void updatePredefinedCourses(ArrayList<Course> deserializedCourses) {
-	    for (Course course : deserializedCourses) {
-	        switch (course.getCourseName()) {
+	public static void updatePredefinedCourses(ArrayList<Course> deserializedCourses) 
+	{
+	    for (Course course : deserializedCourses) 
+	    {
+	        switch (course.getCourseName()) 
+	        {
 	            case "Ciências":
 	                PredefinedCourses.sciencesSubjects.clear();
 	                PredefinedCourses.sciencesSubjects.addAll(course.getSubjects());
@@ -80,7 +103,8 @@ public class Forms
 	    }
 	}
 
-	private static void updatePredefinedClasses(Course predefinedCourse, Course deserializedCourse) {
+	private static void updatePredefinedClasses(Course predefinedCourse, Course deserializedCourse) 
+	{
 	    predefinedCourse.setClasses(deserializedCourse.getClasses());
 	}
     
@@ -106,7 +130,7 @@ public class Forms
 		System.out.println();
 		student.getEnrolledCourse().enrollClass(student);
 		
-		System.out.println("O ID do Aluno é: " + student.getStudentID());
+		System.out.println("\nO ID do Aluno é: " + student.getStudentID());
 	}
 	
 	public static void createTeacherForm() 
@@ -378,7 +402,7 @@ System.out.println("\nEscolha um curso da turma: ");
 
                 if (classChoice >= 0 && classChoice < selectedCourse.getClasses().size()) 
                 {
-                    TimeCell.writeTimetable(selectedCourse.getClasses().get(classChoice).getTimetable());;
+                    TimeCell.writeTimetable(selectedCourse.getClasses().get(classChoice).getTimetable());
                 } 
                 
                 else 
@@ -408,7 +432,7 @@ System.out.println("\nEscolha um curso da turma: ");
 	     
 	     if (studentToView != null) 
 	     {
-	         System.out.println(studentToView.toString());
+	         System.out.println("\n" + studentToView.toString());
 	     } 
 	     
 	     else 
@@ -429,7 +453,7 @@ System.out.println("\nEscolha um curso da turma: ");
 	     if (teacherToView != null) 
 	     {
 	         System.out.println("\nDetalhes do Professor:");
-	         System.out.println(teacherToView.toString());
+	         System.out.println("\n" + teacherToView.toString());
 	     } 
 	     
 	     else 
@@ -448,7 +472,7 @@ System.out.println("\nEscolha um curso da turma: ");
 	    Course selectedCourse = Course.aCourse();
 	    
 	    System.out.println("\nDetalhes do Curso: \n");
-	    System.out.println(selectedCourse.toString());
+	    System.out.println("\n" + selectedCourse.toString());
 	    
 	}
 
@@ -460,7 +484,7 @@ System.out.println("\nEscolha um curso da turma: ");
 	    
 	    displayCourseList(PredefinedCourses.courses);
 	    
-	    System.out.print("Escreva o número da opção ");
+	    System.out.print("\nEscreva o número da opção ");
 	    int courseChoice = Read.anInt() - 1;
 	
 	    if (courseChoice >= 0 && courseChoice < PredefinedCourses.courses.size()) 
@@ -489,13 +513,13 @@ System.out.println("\nEscolha um curso da turma: ");
 	        
 	        else 
 	        {
-	            System.out.println("Escolha Inválida!");
+	            System.out.println("\nEscolha Inválida!");
 	        }
 	    } 
 	    
 	    else 
 	    {
-	        System.out.println("Escolha Inválida!");
+	        System.out.println("\nEscolha Inválida!");
 	    }
 	}
 
@@ -518,6 +542,8 @@ System.out.println("\nEscolha um curso da turma: ");
 	        	displayClassList(selectedCourse.getClasses());
 	            
 	            int classChoice = Read.anInt() - 1;
+	            
+	            System.out.println();
 	
 	            if (classChoice >= 0 && classChoice < selectedCourse.getClasses().size()) 
 	            {
@@ -567,7 +593,7 @@ System.out.println("\nEscolha um curso da turma: ");
         
         else 
         {
-            System.out.println("O aluno não foi encontrado!");
+            System.out.println("\nO aluno não foi encontrado!");
         }
         
     }
@@ -654,25 +680,48 @@ System.out.println("\nEscolha um curso da turma: ");
         System.out.println();
     }
     
-    public static void assignGrade() {
+    public static void assignGrade() 
+    {
         // Select a student
         System.out.println("\nEscreva o ID do aluno que quer atribuir uma nota: \n");
+        
         int studentID = Read.anInt();
+        
         Student selectedStudent = findStudentById(studentID);
+
+        if (selectedStudent == null) 
+        {
+            System.out.println("\nEstudante não encontrado. Verifique o ID do estudante.");
+            return;
+        }
 
         // Display available subjects
         System.out.println("\nDisciplinas Disponíveis: \n");
-        displaySubjectList(selectedStudent.getEnrolledCourse().getSubjects());
+        
+        displaySubjectList(selectedStudent.getEnrolledClass().getClassSubjects());
 
         // Select a subject by name
         System.out.println("Escreva a opção da disciplina: \n");
+        
         int subjectNumber = Read.anInt();
+
+        if (subjectNumber < 1 || subjectNumber > selectedStudent.getEnrolledClass().getClassSubjects().size()) 
+        {
+            System.out.println("\nOpção de disciplina inválida. Tente novamente.");
+            
+            return;
+        }
+
         Subject selectedSubject = selectedStudent.getEnrolledCourse().getSubjects().get(subjectNumber - 1);
 
         // Check if the student already has a grade for the selected subject
-        if (hasGradeForSubject(selectedStudent, selectedSubject)) {
+        if (hasGradeForSubject(selectedStudent, selectedSubject)) 
+        {
             System.out.println("\nO aluno já tem uma nota para esta disciplina.");
-        } else {
+        } 
+        
+        else 
+        {
             System.out.println("\nEscreva a nota para o aluno " + selectedStudent.getName() +
                     " a " + selectedSubject.getSubjectName() + ": \n");
             double gradeValue = Read.aDouble();
@@ -685,10 +734,44 @@ System.out.println("\nEscolha um curso da turma: ");
         }
     }
 
-    // Helper method to check if the student already has a grade for the selected subject
-    private static boolean hasGradeForSubject(Student student, Subject subject) {
-        for (StudentGrade grade : student.getStudentGrades()) {
-            if (grade.getSubject().equals(subject)) {
+    public static void printAndCalculateAverage() 
+    {
+	    System.out.println("\nEscreva o ID do aluno para calcular a média: ");
+	    int studentID = Read.anInt();
+	    
+	    Student selectedStudent = findStudentById(studentID);
+	
+	    if (selectedStudent != null) 
+	    {
+	        if (selectedStudent.getStudentGrades().isEmpty()) 
+	        {
+	            System.out.println("\nO aluno não tem notas. Média: 0.0");
+	            return;
+	        }
+	
+	        double totalGrade = 0.0;
+	        int numberOfGrades = 0;
+	
+	        for (StudentGrade grade : selectedStudent.getStudentGrades()) 
+	        {
+	            totalGrade += grade.getGradeValue();
+	            numberOfGrades++;
+	        }
+	
+	        double average = totalGrade / numberOfGrades;
+	        System.out.println("\nMédia do aluno " + selectedStudent.getName() + ": " + average);
+	    } else {
+	        System.out.println("\nAluno não encontrado.");
+	    }
+	}
+
+	// Helper method to check if the student already has a grade for the selected subject
+    private static boolean hasGradeForSubject(Student student, Subject subject) 
+    {
+        for (StudentGrade grade : student.getStudentGrades()) 
+        {
+            if (grade.getSubject().equals(subject)) 
+            {
                 return true;
             }
         }
@@ -697,39 +780,60 @@ System.out.println("\nEscolha um curso da turma: ");
     
     //METHODS TO REMOVE OBJECTS
     
-    public static void deleteStudent() {
-        System.out.println("Escreva o ID do aluno que quer apagar:");
+    public static void deleteStudent() 
+    {
+        System.out.println("\nEscreva o ID do aluno que quer apagar:");
+        
         int aluno = Read.anInt();
+        
         Student astudent = findStudentById(aluno);
-        if(astudent != null) {
+        
+        if(astudent != null) 
+        {
             astudent.getEnrolledClass().removeStudent(astudent);
-            for(Course course : courses) {
-                for(SchoolClass schoolClass : course.getClasses()) {
+            
+            for(Course course : courses) 
+            {
+                for(SchoolClass schoolClass : course.getClasses()) 
+                {
                     schoolClass.removeStudent(astudent);
                 }
             }
-            System.out.println("Aluno removido com sucesso!");
-        } else {
-            System.out.println("Aluno não encontrado com o ID fornecido!");
+            System.out.println("\nAluno removido com sucesso!");
+        }
+        
+        else 
+        {
+            System.out.println("\nAluno não encontrado com o ID fornecido!");
         }
     }
     
-    public static void deleteTeacher() {
-        System.out.println("Escreva o ID do professor que quer apagar:");
+    public static void deleteTeacher() 
+    {
+        System.out.println("\nEscreva o ID do professor que quer apagar:");
+        
         int teacher = Read.anInt();
+        
         Teacher ateacher = findTeacherById(teacher);
-        if(ateacher != null) {
+        
+        if(ateacher != null) 
+        {
             ateacher.getSubjectTaught().removeTeacher(ateacher);
-            System.out.println("Professor removido!\n");
-        } else {
-            System.out.println("Professor não encontrado com o ID fornecido!");
+            System.out.println("\nProfessor removido!\n");
+        } 
+        
+        else 
+        {
+            System.out.println("\nProfessor não encontrado com o ID fornecido!");
         }
     }
     
     //METHODS TO GET ALL THE STUDENTS AND THE TEACHERS AND THE CLASSES
     
-    private static ArrayList<Student> getAllStudentsEnrolled() {
+    private static ArrayList<Student> getAllStudentsEnrolled() 
+    {
         ArrayList<Student> allStudents = new ArrayList<>();
+        
         for(Course course : PredefinedCourses.courses) 
         {
             for (SchoolClass schoolClass : course.getClasses()) 
@@ -737,37 +841,83 @@ System.out.println("\nEscolha um curso da turma: ");
                 allStudents.addAll(schoolClass.getStudents());
             }
         }
+        
         return allStudents;
     }
     
-    public static void showAllStudents() {
+    public static void showAllStudents() 
+    {
         ArrayList<Student> students = getAllStudentsEnrolled();
-        if(students.size() != 0) {
-            for(int i = 0; i < students.size(); i++) {
+        if(students.size() != 0) 
+        {
+            for(int i = 0; i < students.size(); i++) 
+            {
                 System.out.println(students.get(i).toString() + "\n");
             }
         }
-            else {
-            System.out.println("Não foram criados alunos!");
+        
+        else 
+        {
+            System.out.println("\nNão foram criados alunos!");
         }
     }
     
-    public static ArrayList<Teacher> getAllTeacher() {
+    private static ArrayList<Teacher> getAllTeacher() 
+    {
         ArrayList<Teacher> allTeachers = new ArrayList<>();
-        for(Subject subject : PredefinedSubjects.subjects) {
+        
+        for(Subject subject : PredefinedSubjects.subjects) 
+        {
             allTeachers.addAll(subject.getTeachers());
         }
+        
         return allTeachers;
     }
     
-    public static void showAllTeachers() {
+    public static void showAllTeachers() 
+    {
         ArrayList<Teacher> teachers = getAllTeacher();
-        if(teachers.size() != 0) {
-            for(int i = 0; i < teachers.size(); i++) {
+        
+        if(teachers.size() != 0) 
+        {
+            for(int i = 0; i < teachers.size(); i++) 
+            {
                 System.out.println(teachers.get(i).toString() + "\n");
             }
-        } else {
-            System.out.println("Não foram criados professores!");
+        } 
+        
+        else 
+        {
+            System.out.println("\nNão foram criados professores!");
+        }
+    }
+    
+    private static ArrayList<SchoolClass> getAllClasses() 
+    {
+        ArrayList<SchoolClass> allclasses = new ArrayList<>();
+        
+        for(Course course : PredefinedCourses.courses) 
+        {
+                allclasses.addAll(course.getClasses());
+        }
+        
+        return allclasses;
+    }
+
+    public static void showAllClasses() 
+    {
+        ArrayList<SchoolClass> classes = getAllClasses();
+        if(classes.size() != 0) 
+        {
+            for(int i = 0; i < classes.size(); i++) 
+            {
+                System.out.println(classes.get(i).toString() + "\n");
+            }
+        } 
+        
+        else 
+        {
+            System.out.println("\nNão foram criadas turmas!");
         }
     }
 }

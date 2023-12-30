@@ -52,7 +52,7 @@ public class DisplayMenu
 
         // Student submenu options
         Action a8 = () -> Forms.createStudentForm();; 
-        MenuOption o8 = new MenuOption(studentMenu.getChoice(), "Criar Aluno e Inserir no Curso", new Executable(a8));
+        MenuOption o8 = new MenuOption(studentMenu.getChoice(), "Criar Aluno", new Executable(a8));
         studentMenu.addOption(o8);
 
         Action a9 = () -> Forms.viewStudentDetails(); 
@@ -67,8 +67,8 @@ public class DisplayMenu
         MenuOption o90 = new MenuOption(studentMenu.getChoice(), "Remover Aluno", new Executable(a90));
         studentMenu.addOption(o90);
         
-        Action a91 = () -> Forms.deleteStudent(); 
-        MenuOption o91 = new MenuOption(studentMenu.getChoice(), "Remover Aluno", new Executable(a91));
+        Action a91 = () -> Forms.showAllStudents(); 
+        MenuOption o91 = new MenuOption(studentMenu.getChoice(), "Ver Todos os Alunos", new Executable(a91));
         studentMenu.addOption(o91);
         
         Action a21 = () -> Forms.editStudentDetails("Name"); 
@@ -93,21 +93,24 @@ public class DisplayMenu
 
         // Teacher submenu options
         Action a10 = () -> Forms.createTeacherForm();; 
-        MenuOption o10 = new MenuOption(teacherMenu.getChoice(), "Criar Professor e Inserir no Curso", new Executable(a10));
+        MenuOption o10 = new MenuOption(teacherMenu.getChoice(), "Criar Professor", new Executable(a10));
         teacherMenu.addOption(o10);
 
         Action a11 = () -> Forms.viewTeacherDetails(); 
         MenuOption o11 = new MenuOption(teacherMenu.getChoice(), "Ver Detalhes do Professor", new Executable(a11));
         teacherMenu.addOption(o11);
         
-        Action a111 = () -> Forms.deleteTeacher(); 
-        MenuOption o111 = new MenuOption(teacherMenu.getChoice(), "Remover Professor", new Executable(a111));
-        teacherMenu.addOption(o11);
-        
-        
         Action a26 = () -> editTeacherMenu.build(); 
         MenuOption o26 = new MenuOption(teacherMenu.getChoice(), "Editar Detalhes do Professor", new Executable(a26));
         teacherMenu.addOption(o26);
+        
+        Action a111 = () -> Forms.deleteTeacher(); 
+        MenuOption o111 = new MenuOption(teacherMenu.getChoice(), "Remover Professor", new Executable(a111));
+        teacherMenu.addOption(o111);
+        
+        Action a112 = () -> Forms.showAllTeachers(); 
+        MenuOption o112 = new MenuOption(teacherMenu.getChoice(), "Ver Todos os Professores", new Executable(a112));
+        teacherMenu.addOption(o112);
         
         Action a28 = () -> Forms.editTeacherDetails("Name"); 
         MenuOption o28 = new MenuOption(studentMenu.getChoice(), "Alterar Nome", new Executable(a28));
@@ -143,17 +146,21 @@ public class DisplayMenu
         MenuOption o13 = new MenuOption(classMenu.getChoice(), "Ver Detalhes da Turma", new Executable(a13));
         classMenu.addOption(o13);
         
+        Action a44 = () -> Forms.showAllClasses();;
+        MenuOption o44 = new MenuOption(classMenu.getChoice(), "Ver Todas as Turmas", new Executable(a44));
+        classMenu.addOption(o44);
+        
         Action a14 = () -> scheduleMenu.build();
-        MenuOption o14 = new MenuOption(classMenu.getChoice(), "Horário", new Executable(a14));
+        MenuOption o14 = new MenuOption(classMenu.getChoice(), "Menu do Horário", new Executable(a14));
         classMenu.addOption(o14);
         
         // Schedule submenu options
         Action a15 = () -> Forms.createTimetableForm();
-        MenuOption o15 = new MenuOption(scheduleMenu.getChoice(), "Criar Horário", new Executable(a15));
+        MenuOption o15 = new MenuOption(scheduleMenu.getChoice(), "Criar ou Editar Horário da Turma", new Executable(a15));
         scheduleMenu.addOption(o15);
         
         Action a16 = () -> Forms.viewTimetableDetails();;
-        MenuOption o16 = new MenuOption(scheduleMenu.getChoice(), "Ver Horário", new Executable(a16));
+        MenuOption o16 = new MenuOption(scheduleMenu.getChoice(), "Ver Horário da Turma", new Executable(a16));
         scheduleMenu.addOption(o16);
 
         // Subjects submenu options
@@ -163,12 +170,16 @@ public class DisplayMenu
 
         // Grades submenu options
         Action a18 = () -> Forms.assignGrade();
-        MenuOption o18 = new MenuOption(gradesMenu.getChoice(), "Atribuir Nota", new Executable(a18));
+        MenuOption o18 = new MenuOption(gradesMenu.getChoice(), "Atribuir Nota a um Aluno", new Executable(a18));
         gradesMenu.addOption(o18);
 
         Action a19 = () -> Forms.viewStudentGrades();
-        MenuOption o19 = new MenuOption(gradesMenu.getChoice(), "Ver Notas", new Executable(a19));
+        MenuOption o19 = new MenuOption(gradesMenu.getChoice(), "Ver Notas do Aluno", new Executable(a19));
         gradesMenu.addOption(o19);
+        
+        Action a50 = () -> Forms.printAndCalculateAverage();
+        MenuOption o50 = new MenuOption(gradesMenu.getChoice(), "Ver Média do Aluno", new Executable(a50));
+        gradesMenu.addOption(o50);
         
         main.build();
     }

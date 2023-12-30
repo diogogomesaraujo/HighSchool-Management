@@ -8,4 +8,12 @@ public class GlobalVariables
     {
     	letter += 1;
     }
+	
+	 public static char getLetter() {
+	        return letter;
+	    }
+
+	    public static void setLetter(char id) {
+	        letter = id;
+	    }
 }

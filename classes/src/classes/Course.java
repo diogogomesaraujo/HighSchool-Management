@@ -82,22 +82,22 @@ public class Course implements Serializable
         	ArrayList<Subject> classSubjects = new ArrayList<Subject>();
         	
         	for (Subject subject : subjects) {
-                if (courseName == "Ciências" && !PredefinedCourses.sciencesOptionalSubjects.contains(subject)) 
+                if (courseName == "Ciências" && PredefinedCourses.sciencesSubjects.contains(subject) && !PredefinedCourses.sciencesOptionalSubjects.contains(subject)) 
                 {
                     classSubjects.add(subject);
                 }
                 
-                if (courseName == "Artes" && !PredefinedCourses.artsOptionalSubjects.contains(subject)) 
+                if (courseName == "Artes" && PredefinedCourses.artsOptionalSubjects.contains(subject) && !PredefinedCourses.artsOptionalSubjects.contains(subject)) 
                 {
                     classSubjects.add(subject);
                 }
                 
-                if (courseName == "Economia" && !PredefinedCourses.economyOptionalSubjects.contains(subject)) 
+                if (courseName == "Economia" && PredefinedCourses.economyOptionalSubjects.contains(subject) && !PredefinedCourses.economyOptionalSubjects.contains(subject)) 
                 {
                     classSubjects.add(subject);
                 }
                 
-                if (courseName == "Humanidades" && !PredefinedCourses.humanSciencesOptionalSubjects.contains(subject)) 
+                if (courseName == "Humanidades" && PredefinedCourses.humanSciencesOptionalSubjects.contains(subject) && !PredefinedCourses.humanSciencesOptionalSubjects.contains(subject)) 
                 {
                     classSubjects.add(subject);
                 }
@@ -261,7 +261,7 @@ public class Course implements Serializable
     @Override
     public String toString() 
     {
-        String result = "=========================\n\n" + "Curso: " + courseName + "\n\nDisciplinas:\n";
+        String result = "Curso: " + courseName + "\n\nDisciplinas:\n";
 
         for (Subject subject : subjects) 
         {
@@ -274,7 +274,7 @@ public class Course implements Serializable
             result += "- " + schoolClass.getClassName() + "\n";
         }
 
-        return "\n\n=========================" + result;
+        return result;
     }
 }
 

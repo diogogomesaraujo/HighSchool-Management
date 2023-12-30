@@ -155,30 +155,26 @@ public class SchoolClass implements Serializable
     }
 
     @Override
-    public String toString() 
-    {
-        String result = "=========================\n\n" + 
-        		"Class Name: " + className + "\n\n";
+    public String toString() {
+        String result = "";
+        result += "Nome da Turma: " + className + "\n\n";
 
-        result += "Students:\n";
-        for (Student student : students) 
-        {
+        result += "Alunos:\n";
+        for (Student student : students) {
             result += "- " + student.getName() + "\n";
         }
 
-        result += "\nSubject Teachers:\n";
-        for (Teacher teacher : subjectTeachers) 
-        {
+        result += "\nProfessores de Disciplina:\n";
+        for (Teacher teacher : subjectTeachers) {
             result += "- " + teacher.getName() + "\n";
         }
 
-        result += "\nClass Subjects:\n";
-        for (Subject subject : classSubjects) 
-        {
+        result += "\nDisciplinas da Turma:\n";
+        for (Subject subject : classSubjects) {
             result += "- " + subject.getSubjectName() + "\n";
         }
 
-        return "\n\n=========================" + result;
+        return result;
     }
     
     public ArrayList<Subject> getAvailableSubjects(TimeCell timeCell) 

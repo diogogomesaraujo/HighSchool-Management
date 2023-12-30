@@ -80,7 +80,7 @@ public class Subject implements Serializable
     
     @Override
     public String toString() {
-        String result = "=========================\n\n";
+        String result = "";
         result += "Disciplina: " + subjectName + "\n";
 
         result += "Alunos Matriculados:\n";
@@ -93,7 +93,7 @@ public class Subject implements Serializable
             result += "- " + teacher.getName() + "\n";
         }
 
-        return "\n\n=========================" + result;
+        return result;
     }
     
     public static Subject aSubject() 
