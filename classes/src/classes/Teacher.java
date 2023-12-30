@@ -27,6 +27,14 @@ public class Teacher extends Person implements Serializable
         this.timetable = TimeCell.buildEmptyTimetable();
     }
     
+    public static int getNextTeacherID() {
+        return nextTeacherID;
+    }
+
+    public static void setNextTeacherID(int id) {
+        nextTeacherID = id;
+    }
+    
     private static int generateTeacherID() 
     {
         return nextTeacherID++;

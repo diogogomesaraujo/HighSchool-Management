@@ -184,22 +184,17 @@ public class SchoolClass implements Serializable
     {
     	ArrayList<Subject> availableSubjects = new ArrayList<Subject>();
     	
-    	if(subjectTeachers.size() != 0) 
+    	for(Teacher teacher : subjectTeachers) 
     	{
-    		for(Teacher teacher : subjectTeachers) 
-        	{
-        		for(TimeCell aux : teacher.getTimetable()) 
-        		{
-        			if(aux.getHasClass() == false && aux.getTimePeriod().equals(timeCell.getTimePeriod()) && aux.getDayOfWeek().equals(timeCell.getDayOfWeek())) 
-        			{
-        				availableSubjects.add(teacher.getSubjectTaught());
-        			}
-        		}
-        	}
+    		for(TimeCell aux : teacher.getTimetable()) 
+    		{
+    			if(aux.getHasClass() == false && aux.getTimePeriod().equals(timeCell.getTimePeriod()) && aux.getDayOfWeek().equals(timeCell.getDayOfWeek())) 
+    			{
+    				availableSubjects.add(teacher.getSubjectTaught());
+    			}
+    		}
     	}
-    	
-    	else availableSubjects = classSubjects;
-    	
+    
     	return availableSubjects;
     }
 }

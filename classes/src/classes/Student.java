@@ -30,6 +30,14 @@ public class Student extends Person implements Serializable
         super(name, gender, address, birthday);
         this.studentID = generateStudentID();
     }
+    
+    public static int getNextStudentID() {
+        return nextStudentID;
+    }
+
+    public static void setNextStudentID(int id) {
+        nextStudentID = id;
+    }
 
     private static int generateStudentID() 
     {

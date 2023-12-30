@@ -122,6 +122,10 @@ public class DisplayMenu
         courseMenu.addOption(o12);
 
         // Class submenu options
+        Action a33 = () -> Forms.assignTeacherToClass();
+        MenuOption o33 = new MenuOption(classMenu.getChoice(), "Atribuir Professor à Turma", new Executable(a33));
+        classMenu.addOption(o33);
+        
         Action a13 = () -> Forms.viewClassDetails();
         MenuOption o13 = new MenuOption(classMenu.getChoice(), "Ver Detalhes da Turma", new Executable(a13));
         classMenu.addOption(o13);

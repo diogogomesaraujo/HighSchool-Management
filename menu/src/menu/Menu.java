@@ -27,7 +27,7 @@ public class Menu
         choice++;
         
         Action leave = () -> leave();
-        exit = new MenuOption(choice, "Sair", new Executable(leave));
+        exit = new MenuOption(choice, "Sair e Salvar", new Executable(leave));
         choice++;
         
         menuOptions.add(back);

@@ -16,6 +16,8 @@ public class Forms
             FileOutputStream ficheiro = new FileOutputStream("Courses");
             ObjectOutputStream out = new ObjectOutputStream(ficheiro);
             out.writeObject(PredefinedCourses.courses);
+            out.writeInt(Student.getNextStudentID());
+            out.writeInt(Teacher.getNextTeacherID());
             out.close();
             ficheiro.close();
         } catch (IOException e) {
@@ -33,7 +35,9 @@ public class Forms
 	    	
 	            FileInputStream fis = new FileInputStream(file);
 	            ObjectInputStream ois = new ObjectInputStream(fis);
-	            courses = (ArrayList<Course>) ois.readObject();    
+	            courses = (ArrayList<Course>) ois.readObject();   
+	            Student.setNextStudentID(ois.readInt());
+	            Teacher.setNextTeacherID(ois.readInt());
 	            ois.close();
 	            fis.close();
 	            
@@ -79,7 +83,6 @@ public class Forms
 	private static void updatePredefinedClasses(Course predefinedCourse, Course deserializedCourse) {
 	    predefinedCourse.setClasses(deserializedCourse.getClasses());
 	}
-            
     
     //METHODS TO CREATE DIFFERENT OBJECTS
 	
@@ -115,7 +118,7 @@ public class Forms
 		questions.add(new Question("Escreva o nome do professor: ", "Name", "String"));
 		questions.add(new Question("Escreva o género do professor: ", "Gender", "Gender"));
 		questions.add(new Question("Escreva a morada do professor: ", "Address", "String"));
-		questions.add(new Question("Escreva a data de nascimento do professor: ", "Birthday", "LocalDate"));
+		questions.add(new Question("Escreva a data de nascimento do professor (Ano-Mês-Dia): ", "Birthday", "LocalDate"));
 		questions.add(new Question("Escreva a disciplina do professor: ", "SubjectTaught", "Subject"));
 		
 		Form teacherForm = new Form("Criar Professor", questions, teacher);
@@ -146,7 +149,7 @@ public class Forms
 			if(aux.equals("sim")) 
 			{
 				System.out.println();
-				System.out.println(schoolClass.getTimetable().get(i).timePeriodText() + "Escreva o nome da disciplina: ");
+				System.out.println(schoolClass.getTimetable().get(i).timePeriodText() + "Escolha a disciplina: ");
 				
 				if(availableSubjects.size() != 0) 
 				{
@@ -197,6 +200,54 @@ public class Forms
 	    {
 	        System.out.println("\nNão existem turmas inscritas neste curso!");
 	    }
+	}
+	
+	//METHOD TO ASSIGN A TEACHER FOR THE CLASS
+	
+	public static void assignTeacherToClass() 
+	{
+System.out.println("\nEscolha um curso da turma: ");
+	    
+	    displayCourseList(PredefinedCourses.courses);
+	    int courseChoiceForClass = Read.anInt() - 1;
+	    
+	    if (courseChoiceForClass >= 0 && courseChoiceForClass < PredefinedCourses.courses.size()) 
+	    {
+	        Course selectedCourse = PredefinedCourses.courses.get(courseChoiceForClass);
+	
+	        System.out.println("\nEscolha a turma para atribuir um professor:");
+	        
+	        if(selectedCourse.getClasses().size() != 0) 
+	        {
+	        	displayClassList(selectedCourse.getClasses());
+	            
+	            int classChoice = Read.anInt() - 1;
+	
+	            if (classChoice >= 0 && classChoice < selectedCourse.getClasses().size()) 
+	            {
+	            	System.out.println("\nEscreva o ID do professor: \n");
+	       		 
+	       	     	int teacherIdToView = Read.anInt();
+	       	     
+	       	     	Teacher teacherToView = findTeacherById(teacherIdToView);
+	       	     	
+	       	     	selectedCourse.getClasses().get(classChoice).addTeacher(teacherToView);
+	            } 
+	            
+	            else 
+	            {
+	                System.out.println("\nEscolha Inválida!");
+	            }
+	        }
+	        
+	        else System.out.println("\nNão existem turmas inscritas neste curso!");
+	    } 
+	    
+	    else 
+	    {
+	        System.out.println("\nEscolha Inválida!");
+	    }
+	    
 	}
 
 	
@@ -369,7 +420,7 @@ public class Forms
 
 	public static void viewTeacherDetails() 
 	 {
-		 System.out.print("\nEscreva o ID do professor para ver os detalhes: \n");
+		 System.out.println("\nEscreva o ID do professor para ver os detalhes: \n");
 		 
 	     int teacherIdToView = Read.anInt();
 	     

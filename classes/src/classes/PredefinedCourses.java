@@ -20,4 +20,8 @@ public interface PredefinedCourses
 	public static final ArrayList<Subject> humanSciencesOptionalSubjects = new ArrayList<>(Arrays.asList(PredefinedSubjects.macs, PredefinedSubjects.literature));
 	
 	public static final ArrayList<Course> courses = new ArrayList<Course>(Arrays.asList(arts, sciences, economy, humanSciences));
+	
+	public static final int studentLastID = 0;
+	
+	public static final int teacherLastID = 0;
 }
