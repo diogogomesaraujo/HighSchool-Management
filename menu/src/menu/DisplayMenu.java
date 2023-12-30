@@ -1,10 +1,12 @@
 package menu;
 
-import form.Forms;
+import form.*;
 
-public class DisplayMenu {
+public class DisplayMenu 
+{
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         // Create main menus
         Menu main = new Menu(null);
         Menu studentMenu = new Menu(main);

@@ -1,4 +1,5 @@
 package menu;
+
 import java.util.ArrayList;
 import myInputs.Read;
 
@@ -25,12 +26,17 @@ public class Menu
         back = new MenuOption(choice, "Voltar", new Executable(comeBack));
         choice++;
         
-        Action leave = () -> System.exit(0);
+        Action leave = () -> leave();
         exit = new MenuOption(choice, "Sair", new Executable(leave));
         choice++;
         
         menuOptions.add(back);
         menuOptions.add(exit);
+    }
+    
+    private void leave() 
+    {
+    	System.exit(0);
     }
     
     public int getChoice() 
