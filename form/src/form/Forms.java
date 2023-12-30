@@ -5,10 +5,83 @@ import myInputs.Read;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.io.*;
 
 public class Forms 
 {
-	//METHODS TO CREATE DIFFERENT OBJECTS
+	public static ArrayList <Course> courses = PredefinedCourses.courses;
+	
+	public static void writeInFile() {
+        try{
+            FileOutputStream ficheiro = new FileOutputStream("Courses");
+            ObjectOutputStream out = new ObjectOutputStream(ficheiro);
+            out.writeObject(PredefinedCourses.courses);
+            out.close();
+            ficheiro.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	@SuppressWarnings("unchecked")
+	public static void readFile() {
+	    try {
+	    	File file = new File("Courses");
+            if(!file.exists()) {
+                file.createNewFile();
+            }
+	    	
+	            FileInputStream fis = new FileInputStream(file);
+	            ObjectInputStream ois = new ObjectInputStream(fis);
+	            courses = (ArrayList<Course>) ois.readObject();    
+	            ois.close();
+	            fis.close();
+	            
+	            updatePredefinedCourses(courses);
+	        } catch (FileNotFoundException e) {
+	            e.printStackTrace();
+	        } catch (IOException e1) {
+	            // TODO Auto-generated catch block
+	            e1.printStackTrace();
+	        } catch (ClassNotFoundException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	    }
+
+	public static void updatePredefinedCourses(ArrayList<Course> deserializedCourses) {
+	    for (Course course : deserializedCourses) {
+	        switch (course.getCourseName()) {
+	            case "Ciências":
+	                PredefinedCourses.sciencesSubjects.clear();
+	                PredefinedCourses.sciencesSubjects.addAll(course.getSubjects());
+	                updatePredefinedClasses(PredefinedCourses.sciences, course);
+	                break;
+	            case "Artes":
+	                PredefinedCourses.artsSubjects.clear();
+	                PredefinedCourses.artsSubjects.addAll(course.getSubjects());
+	                updatePredefinedClasses(PredefinedCourses.arts, course);
+	                break;
+	            case "Economia":
+	                PredefinedCourses.economySubjects.clear();
+	                PredefinedCourses.economySubjects.addAll(course.getSubjects());
+	                updatePredefinedClasses(PredefinedCourses.economy, course);
+	                break;
+	            case "Humanidades":
+	                PredefinedCourses.humanSciencesSubjects.clear();
+	                PredefinedCourses.humanSciencesSubjects.addAll(course.getSubjects());
+	                updatePredefinedClasses(PredefinedCourses.economy, course);
+	                break;
+	        }
+	    }
+	}
+
+	private static void updatePredefinedClasses(Course predefinedCourse, Course deserializedCourse) {
+	    predefinedCourse.setClasses(deserializedCourse.getClasses());
+	}
+            
+    
+    //METHODS TO CREATE DIFFERENT OBJECTS
 	
 	public static void createStudentForm() 
 	{
@@ -109,9 +182,9 @@ public class Forms
 
 	        int classChoice = Read.anInt();
 
-	        if (classChoice >= 0 && classChoice < selectedCourse.getClasses().size()) 
+	        if (classChoice >= 1 && classChoice <= selectedCourse.getClasses().size()) 
 	        {
-	            createTimetable(selectedCourse.getClasses().get(classChoice));
+	            createTimetable(selectedCourse.getClasses().get(classChoice - 1));
 	        } 
 	        
 	        else 

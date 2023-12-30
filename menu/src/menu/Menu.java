@@ -36,6 +36,8 @@ public class Menu
     
     private void leave() 
     {
+    	form.Forms.writeInFile();
+    	
     	System.exit(0);
     }
     

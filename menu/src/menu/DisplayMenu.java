@@ -7,6 +7,8 @@ public class DisplayMenu
 
     public static void main(String[] args) 
     {
+    	form.Forms.readFile();
+    	
         // Create main menus
         Menu main = new Menu(null);
         Menu studentMenu = new Menu(main);
