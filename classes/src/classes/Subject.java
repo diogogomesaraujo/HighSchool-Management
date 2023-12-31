@@ -32,6 +32,11 @@ public class Subject implements Serializable
         teachers.remove(teacher);
     }
     
+    public void removeStudent(Student student)
+    {
+    	enrolledStudents.remove(student);
+    }
+    
     // Getters and Setters
     public int getAuxNumber() 
     {

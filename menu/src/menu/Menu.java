@@ -38,7 +38,7 @@ public class Menu
     {
     	form.Forms.writeInFile();
     	
-    	System.out.println("A guardar os dados no ficheiro...\n");
+    	System.out.println("\nA guardar os dados no ficheiro...\n");
     	
     	System.exit(0);
     }

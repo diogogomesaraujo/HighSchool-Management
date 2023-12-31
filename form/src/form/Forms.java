@@ -17,10 +17,12 @@ public class Forms
         {
             FileOutputStream ficheiro = new FileOutputStream("Courses");
             ObjectOutputStream out = new ObjectOutputStream(ficheiro);
+            
             out.writeObject(PredefinedCourses.courses);
             out.writeInt(Student.getNextStudentID());
             out.writeInt(Teacher.getNextTeacherID());
             out.writeChar(GlobalVariables.getLetter());
+            
             out.close();
             ficheiro.close();
         } 
@@ -310,6 +312,10 @@ System.out.println("\nEscolha um curso da turma: ");
 
 	            case "EnrolledCourse and SchoolClass":
 	                studentToEdit.getEnrolledClass().removeStudent(studentToEdit);
+	               for (Subject subject : studentToEdit.getEnrolledClass().getClassSubjects()) 
+	               {
+	            	   subject.removeStudent(studentToEdit);
+	               }
 
 	                System.out.println("\nEscreva o novo curso do aluno: \n");
 	                studentToEdit.setEnrolledCourse(Course.aCourse());
@@ -680,51 +686,38 @@ System.out.println("\nEscolha um curso da turma: ");
         System.out.println();
     }
     
-    public static void assignGrade() 
-    {
+    public static void assignGrade() {
         // Select a student
         System.out.println("\nEscreva o ID do aluno que quer atribuir uma nota: \n");
-        
         int studentID = Read.anInt();
-        
         Student selectedStudent = findStudentById(studentID);
 
-        if (selectedStudent == null) 
-        {
+        if (selectedStudent == null) {
             System.out.println("\nEstudante não encontrado. Verifique o ID do estudante.");
             return;
         }
 
         // Display available subjects
         System.out.println("\nDisciplinas Disponíveis: \n");
-        
         displaySubjectList(selectedStudent.getEnrolledClass().getClassSubjects());
 
         // Select a subject by name
         System.out.println("Escreva a opção da disciplina: \n");
-        
         int subjectNumber = Read.anInt();
 
-        if (subjectNumber < 1 || subjectNumber > selectedStudent.getEnrolledClass().getClassSubjects().size()) 
-        {
+        if (subjectNumber < 1 || subjectNumber > selectedStudent.getEnrolledClass().getClassSubjects().size()) {
             System.out.println("\nOpção de disciplina inválida. Tente novamente.");
-            
             return;
         }
 
-        Subject selectedSubject = selectedStudent.getEnrolledCourse().getSubjects().get(subjectNumber - 1);
+        Subject selectedSubject = selectedStudent.getEnrolledClass().getClassSubjects().get(subjectNumber - 1);
 
         // Check if the student already has a grade for the selected subject
-        if (hasGradeForSubject(selectedStudent, selectedSubject)) 
-        {
+        if (hasGradeForSubject(selectedStudent, selectedSubject)) {
             System.out.println("\nO aluno já tem uma nota para esta disciplina.");
-        } 
-        
-        else 
-        {
-            System.out.println("\nEscreva a nota para o aluno " + selectedStudent.getName() +
-                    " a " + selectedSubject.getSubjectName() + ": \n");
-            double gradeValue = Read.aDouble();
+        } else {
+            // Get a valid grade between 0 and 20
+            double gradeValue = getValidGrade();
 
             // Create a new StudentGrade object and add it to the list
             StudentGrade newGrade = new StudentGrade(selectedSubject, gradeValue);
@@ -733,9 +726,43 @@ System.out.println("\nEscolha um curso da turma: ");
             System.out.println("\nNota adicionada!");
         }
     }
-
-    public static void printAndCalculateAverage() 
+    // Helper method to get a valid grade between 0 and 20
+    private static double getValidGrade() 
     {
+
+        double gradeValue;
+
+        do 
+        {
+            System.out.println("\nEscreva a nota entre 0 e 20: \n");
+            gradeValue = Read.aDouble();
+
+            if (gradeValue < 0 || gradeValue > 20) 
+            {
+                System.out.println("\nNota inválida. Tente novamente.");
+            }
+        } 
+        
+        while (gradeValue < 0 || gradeValue > 20);
+
+        return gradeValue;
+    }
+
+    // Helper method to check if the student already has a grade for the selected subject
+    private static boolean hasGradeForSubject(Student student, Subject subject) 
+    {
+        for (StudentGrade grade : student.getStudentGrades()) 
+        {
+            if (grade.getSubject().equals(subject)) 
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public static void printAndCalculateAverage() 
+	{
 	    System.out.println("\nEscreva o ID do aluno para calcular a média: ");
 	    int studentID = Read.anInt();
 	    
@@ -765,20 +792,7 @@ System.out.println("\nEscolha um curso da turma: ");
 	    }
 	}
 
-	// Helper method to check if the student already has a grade for the selected subject
-    private static boolean hasGradeForSubject(Student student, Subject subject) 
-    {
-        for (StudentGrade grade : student.getStudentGrades()) 
-        {
-            if (grade.getSubject().equals(subject)) 
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    //METHODS TO REMOVE OBJECTS
+	//METHODS TO REMOVE OBJECTS
     
     public static void deleteStudent() 
     {
@@ -862,7 +876,121 @@ System.out.println("\nEscolha um curso da turma: ");
         }
     }
     
-    private static ArrayList<Teacher> getAllTeacher() 
+    public static void showAllTeachers() 
+	{
+	    ArrayList<Teacher> teachers = getAllTeacher();
+	    
+	    if(teachers.size() != 0) 
+	    {
+	        for(int i = 0; i < teachers.size(); i++) 
+	        {
+	            System.out.println(teachers.get(i).toString() + "\n");
+	        }
+	    } 
+	    
+	    else 
+	    {
+	        System.out.println("\nNão foram criados professores!");
+	    }
+	}
+
+	public static void showAllClasses() 
+	{
+	    ArrayList<SchoolClass> classes = getAllClasses();
+	    if(classes.size() != 0) 
+	    {
+	        for(int i = 0; i < classes.size(); i++) 
+	        {
+	            System.out.println(classes.get(i).toString() + "\n");
+	        }
+	    } 
+	    
+	    else 
+	    {
+	        System.out.println("\nNão foram criadas turmas!");
+	    }
+	}
+
+	public static void showMostStudents() 
+	{
+	    ArrayList<Course> moreStudents = getMostStudents();
+
+	    if (!moreStudents.isEmpty()) 
+	    {
+	        System.out.println("\nCursos com mais alunos:\n");
+	        
+	        for(Course course : moreStudents)
+	        {
+	            System.out.println("" + course.getCourseName());
+	        }
+	        
+	        int numStudents = 0;
+	        
+	        for (SchoolClass schoolClass : moreStudents.get(0).getClasses()) 
+	        {
+	            numStudents = schoolClass.getStudents().size();
+	        }
+
+	        System.out.println("\nNúmero total de alunos: " + numStudents);
+	    }
+	    
+	    else 
+	    {
+	        System.out.println("\nNão foram criados cursos!");
+	    }
+	}
+
+	private static ArrayList<Course> getMostStudents() 
+	{ 
+		ArrayList<Course> moreStudents = new ArrayList<>();
+        
+		int maxStudents = 0;
+        
+		for (Course course : PredefinedCourses.courses) 
+		{
+            int numStudents = 0;
+                
+            for(SchoolClass schoolClass : course.getClasses()) 
+            {
+            	numStudents = numStudents + schoolClass.getStudents().size();
+            }	
+            
+            if (numStudents > maxStudents) 
+            {
+                maxStudents = numStudents;
+                
+                moreStudents.clear();
+                
+                moreStudents.add(course);
+            } 
+            
+            else if (numStudents == maxStudents) 
+            {
+                moreStudents.add(course);
+            }
+        }
+        
+        return moreStudents;
+	}
+
+	public static int getStudentCount()
+	{
+        ArrayList<Course> moreStudents = getMostStudents();
+        
+        int numStudents = 0;
+        
+        for(Course course : moreStudents) 
+        {
+        	for(SchoolClass schoolClass : course.getClasses())
+            {
+                numStudents += schoolClass.getStudents().size();
+            } 
+        }
+        
+        return numStudents;
+    }
+
+	private static ArrayList<Teacher> getAllTeacher() 
     {
         ArrayList<Teacher> allTeachers = new ArrayList<>();
         
@@ -872,24 +1000,6 @@ System.out.println("\nEscolha um curso da turma: ");
         }
         
         return allTeachers;
-    }
-    
-    public static void showAllTeachers() 
-    {
-        ArrayList<Teacher> teachers = getAllTeacher();
-        
-        if(teachers.size() != 0) 
-        {
-            for(int i = 0; i < teachers.size(); i++) 
-            {
-                System.out.println(teachers.get(i).toString() + "\n");
-            }
-        } 
-        
-        else 
-        {
-            System.out.println("\nNão foram criados professores!");
-        }
     }
     
     private static ArrayList<SchoolClass> getAllClasses() 
@@ -903,21 +1013,147 @@ System.out.println("\nEscolha um curso da turma: ");
         
         return allclasses;
     }
-
-    public static void showAllClasses() 
+    
+    public static void printStudentWithBestAverage() 
     {
-        ArrayList<SchoolClass> classes = getAllClasses();
-        if(classes.size() != 0) 
+    
+    	if (PredefinedCourses.courses.isEmpty()) 
+    	{
+            System.out.println("\nNenhum curso pré-definido. Não é possível calcular a média!");
+            return;
+        }
+
+        double highestAverage = 0.0;
+        Student studentWithBestAverage = null;
+
+        for (Course course : PredefinedCourses.courses) 
         {
-            for(int i = 0; i < classes.size(); i++) 
+            for (SchoolClass schoolClass : course.getClasses()) 
             {
-                System.out.println(classes.get(i).toString() + "\n");
+                for (Student student : schoolClass.getStudents()) 
+                {
+                    double studentAverage = calculateStudentAverage(student);
+                    
+                    if (studentAverage > highestAverage) 
+                    {
+                        highestAverage = studentAverage;
+                        
+                        studentWithBestAverage = student;
+                    }
+                }
+            }
+        }
+
+        if (studentWithBestAverage != null) 
+        {
+            System.out.println("\nAluno com a melhor média: " + studentWithBestAverage.getName());
+            
+            System.out.println("\nMédia: " + highestAverage);
+        } else {
+            System.out.println("Nenhum aluno encontrado.");
+        }
+    }
+
+    private static double calculateStudentAverage(Student student) 
+    {
+        if (student.getStudentGrades().isEmpty()) 
+        {
+            return 0.0;
+        }
+
+        double totalGrade = 0.0;
+        
+        int numberOfGrades = 0;
+
+        for (StudentGrade grade : student.getStudentGrades()) 
+        {
+            totalGrade += grade.getGradeValue();
+            
+            numberOfGrades++;
+        }
+
+        return totalGrade / numberOfGrades;
+    }
+    
+    public static void bestAverageClass() 
+    {
+        System.out.println("\nEscolha o curso:");
+
+        // Display available courses with numbers
+        displayCourseList(PredefinedCourses.courses);
+
+        // Prompt user to choose a course by entering the number
+        int courseNumber = Read.anInt();
+
+        // Validate the course number
+        if (courseNumber >= 1 && courseNumber <= PredefinedCourses.courses.size()) 
+        {
+            Course selectedCourse = PredefinedCourses.courses.get(courseNumber - 1);
+
+            // Find the best class for the selected course
+            SchoolClass bestClass = findBestClass(selectedCourse.getClasses());
+
+            if (bestClass != null) 
+            {
+                System.out.println("\nA turma com a melhor média para o curso " + selectedCourse.getCourseName() +
+                        " é: " + bestClass.getClassName());
+            } 
+            
+            else 
+            {
+                System.out.println("\nNão há turmas inscritas no curso " + selectedCourse.getCourseName() + "\n");
             }
         } 
         
         else 
         {
-            System.out.println("\nNão foram criadas turmas!");
+            System.out.println("\nOpção de curso inválida. Tente novamente.");
         }
+    }
+    
+    private static SchoolClass findBestClass(ArrayList<SchoolClass> classes) 
+    {
+        SchoolClass bestClass = null;
+        
+        double bestAverage = 0.0;
+
+        for (SchoolClass schoolClass : classes) 
+        {
+            double classAverage = calculateClassAverage(schoolClass);
+
+            if (classAverage > bestAverage) 
+            {
+                bestAverage = classAverage;
+                bestClass = schoolClass;
+            }
+        }
+
+        return bestClass;
+    }
+
+    private static double calculateClassAverage(SchoolClass schoolClass) 
+    {
+        if (schoolClass.getStudents().isEmpty()) 
+        {
+            return 0.0;
+        }
+
+        double totalGrades = 0.0;
+        
+        int numStudents = 0;
+
+        for (Student student : schoolClass.getStudents()) 
+        {
+            ArrayList<StudentGrade> grades = student.getStudentGrades();
+            
+            for (StudentGrade grade : grades) 
+            {
+                totalGrades += grade.getGradeValue();
+            }
+            
+            numStudents++;
+        }
+
+        return totalGrades / numStudents;
     }
 }

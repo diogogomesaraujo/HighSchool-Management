@@ -18,6 +18,7 @@ public class DisplayMenu
         Menu subjectsMenu = new Menu(main);
         Menu gradesMenu = new Menu(main);
         Menu scheduleMenu = new Menu(main);
+        Menu statisticsMenu = new Menu(main);
         Menu editStudentMenu = new Menu(studentMenu);
         Menu editTeacherMenu = new Menu(teacherMenu);
 
@@ -136,6 +137,10 @@ public class DisplayMenu
         Action a12 = () -> Forms.viewCourseDetails(); 
         MenuOption o12 = new MenuOption(courseMenu.getChoice(), "Ver Detalhes do Curso", new Executable(a12));
         courseMenu.addOption(o12);
+        
+        Action a123 = () -> Forms.showMostStudents(); 
+        MenuOption o123 = new MenuOption(courseMenu.getChoice(), "Ver Curso com Mais Alunos", new Executable(a123));
+        courseMenu.addOption(o123);
 
         // Class submenu options
         Action a33 = () -> Forms.assignTeacherToClass();
@@ -180,6 +185,22 @@ public class DisplayMenu
         Action a50 = () -> Forms.printAndCalculateAverage();
         MenuOption o50 = new MenuOption(gradesMenu.getChoice(), "Ver Média do Aluno", new Executable(a50));
         gradesMenu.addOption(o50);
+        
+        Action a7 = () -> statisticsMenu.build();
+        MenuOption o7 = new MenuOption(main.getChoice(), "Estatística", new Executable(a7));
+        main.addOption(o7);
+        
+        Action a77 = () -> Forms.showMostStudents();
+        MenuOption o77 = new MenuOption(main.getChoice(), "Ver os Cursos com Mais Estudantes", new Executable(a77));
+        statisticsMenu.addOption(o77);
+        
+        Action a53 = () -> Forms.printStudentWithBestAverage();
+        MenuOption o53 = new MenuOption(gradesMenu.getChoice(), "Ver Aluno com Melhor Média", new Executable(a53));
+        statisticsMenu.addOption(o53);
+        
+        Action a78 = () -> Forms.showMostStudents();
+        MenuOption o78 = new MenuOption(main.getChoice(), "Ver a Turma com Melhores Notas", new Executable(a78));
+        statisticsMenu.addOption(o78);
         
         main.build();
     }
