@@ -4,6 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.io.Serializable;
 
+/**
+ * Represents a student, extending the Person class. This class includes student-specific 
+ * attributes such as student ID, enrolled course, optional subject, enrolled class, 
+ * and a list of student grades. It provides functionality to manage these attributes.
+ */
 public class Student extends Person implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -16,8 +21,9 @@ public class Student extends Person implements Serializable
     private ArrayList<StudentGrade> studentGrades;
 
     
-    // Constructors
-    
+    /**
+     * Default constructor. Initializes a student with default values and generates a unique student ID.
+     */
     public Student() 
     {
         super("", "", "", LocalDate.now());
@@ -25,6 +31,15 @@ public class Student extends Person implements Serializable
         this.studentGrades = new ArrayList<StudentGrade>();
     }
     
+    /**
+     * Constructs a student with specified name, gender, address, and birthday.
+     * Automatically generates a unique student ID.
+     *
+     * @param name The student's name.
+     * @param gender The student's gender.
+     * @param address The student's address.
+     * @param birthday The student's birthday.
+     */
     public Student(String name, String gender, String address, LocalDate birthday) 
     {
         super(name, gender, address, birthday);
@@ -38,7 +53,12 @@ public class Student extends Person implements Serializable
     public static void setNextStudentID(int id) {
         nextStudentID = id;
     }
-
+    
+    /**
+     * Generates a unique student ID.
+     * 
+     * @return The generated unique student ID.
+     */
     private static int generateStudentID() 
     {
         return nextStudentID++;

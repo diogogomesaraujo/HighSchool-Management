@@ -3,6 +3,11 @@ package classes;
 import java.util.ArrayList;
 import java.io.*;
 
+/**
+ * Represents an academic subject with attributes for subject name, lists of enrolled students
+ * and assigned teachers. This class also provides methods for managing these attributes.
+ * Implements Serializable for object serialization.
+ */
 public class Subject implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -13,7 +18,11 @@ public class Subject implements Serializable
     
     private int auxNumber;
 
-    // Constructor
+    /**
+     * Constructs a Subject with a specified name. Initializes empty lists for students and teachers.
+     *
+     * @param subjectName The name of the subject.
+     */
     public Subject(String subjectName) 
     {
         this.subjectName = subjectName;
@@ -21,17 +30,31 @@ public class Subject implements Serializable
         this.teachers = new ArrayList<>();
     }
     
-    // Additional methods
+    /**
+     * Adds a teacher to the subject.
+     *
+     * @param teacher The teacher to be added.
+     */
     public void addTeacher(Teacher teacher) 
     {
         teachers.add(teacher);
     }
-
+    
+    /**
+     * Removes a teacher from the subject.
+     *
+     * @param teacher The teacher to be removed.
+     */
     public void removeTeacher(Teacher teacher) 
     {
         teachers.remove(teacher);
     }
     
+    /**
+     * Removes a student from the subject.
+    *
+    * @param student The student to be removed.
+    */
     public void removeStudent(Student student)
     {
     	enrolledStudents.remove(student);
@@ -77,7 +100,12 @@ public class Subject implements Serializable
     {
         this.enrolledStudents = enrolledStudents;
     }
-
+    
+    /**
+     * Enrolls a student in the subject.
+     *
+     * @param student The student to be enrolled.
+     */
     public void enrollStudent(Student student) 
     {
         enrolledStudents.add(student);
@@ -88,19 +116,25 @@ public class Subject implements Serializable
         String result = "";
         result += "Disciplina: " + subjectName + "\n";
 
-        result += "Alunos Matriculados:\n";
+        result += "\nAlunos Matriculados:\n";
         for (Student student : enrolledStudents) {
             result += "- " + student.getName() + "\n";
         }
 
-        result += "Professores:\n";
+        result += "\nProfessores:\n";
         for (Teacher teacher : teachers) {
-            result += "- " + teacher.getName() + "\n";
+            result += "- " + teacher.getName();
         }
 
         return result;
     }
     
+    /**
+     * Provides an interactive method to select a subject from a list of predefined subjects.
+     * 
+     * @return The selected Subject object.
+     * @throws IOException If an input/output exception occurs during user input.
+     */
     public static Subject aSubject() 
     {
     	String s = "";
@@ -139,6 +173,13 @@ public class Subject implements Serializable
 		}
     }
     
+    /**
+     * Provides an interactive method to select a subject from a given list of subjects.
+     * 
+     * @param subjects The list of subjects from which to choose.
+     * @return The selected Subject object.
+     * @throws IOException If an input/output exception occurs during user input.
+     */
     public static Subject aSubject(ArrayList<Subject> subjects) 
     {
     	String s = "";

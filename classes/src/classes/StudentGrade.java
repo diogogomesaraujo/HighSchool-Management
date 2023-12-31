@@ -2,6 +2,11 @@ package classes;
 
 import java.io.Serializable;
 
+/**
+ * Represents a student's grade for a specific subject. This class includes details
+ * about the subject and the numeric grade value. It implements Serializable for
+ * object serialization.
+ */
 public class StudentGrade implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -9,6 +14,12 @@ public class StudentGrade implements Serializable
     Subject subject;
     private double gradeValue;
     
+    /**
+     * Constructs a StudentGrade with a specified subject and grade value.
+     *
+     * @param subject The subject for which the grade is assigned.
+     * @param gradeValue The numeric value of the grade.
+     */
     public StudentGrade(Subject subject, double gradeValue) 
     {
         this.subject = subject;

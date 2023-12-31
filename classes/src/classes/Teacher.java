@@ -4,6 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.io.Serializable;
 
+/**
+ * Represents a teacher, extending the Person class. This class includes teacher-specific
+ * attributes such as teacher ID, subject taught, and a timetable. It provides functionality
+ * to manage these attributes.
+ */
 public class Teacher extends Person implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -12,7 +17,10 @@ public class Teacher extends Person implements Serializable
     private int teacherID;
     private Subject subjectTaught;
     private ArrayList<TimeCell> timetable;
-
+    
+    /**
+     * Default constructor. Initializes a teacher with default values and generates a unique teacher ID.
+     */
     public Teacher() 
     {
     	this.teacherID = generateTeacherID();
@@ -20,6 +28,14 @@ public class Teacher extends Person implements Serializable
     	this.timetable = TimeCell.buildEmptyTimetable();
     }
     
+    /**
+     * Constructs a teacher with specified personal details. Automatically generates a unique teacher ID.
+     *
+     * @param name The teacher's name.
+     * @param gender The teacher's gender.
+     * @param address The teacher's address.
+     * @param birthday The teacher's birthday.
+     */
     public Teacher(String name, String gender, String address, LocalDate birthday, int teacherID) 
     {
     	super(name, gender, address, birthday);
@@ -40,7 +56,6 @@ public class Teacher extends Person implements Serializable
         return nextTeacherID++;
     }
 
-    // Getters and Setters
     public int getTeacherID() 
     {
         return teacherID;
@@ -71,7 +86,11 @@ public class Teacher extends Person implements Serializable
         this.subjectTaught = subjectTaught;
     }
 
-    // Method to remove subject and update the Subject's list of teachers
+    /**
+     * Removes the teacher from the currently assigned subject, if any, and updates the subject's list of teachers.
+     *
+     * @param subject The subject to remove the teacher from.
+     */
     public void removeSubject(Subject subject) 
     {
         if (subjectTaught != null) 

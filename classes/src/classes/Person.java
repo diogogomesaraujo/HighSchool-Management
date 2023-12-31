@@ -3,6 +3,11 @@ package classes;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * Represents a person with basic attributes like name, gender, birthday, and address.
+ * This class provides a structure for storing and managing personal information.
+ * Implements Serializable for object serialization.
+ */
 public class Person implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -11,6 +16,10 @@ public class Person implements Serializable
 	private LocalDate birthday;
 	private String address;
 	
+	/**
+     * Default constructor. Initializes a person with empty name, gender, address,
+     * and sets birthday to the current date.
+     */
 	public Person() 
 	{
 		this.name = "";
@@ -19,6 +28,14 @@ public class Person implements Serializable
 		this.address = "";
 	}
 	
+	/**
+     * Constructs a person with specified name, gender, birthday, and address.
+     *
+     * @param name The name of the person.
+     * @param gender The gender of the person.
+     * @param address The address of the person.
+     * @param birthday The birthday of the person.
+     */
 	public Person(String name, String gender, String address, LocalDate birthday) 
 	{
 		this.name = name;

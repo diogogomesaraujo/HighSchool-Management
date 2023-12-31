@@ -4,6 +4,11 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.io.Serializable;
 
+/**
+ * Represents a time slot in a school timetable. It includes the time period, day of the week,
+ * and optionally the subject and class assigned to this time slot. The class also provides
+ * functionality to manage these attributes.
+ */
 public class TimeCell implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -14,6 +19,13 @@ public class TimeCell implements Serializable
 	private Subject subject;
 	private boolean hasClass;
 	
+	/**
+     * Constructs a TimeCell with specified time period and day of the week.
+     * Initializes the cell without a subject and class.
+     *
+     * @param timePeriod The time period of the cell.
+     * @param dayOfWeek The day of the week for this cell.
+     */
 	public TimeCell(ArrayList<LocalTime> timePeriod, String dayOfWeek) 
 	{
 		this.timePeriod = timePeriod;
@@ -21,6 +33,14 @@ public class TimeCell implements Serializable
 		this.hasClass = false;
 	}
 	
+	/**
+     * Constructs a TimeCell with specified time period, day of the week, subject, and school class.
+     *
+     * @param timePeriod The time period of the cell.
+     * @param dayOfWeek The day of the week for this cell.
+     * @param subject The subject scheduled in this cell.
+     * @param schoolClass The class scheduled in this cell.
+     */
 	public TimeCell(ArrayList<LocalTime> timePeriod, String dayOfWeek, Subject subject, SchoolClass schoolClass) 
 	{
 		this.timePeriod = timePeriod;
@@ -79,12 +99,22 @@ public class TimeCell implements Serializable
         return schoolClass;
     }
     
+    /**
+     * Builds a string representation of the TimeCell including its time period and subject name.
+     *
+     * @return The string representation of the TimeCell.
+     */
     public String build() 
     {
     	if(subject != null) return timePeriodText() + subject.getSubjectName();
     	else return timePeriodText();
     }
     
+    /**
+     * Writes the timetable to the standard output, displaying the schedule for each day.
+     *
+     * @param timetable The list of TimeCells representing the timetable.
+     */
     public static void writeTimetable(ArrayList<TimeCell> timetable) 
     {	
     	int inc = 0;
@@ -107,6 +137,11 @@ public class TimeCell implements Serializable
     	System.out.println("\n======= Sucedido ========");
     }
     
+    /**
+     * Builds an empty timetable with predefined time slots and days of the week.
+     *
+     * @return An ArrayList of TimeCells representing the empty timetable.
+     */
     public static ArrayList<TimeCell> buildEmptyTimetable() 
     {
     	ArrayList<TimeCell> timetable = new ArrayList<TimeCell>();
@@ -130,6 +165,11 @@ public class TimeCell implements Serializable
     	return timetable;
     }
     
+    /**
+     * Generates a text representation of the time period.
+     *
+     * @return A string representing the time period in the format "HH:MM/HH:MM".
+     */
     public String timePeriodText() 
     {
     	String text = "(" + timePeriod.get(0).getHour() + ":" +timePeriod.get(0).getMinute()

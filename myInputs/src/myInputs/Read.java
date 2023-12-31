@@ -3,8 +3,18 @@ package myInputs;
 import java.io.*;
 import java.time.LocalDate;
 
+/**
+ * Provides static methods to read different types of inputs from the console. This class handles
+ * input for strings, integers, various other primitive data types, LocalDate, and specific types
+ * like gender and confirmation questions.
+ */
 public class Read 
 {
+	/**
+     * Reads a string from the console, ensuring it is not empty.
+     *
+     * @return The string entered by the user.
+     */
 	public static String aString() 
 	{
 		String s = "";
@@ -29,6 +39,11 @@ public class Read
 		}
 	}
 	
+	/**
+     * Waits for the user to press the Enter key.
+     *
+     * @return An empty string after the Enter key is pressed.
+     */
 	public static String aEnter() 
 	{
 		String s = "";
@@ -50,6 +65,11 @@ public class Read
 		}
 	}
 	
+	/**
+     * Reads an integer value from the console.
+     *
+     * @return The integer value entered by the user.
+     */
 	public static int anInt() 
 	{
 		while(true) 
@@ -69,6 +89,11 @@ public class Read
 		
 	}
 	
+	/**
+     * Reads a byte value from the console.
+     *
+     * @return The byte value entered by the user.
+     */
 	public static byte aByte()
 	{
 		while(true)
@@ -86,6 +111,11 @@ public class Read
 		}
 	}
 	
+	/**
+     * Reads a short value from the console.
+     *
+     * @return The short value entered by the user.
+     */
 	public static short aShort()
 	{
 		while(true){
@@ -102,6 +132,11 @@ public class Read
 		}
 	}
 	
+	/**
+     * Reads a long value from the console.
+     *
+     * @return The long value entered by the user.
+     */
 	public static long aLong()
 	{
 		while(true){
@@ -118,6 +153,11 @@ public class Read
 		}
 	}
 	
+	/**
+     * Reads a float value from the console.
+     *
+     * @return The float value entered by the user.
+     */
 	public static float aFloat()
 	{
 		while(true){
@@ -134,6 +174,11 @@ public class Read
 		}
 	}
 	
+	/**
+     * Reads a double value from the console.
+     *
+     * @return The double value entered by the user.
+     */
 	public static double aDouble()
 	{
 		while(true)
@@ -151,6 +196,11 @@ public class Read
 		}
 	}
 	
+	/**
+     * Reads a single character from the console.
+     *
+     * @return The first character of the string entered by the user.
+     */
 	public static char aChar()
 	{
 		while(true)
@@ -167,6 +217,12 @@ public class Read
 		}
 	}
 	
+	/**
+     * Reads a boolean value from the console.
+     * Accepts 'true' or 'false' as valid inputs.
+     *
+     * @return The boolean value entered by the user.
+     */
 	public static boolean aBoolean()
 	{
 		while(true)
@@ -182,7 +238,12 @@ public class Read
 			}
 		}
 	} 
-	
+		
+	/**
+     * Reads a LocalDate value from the console in the format YYYY-MM-DD.
+     *
+     * @return The LocalDate value entered by the user.
+     */
 	public static LocalDate aLocalDate() 
 	{
 		while(true)
@@ -199,6 +260,11 @@ public class Read
 		}
 	}
 	
+	/**
+     * Provides a menu for the user to choose a gender and reads the user's choice.
+     *
+     * @return The string representing the chosen gender.
+     */
 	public static String aGender() 
 	{
 		String s = "";
@@ -235,6 +301,11 @@ public class Read
 		}
 	}
 	
+	/**
+     * Provides a menu for the user to respond with 'yes' or 'no' to a question and reads the user's choice.
+     *
+     * @return "sim" for 'yes' or "não" for 'no'.
+     */
 	public static String aQuestion() 
 	{
 		String s = "";

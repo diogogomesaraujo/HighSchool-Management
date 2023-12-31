@@ -2,9 +2,20 @@ package menu;
 
 import form.*;
 
+/**
+ * Creates and manages a text-based menu system for a school management application. 
+ * This class sets up the main menu and various submenus, each with specific options 
+ * for managing students, teachers, courses, classes, subjects, grades, timetables, 
+ * and displaying statistics.
+ */
 public class DisplayMenu 
 {
-
+	/**
+     * The main method to start the application. It initializes the menu system and 
+     * loads the predefined data from a file.
+     * 
+     * @param args Command line arguments (not used in this application).
+     */
     public static void main(String[] args) 
     {
     	form.Forms.readFile();
@@ -137,10 +148,6 @@ public class DisplayMenu
         Action a12 = () -> Forms.viewCourseDetails(); 
         MenuOption o12 = new MenuOption(courseMenu.getChoice(), "Ver Detalhes do Curso", new Executable(a12));
         courseMenu.addOption(o12);
-        
-        Action a123 = () -> Forms.showMostStudents(); 
-        MenuOption o123 = new MenuOption(courseMenu.getChoice(), "Ver Curso com Mais Alunos", new Executable(a123));
-        courseMenu.addOption(o123);
 
         // Class submenu options
         Action a33 = () -> Forms.assignTeacherToClass();
@@ -194,11 +201,11 @@ public class DisplayMenu
         MenuOption o77 = new MenuOption(main.getChoice(), "Ver os Cursos com Mais Estudantes", new Executable(a77));
         statisticsMenu.addOption(o77);
         
-        Action a53 = () -> Forms.printStudentWithBestAverage();
+        Action a53 = () -> Forms.showStudentWithBestAverage();
         MenuOption o53 = new MenuOption(gradesMenu.getChoice(), "Ver Aluno com Melhor Média", new Executable(a53));
         statisticsMenu.addOption(o53);
         
-        Action a78 = () -> Forms.showMostStudents();
+        Action a78 = () -> Forms.showBestAverageClass();
         MenuOption o78 = new MenuOption(main.getChoice(), "Ver a Turma com Melhores Notas", new Executable(a78));
         statisticsMenu.addOption(o78);
         

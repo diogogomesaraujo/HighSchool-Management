@@ -3,6 +3,11 @@ package menu;
 import java.util.ArrayList;
 import myInputs.Read;
 
+/**
+ * Represents a menu in a text-based user interface. This class manages a list of menu options
+ * and provides functionality to display these options, handle user input, and navigate between
+ * different menus including parent and child menus.
+ */
 public class Menu 
 {
     private ArrayList<MenuOption> menuOptions;
@@ -11,7 +16,12 @@ public class Menu
     
     public MenuOption exit;
     public MenuOption back;
-
+    
+    /**
+     * Constructs a Menu with a reference to its parent menu.
+     *
+     * @param parentMenu The parent menu of this menu. Can be null if it's a top-level menu.
+     */
     public Menu(Menu parentMenu) 
     {
         this.menuOptions = new ArrayList<MenuOption>();
@@ -20,6 +30,10 @@ public class Menu
         initDefaultOptions();
     }
 
+    /**
+     * Initializes the default menu options - Back and Exit.
+     * The Back option returns to the parent menu, and the Exit option saves data and exits the application.
+     */
     private void initDefaultOptions() 
     {
         Action comeBack = () -> back();
@@ -34,6 +48,9 @@ public class Menu
         menuOptions.add(exit);
     }
     
+    /**
+     * Handles the action to leave the menu. This method saves data and exits the application.
+     */
     private void leave() 
     {
     	form.Forms.writeInFile();
@@ -48,6 +65,9 @@ public class Menu
     	return choice;
     }
 
+    /**
+     * Builds and displays the menu. This method prints all the menu options and handles user input.
+     */
     public void build() 
     {
         System.out.println("\n========= Menu =========");
@@ -86,7 +106,12 @@ public class Menu
     {
         return menuOptions;
     }
-
+    
+    /**
+     * Adds a new option to the menu.
+     *
+     * @param option The MenuOption to be added.
+     */
     public void addOption(MenuOption option) 
     {
         if (menuOptions.contains(back) || menuOptions.contains(exit)) 
@@ -109,13 +134,21 @@ public class Menu
         exit.setNumber(choice);
         choice++;
     }
-
+    
+    /**
+     * Removes an option from the menu.
+     *
+     * @param option The MenuOption to be removed.
+     */
     public void removeOption(MenuOption option) 
     {
         menuOptions.remove(option);
         choice--;
     }
-
+    
+    /**
+     * Returns to the parent menu if it exists, or rebuilds the current menu.
+     */
     public void back() 
     {
         if (parentMenu != null) 
