@@ -63,7 +63,7 @@ public class DisplayMenu
         // Submenu options
 
         // Student submenu options
-        Action a8 = () -> Forms.createStudentForm();; 
+        Action a8 = () -> Forms.createStudentForm(); 
         MenuOption o8 = new MenuOption(studentMenu.getChoice(), "Criar Aluno", new Executable(a8));
         studentMenu.addOption(o8);
 

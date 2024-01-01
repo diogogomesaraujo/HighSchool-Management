@@ -537,7 +537,7 @@ System.out.println("\nEscolha um curso da turma: ");
 	    
 	    displayCourseList(PredefinedCourses.courses);
 	    
-	    System.out.println("Escreva o número da opção ");
+	    System.out.println("Escreva o número da opção: \n");
 	    int courseChoice = Read.anInt() - 1;
 	
 	    if (courseChoice >= 0 && courseChoice < PredefinedCourses.courses.size()) 
@@ -549,7 +549,7 @@ System.out.println("\nEscolha um curso da turma: ");
 	        displaySubjectList(selectedCourse.getSubjects());
 	
 	        // Enter the subject number
-	        System.out.println("\nEscreva o número da opção ");
+	        System.out.println("\nEscreva o número da opção: \n");
 	        int subjectChoice = Read.anInt() - 1;
 	        
 	        String subjectName = selectedCourse.getSubjects().get(subjectChoice).getSubjectName();
