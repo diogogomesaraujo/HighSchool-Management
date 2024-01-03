@@ -260,7 +260,7 @@ public class Forms
      */
 	public static void assignTeacherToClass() 
 	{
-System.out.println("\nEscolha um curso da turma: ");
+		System.out.println("\nEscolha um curso da turma: ");
 	    
 	    displayCourseList(PredefinedCourses.courses);
 	    int courseChoiceForClass = Read.anInt() - 1;
@@ -857,40 +857,6 @@ System.out.println("\nEscolha um curso da turma: ");
     }
     
     /**
-     * Calculates and displays the average grade of a student.
-     */
-    public static void printAndCalculateAverage() 
-	{
-	    System.out.println("\nEscreva o ID do aluno para calcular a média: ");
-	    int studentID = Read.anInt();
-	    
-	    Student selectedStudent = findStudentById(studentID);
-	
-	    if (selectedStudent != null) 
-	    {
-	        if (selectedStudent.getStudentGrades().isEmpty()) 
-	        {
-	            System.out.println("\nO aluno não tem notas. Média: 0.0");
-	            return;
-	        }
-	
-	        double totalGrade = 0.0;
-	        int numberOfGrades = 0;
-	
-	        for (StudentGrade grade : selectedStudent.getStudentGrades()) 
-	        {
-	            totalGrade += grade.getGradeValue();
-	            numberOfGrades++;
-	        }
-	
-	        double average = totalGrade / numberOfGrades;
-	        System.out.println("\nMédia do aluno " + selectedStudent.getName() + ": " + average);
-	    } else {
-	        System.out.println("\nAluno não encontrado.");
-	    }
-	}
-
-    /**
      * Deletes a student from the system based on their ID.
      */
     public static void deleteStudent() 
@@ -945,6 +911,40 @@ System.out.println("\nEscolha um curso da turma: ");
     }
     
     /**
+	 * Calculates and displays the average grade of a student.
+	 */
+	public static void showAndCalculateAverage() 
+	{
+	    System.out.println("\nEscreva o ID do aluno para calcular a média: \n");
+	    int studentID = Read.anInt();
+	    
+	    Student selectedStudent = findStudentById(studentID);
+	
+	    if (selectedStudent != null) 
+	    {
+	        if (selectedStudent.getStudentGrades().isEmpty()) 
+	        {
+	            System.out.println("\nO aluno não tem notas. Média: 0.0");
+	            return;
+	        }
+	
+	        double totalGrade = 0.0;
+	        int numberOfGrades = 0;
+	
+	        for (StudentGrade grade : selectedStudent.getStudentGrades()) 
+	        {
+	            totalGrade += grade.getGradeValue();
+	            numberOfGrades++;
+	        }
+	
+	        double average = totalGrade / numberOfGrades;
+	        System.out.println("\nMédia do aluno " + selectedStudent.getName() + ": " + average);
+	    } else {
+	        System.out.println("\nAluno não encontrado.");
+	    }
+	}
+
+	/**
      * Displays all students enrolled in the system.
      */
     public static void showAllStudents() 

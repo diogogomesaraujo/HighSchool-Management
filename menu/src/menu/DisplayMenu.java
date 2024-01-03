@@ -189,7 +189,7 @@ public class DisplayMenu
         MenuOption o19 = new MenuOption(gradesMenu.getChoice(), "Ver Notas do Aluno", new Executable(a19));
         gradesMenu.addOption(o19);
         
-        Action a50 = () -> Forms.printAndCalculateAverage();
+        Action a50 = () -> Forms.showAndCalculateAverage();
         MenuOption o50 = new MenuOption(gradesMenu.getChoice(), "Ver Média do Aluno", new Executable(a50));
         gradesMenu.addOption(o50);
         
