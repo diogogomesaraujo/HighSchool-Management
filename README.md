@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  HighSchool Management
+  ScholarSphere
   <br>
 </h1>
 
@@ -12,7 +12,7 @@
   <a href="#how-to-use">How To Use</a> •
   <a href="#download">Download</a>
 
-![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
+![Logo](images/scholarsphere.png)
 
 ## Key Features
 
