@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="scholarsphere.png" alt="ScholarSphere Logo" width="300"/>
+  <img src="images/scholarsphere.png" alt="ScholarSphere Logo" width="300"/>
 </p>
 
 <h1 align="center">
@@ -14,6 +14,10 @@
   <a href="#information">Information</a> •
   <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a>
+
+<video autoplay loop>
+    <source src="images/display.mp4" type="video/mp4">
+</video>
 
 ## Information
 
@@ -37,7 +41,7 @@
 $ git clone https://github.com/diogogomesaraujo/ScholarSphere
 
 # Go into the repository
-$ cd ScholarSphere
+$ cd ScholarSphere-main
 
 # Run the application
 $ java -jar exe.jar
