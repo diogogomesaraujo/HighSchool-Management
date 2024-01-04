@@ -15,10 +15,6 @@
   <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a>
 
-<video autoplay loop>
-    <source src="images/display.mp4" type="video/mp4">
-</video>
-
 ## Information
 
 >ScholarSphere is a university project developed for the Object Oriented Programming class at Universidade da Beira Interior. The primary goal of this project is to provide an educational tool to explore and understand the various aspects of Object-Oriented Programming (OOP). It serves as a practical application to demonstrate OOP concepts in a real-world scenario, facilitating hands-on learning for students.
