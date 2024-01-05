@@ -42,7 +42,12 @@ $ cd ScholarSphere-main
 # Run the application
 $ java -jar exe.jar
 ```
-
 > **Note**
 > If you're using Windows Subsystem for Linux (WSL), make sure you have Java installed in WSL to run the JAR file. Check by running `java -version` in the Bash shell. If you face any issues, you can alternatively run the JAR file using the Windows command prompt, provided Java is installed on your Windows system.
+
+## In the Future
+> Implementations for the near future: 
+>* Rooms for the Classes;
+>* Organize the Forms Class;
+>* Better Statistics Based on the Given Data;
 
