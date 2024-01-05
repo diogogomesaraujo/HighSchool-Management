@@ -90,7 +90,7 @@ public class Forms
      *
      * @param deserializedCourses The list of courses read from the file.
      */
-	public static void updatePredefinedCourses(ArrayList<Course> deserializedCourses) 
+	private static void updatePredefinedCourses(ArrayList<Course> deserializedCourses) 
 	{
 	    for (Course course : deserializedCourses) 
 	    {
@@ -643,11 +643,11 @@ public class Forms
             {
                 System.out.println("Disciplina: " + grade.getSubject().getSubjectName() +
                                    ", Nota: " + grade.getGradeValue());
-                
-                System.out.println("\n======= Sucedido ========");
-                
-                System.out.println();
             }
+            
+            System.out.println("\n======= Sucedido ========");
+            
+            System.out.println();
         } 
         
         else 
