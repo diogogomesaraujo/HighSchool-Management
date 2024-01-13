@@ -125,7 +125,7 @@ public class Student extends Person implements Serializable
                "Endereço: " + getAddress() + "\n" +
                "ID do Aluno: " + studentID + "\n" +
                "Curso Matriculado: " + (enrolledCourse != null ? enrolledCourse.getCourseName() : "Não Matriculado") + "\n" +
-               "Classe Matriculada: " + (enrolledClass != null ? enrolledClass.getClassName() : "Não Matriculado") 
+               "Turma Matriculada: " + (enrolledClass != null ? enrolledClass.getClassName() : "Não Matriculado")
                ;
     }
 }

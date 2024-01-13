@@ -206,7 +206,7 @@ public class DisplayMenu
         statisticsMenu.addOption(o53);
         
         Action a78 = () -> Forms.showBestAverageClass();
-        MenuOption o78 = new MenuOption(main.getChoice(), "Ver a Turma com Melhores Notas", new Executable(a78));
+        MenuOption o78 = new MenuOption(statisticsMenu.getChoice(), "Ver a Turma com Melhores Notas", new Executable(a78));
         statisticsMenu.addOption(o78);
         
         main.build();

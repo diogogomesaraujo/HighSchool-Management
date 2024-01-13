@@ -949,6 +949,8 @@ public class Forms
      */
     public static void showAllStudents() 
     {
+		System.out.println();
+
         ArrayList<Student> students = getAllStudentsEnrolled();
         if(students.size() != 0) 
         {
@@ -969,6 +971,8 @@ public class Forms
      */
     public static void showAllTeachers() 
 	{
+		System.out.println();
+
 	    ArrayList<Teacher> teachers = getAllTeacher();
 	    
 	    if(teachers.size() != 0) 
@@ -1023,9 +1027,9 @@ public class Forms
 	        
 	        int numStudents = 0;
 	        
-	        for (SchoolClass schoolClass : moreStudents.get(0).getClasses()) 
+	        for (SchoolClass schoolClass : moreStudents.get(0).getClasses())
 	        {
-	            numStudents = schoolClass.getStudents().size();
+	            numStudents += schoolClass.getStudents().size(); // it is not recognizing different classes
 	        }
 
 	        System.out.println("\nNúmero total de alunos: " + numStudents);
@@ -1040,7 +1044,7 @@ public class Forms
 	/**
      * Displays the class with the best average grade in a specific course.
      */
-	public static void showBestAverageClass() 
+	public static void showBestAverageClass() //x
 	{
 	    System.out.println("\nEscolha o curso:");
 	
@@ -1183,8 +1187,6 @@ public class Forms
             if (numStudents > maxStudents) 
             {
                 maxStudents = numStudents;
-                
-                moreStudents.clear();
                 
                 moreStudents.add(course);
             } 

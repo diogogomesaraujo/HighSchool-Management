@@ -101,7 +101,7 @@ public class Teacher extends Person implements Serializable
         
         else 
         {
-            System.out.println("The teacher is not currently assigned to any subject.");
+            System.out.println("O professor não está atribuído a nenhuma disciplina!"); //x
         }
     }
     

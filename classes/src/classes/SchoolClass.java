@@ -204,7 +204,7 @@ public class SchoolClass implements Serializable
             result += "- " + student.getName() + "\n";
         }
 
-        result += "\nProfessores de Disciplina:\n";
+        result += "\nProfessores:\n";
         for (Teacher teacher : subjectTeachers) {
             result += "- " + teacher.getName() + "\n";
         }

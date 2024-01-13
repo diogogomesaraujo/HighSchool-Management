@@ -132,22 +132,22 @@ public class Course implements Serializable
         	
         	for (Subject subject : subjects) 
         	{
-                if (courseName == "Ciências" && !PredefinedCourses.sciencesOptionalSubjects.contains(subject)) //why?
+                if (courseName == "Ciências" && (!subject.getSubjectName().equals("Biologia e Geologia") && !subject.getSubjectName().equals("Geometria Descritiva")))
                 {
                     classSubjects.add(subject);
                 }
                 
-                if (courseName == "Artes" && !PredefinedCourses.artsOptionalSubjects.contains(subject)) 
+                if (courseName == "Artes" && (!subject.getSubjectName().equals("Matemática Aplicada às Ciências Sociais") && !subject.getSubjectName().equals("História e Cultura das Artes")))
                 {
                     classSubjects.add(subject);
                 }
                 
-                if (courseName == "Economia" && !PredefinedCourses.economyOptionalSubjects.contains(subject)) 
+                if (courseName == "Economia" && (!subject.getSubjectName().equals("Geografia") && !subject.getSubjectName().equals("História")))
                 {
                     classSubjects.add(subject);
                 }
                 
-                if (courseName == "Humanidades" && !PredefinedCourses.humanSciencesOptionalSubjects.contains(subject)) 
+                if (courseName == "Humanidades" && (!subject.getSubjectName().equals("Matemática Aplicada às Ciências Sociais") && !subject.getSubjectName().equals("Literatura")))
                 {
                     classSubjects.add(subject);
                 }
