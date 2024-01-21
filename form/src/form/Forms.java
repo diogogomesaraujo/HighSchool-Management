@@ -44,47 +44,67 @@ public class Forms
      * Reads the list of predefined courses and other global variables from a file.
      */
 	@SuppressWarnings("unchecked")
-	public static void readFile() 
+	public static void readFile()
 	{
-	    try 
-	    {
-	    	File file = new File("Courses");
-            if(!file.exists()) {
-                file.createNewFile();
-                
-                System.out.println("A criar o ficheiro...\n");
-            }
-	    	
-	            FileInputStream fis = new FileInputStream(file);
-	            ObjectInputStream ois = new ObjectInputStream(fis);
-	            courses = (ArrayList<Course>) ois.readObject();   
-	            Student.setNextStudentID(ois.readInt());
-	            Teacher.setNextTeacherID(ois.readInt());
-	            GlobalVariables.setLetter(ois.readChar());
-	            ois.close();
-	            fis.close();
-	            
-	            updatePredefinedCourses(courses);
-	        } 
-	    
-	    catch (FileNotFoundException e) 
-	    {
-	    	e.printStackTrace();
-	    } 
-	    
-	    catch (IOException e1) 
-	    {
-	        // TODO Auto-generated catch block
-	    	e1.printStackTrace();
-	    } 
-	    
-	    catch (ClassNotFoundException e) 
-	    {
-	        // TODO Auto-generated catch block
-	        e.printStackTrace();
-	    }
+		File file = new File("Courses");
+		if (!file.exists())
+		{
+			try
+			{
+				file.createNewFile();
+				System.out.println("A criar o ficheiro...\n");
+
+				// Initialize your data structures with default values
+				courses = new ArrayList<>(); // Assuming this is a static variable somewhere
+				Student.setNextStudentID(1); // Default starting ID
+				Teacher.setNextTeacherID(1); // Default starting ID
+				GlobalVariables.setLetter('A'); // Default starting letter
+
+				// Update predefined courses with empty list or default values
+				updatePredefinedCourses(courses);
+
+				// No need to read from an empty file, so return from the method
+				return;
+			}
+
+			catch (IOException e)
+			{
+				e.printStackTrace();
+
+				return; // Return from the method if file creation fails
+			}
+		}
+
+		// If the file exists and is not new, proceed to read from it
+		try (FileInputStream fis = new FileInputStream(file);
+			 ObjectInputStream ois = new ObjectInputStream(fis))
+		{
+			courses = (ArrayList<Course>) ois.readObject();
+			Student.setNextStudentID(ois.readInt());
+			Teacher.setNextTeacherID(ois.readInt());
+			GlobalVariables.setLetter(ois.readChar());
+
+			// Update predefined courses with the read values
+			updatePredefinedCourses(courses);
+		}
+
+		catch (FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+
+		catch (IOException e1)
+		{
+			e1.printStackTrace();
+		}
+
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+		}
 	}
-	
+
+
 	/**
      * Updates the list of predefined courses with the deserialized courses from the file.
      *
@@ -123,7 +143,7 @@ public class Forms
 	/**
      * Updates the list of classes in the predefined courses with the deserialized classes from the file.
      *
-     * @param deserializedCourses The list of courses read from the file.
+     * @param deserializedCourse The list of courses read from the file.
      */
 	private static void updatePredefinedClasses(Course predefinedCourse, Course deserializedCourse) 
 	{

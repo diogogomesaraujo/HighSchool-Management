@@ -50,6 +50,6 @@ Implementations for the near future:
 >* Rooms for the Classes;
 >* Organize the Forms Class;
 >* Better Statistics Based on the Given Data;
->* Mutiple Years and Professional Courses.
->* Correct Manipulation of Addresses
+>* Mutiple Years and Professional Courses;
+>* Correct Manipulation of Addresses.
 
