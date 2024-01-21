@@ -22,43 +22,48 @@ public class DisplayMenu
     	
         // Create main menus
         Menu main = new Menu(null);
-        Menu studentMenu = new Menu(main);
-        Menu teacherMenu = new Menu(main);
-        Menu courseMenu = new Menu(main);
-        Menu classMenu = new Menu(main);
-        Menu subjectsMenu = new Menu(main);
-        Menu gradesMenu = new Menu(main);
-        Menu scheduleMenu = new Menu(main);
+        Menu manageMenu = new Menu(main);
         Menu statisticsMenu = new Menu(main);
+        Menu studentMenu = new Menu(manageMenu);
+        Menu teacherMenu = new Menu(manageMenu);
+        Menu courseMenu = new Menu(manageMenu);
+        Menu classMenu = new Menu(manageMenu);
+        Menu subjectsMenu = new Menu(manageMenu);
+        Menu gradesMenu = new Menu(manageMenu);
+        Menu scheduleMenu = new Menu(manageMenu);
         Menu editStudentMenu = new Menu(studentMenu);
         Menu editTeacherMenu = new Menu(teacherMenu);
 
         // Add menu history
 
         // Create options for the main menu
+        Action a1111 = () -> manageMenu.build();
+        MenuOption o1111 = new MenuOption(main.getChoice(), "Gerir Escola", new Executable(a1111));
+        main.addOption(o1111);
+        
         Action a1 = () -> studentMenu.build();
-        MenuOption o1 = new MenuOption(main.getChoice(), "Aluno", new Executable(a1));
-        main.addOption(o1);
+        MenuOption o1 = new MenuOption(manageMenu.getChoice(), "Aluno", new Executable(a1));
+        manageMenu.addOption(o1);
 
         Action a2 = () -> teacherMenu.build();
-        MenuOption o2 = new MenuOption(main.getChoice(), "Professor", new Executable(a2));
-        main.addOption(o2);
+        MenuOption o2 = new MenuOption(manageMenu.getChoice(), "Professor", new Executable(a2));
+        manageMenu.addOption(o2);
 
         Action a3 = () -> courseMenu.build();
-        MenuOption o3 = new MenuOption(main.getChoice(), "Curso", new Executable(a3));
-        main.addOption(o3);
+        MenuOption o3 = new MenuOption(manageMenu.getChoice(), "Curso", new Executable(a3));
+        manageMenu.addOption(o3);
 
         Action a4 = () -> classMenu.build();
-        MenuOption o4 = new MenuOption(main.getChoice(), "Turma", new Executable(a4));
-        main.addOption(o4);
+        MenuOption o4 = new MenuOption(manageMenu.getChoice(), "Turma", new Executable(a4));
+        manageMenu.addOption(o4);
 
         Action a5 = () -> subjectsMenu.build();
-        MenuOption o5 = new MenuOption(main.getChoice(), "Disciplina", new Executable(a5));
-        main.addOption(o5);
+        MenuOption o5 = new MenuOption(manageMenu.getChoice(), "Disciplina", new Executable(a5));
+        manageMenu.addOption(o5);
 
         Action a6 = () -> gradesMenu.build();
-        MenuOption o6 = new MenuOption(main.getChoice(), "Notas", new Executable(a6));
-        main.addOption(o6);
+        MenuOption o6 = new MenuOption(manageMenu.getChoice(), "Notas", new Executable(a6));
+        manageMenu.addOption(o6);
 
         // Submenu options
 
