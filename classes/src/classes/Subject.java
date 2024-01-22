@@ -37,9 +37,18 @@ public class Subject implements Serializable
      *
      * @param teacher The teacher to be added.
      */
-    public void addTeacher(Teacher teacher) 
+    public void addTeacher(Teacher teacher)
     {
-        teachers.add(teacher);
+        if (!teachers.contains(teacher))
+        {
+            teachers.add(teacher);
+            teacher.setSubjectTaught(this);
+        }
+
+        else
+        {
+            System.out.println("O professor já se encontra inscrito na disciplina!");
+        }
     }
     
     /**

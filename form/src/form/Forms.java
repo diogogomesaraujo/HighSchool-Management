@@ -89,6 +89,8 @@ public class Forms
 			// Update predefined courses with the read values
 			updatePredefinedCourses(courses);
 			updatePredefinedRooms(availableRooms);
+
+
 		}
 
 		catch (FileNotFoundException e)
@@ -158,14 +160,6 @@ public class Forms
 	private static void updatePredefinedClasses(Course predefinedCourse, Course deserializedCourse) 
 	{
 	    predefinedCourse.setClasses(deserializedCourse.getClasses());
-	}
-
-	private static void updatePredefinedTeachers(Course predefinedCourse, Course deserializedCourse)
-	{
-		for(int i = 0; i < predefinedCourse.getSubjects().size(); i++)
-		{
-			predefinedCourse.getSubjects().get(i).setTeachers(deserializedCourse.getSubjects().get(i).getTeachers());
-		}
 	}
 
 	private static void updatePredefinedRooms(ArrayList<Room> deserializedRooms)
@@ -302,9 +296,8 @@ public class Forms
 		Form teacherForm = new Form("Criar Professor", questions, teacher);
 		
 		teacherForm.build();
-		
 		teacher.getSubjectTaught().addTeacher(teacher);
-		
+
 		System.out.println("\nO ID do Professor é: " + teacher.getTeacherID());
 	}
 	
