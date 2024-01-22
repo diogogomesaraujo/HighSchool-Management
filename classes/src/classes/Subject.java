@@ -15,6 +15,7 @@ public class Subject implements Serializable
     private String subjectName;
     private ArrayList<Student> enrolledStudents;
     private ArrayList<Teacher> teachers;
+    private ArrayList<String> typeOfRooms;
     
     private int auxNumber;
 
@@ -23,9 +24,10 @@ public class Subject implements Serializable
      *
      * @param subjectName The name of the subject.
      */
-    public Subject(String subjectName) 
+    public Subject(String subjectName, ArrayList<String> typeOfRooms)
     {
         this.subjectName = subjectName;
+        this.typeOfRooms = typeOfRooms;
         this.enrolledStudents = new ArrayList<>();
         this.teachers = new ArrayList<>();
     }
@@ -100,7 +102,17 @@ public class Subject implements Serializable
     {
         this.enrolledStudents = enrolledStudents;
     }
-    
+
+    public ArrayList<String> getTypeOfRooms()
+    {
+        return typeOfRooms;
+    }
+
+    public void setTypeOfRooms(ArrayList<String> typeOfRooms)
+    {
+        this.typeOfRooms = typeOfRooms;
+    }
+
     /**
      * Enrolls a student in the subject.
      *
@@ -160,7 +172,7 @@ public class Subject implements Serializable
 					if(s.equalsIgnoreCase(aux)) return PredefinedSubjects.subjects.get(i);
 				}
 				
-				System.out.println("Opção Inválida!");
+				System.out.println("\nOpção Inválida!");
 			}
 			
 	

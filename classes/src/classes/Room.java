@@ -1,9 +1,14 @@
 package classes;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Room
+public class Room implements Serializable
 {
+    private static final long serialVersionUID = 1L;
     private String number;
     private String typeOfRoom;
     private int capacity;
@@ -55,5 +60,42 @@ public class Room
     public void setCapacity(int capacity) 
     {
     	this.capacity = capacity;
+    }
+
+    public static Room aRoom(ArrayList<Room> availableRooms)
+    {
+        String s = "";
+
+        while(true)
+        {
+            try
+            {
+                for(int i = 0; i < availableRooms.size(); i++)
+                {
+                    Room room = availableRooms.get(i);
+                    System.out.println((i + 1) + ". " + room.getNumber() + " (" + room.getTypeOfRoom() + ")");
+                    // Optionally, you could add an auxNumber to Room class similar to Subject class
+                }
+
+                System.out.print("\n-> ");
+                BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+                s = in.readLine();
+
+                for(int i = 0; i < availableRooms.size(); i++)
+                {
+                    if(s.equalsIgnoreCase(Integer.toString(i + 1)))
+                    {
+                        return availableRooms.get(i);
+                    }
+                }
+
+                System.out.println("\nOpção Inválida!");
+            }
+
+            catch(IOException e)
+            {
+                System.out.println("\nInput Inválido!");
+            }
+        }
     }
 }

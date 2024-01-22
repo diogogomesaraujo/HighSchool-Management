@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.*;
+
 public interface PredefinedRooms
 {
     public static final Room r01 = new Room("0.1", "Ginásio", 30, TimeCell.buildEmptyTimetable());
@@ -10,6 +12,7 @@ public interface PredefinedRooms
     public static final Room r13 = new Room("1.3", "Sala de Aula", 30, TimeCell.buildEmptyTimetable());
     public static final Room r14 = new Room("1.4", "Sala de Aula", 30, TimeCell.buildEmptyTimetable());
     public static final Room r15 = new Room("1.5", "Laboratório", 15, TimeCell.buildEmptyTimetable());
-    public static final Room r16 = new Room("1.4", "Sala de Desenho", 30, TimeCell.buildEmptyTimetable());
+    public static final Room r16 = new Room("1.6", "Sala de Desenho", 30, TimeCell.buildEmptyTimetable());
 
+    public static final ArrayList<Room> availableRooms = new ArrayList<>(Arrays.asList(r01, r02, r11, r12, r13, r14, r15, r16));
 }

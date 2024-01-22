@@ -14,31 +14,30 @@ import java.io.*;
 public class Forms 
 {
 	public static ArrayList <Course> courses = PredefinedCourses.courses;
+	public static ArrayList<Room> availableRooms = PredefinedRooms.availableRooms;
 	
 	 /**
      * Writes the list of predefined courses and other global variables to a file.
      */
-	public static void writeInFile() 
-	{
-        try
-        {
-            FileOutputStream ficheiro = new FileOutputStream("Courses");
-            ObjectOutputStream out = new ObjectOutputStream(ficheiro);
-            
-            out.writeObject(PredefinedCourses.courses);
-            out.writeInt(Student.getNextStudentID());
-            out.writeInt(Teacher.getNextTeacherID());
-            out.writeChar(GlobalVariables.getLetter());
-            
-            out.close();
-            ficheiro.close();
-        } 
-        
-        catch (IOException e) 
-        {
-            e.printStackTrace();
-        }
-    }
+	 public static void writeInFile()
+	 {
+		 try (FileOutputStream fileOutputStream = new FileOutputStream("SavedData");
+			  ObjectOutputStream out = new ObjectOutputStream(fileOutputStream)) {
+
+			 out.writeObject(PredefinedCourses.courses);
+			 out.writeObject(PredefinedRooms.availableRooms); // Write the list of available rooms
+			 out.writeInt(Student.getNextStudentID());
+			 out.writeInt(Teacher.getNextTeacherID());
+			 out.writeChar(GlobalVariables.getLetter());
+
+			 // out.close(); and fileOutputStream.close(); are not needed due to try-with-resources
+		 }
+
+		 catch (IOException e)
+		 {
+			 e.printStackTrace();
+		 }
+	 }
 	
 	/**
      * Reads the list of predefined courses and other global variables from a file.
@@ -46,7 +45,7 @@ public class Forms
 	@SuppressWarnings("unchecked")
 	public static void readFile()
 	{
-		File file = new File("Courses");
+		File file = new File("SavedData");
 		if (!file.exists())
 		{
 			try
@@ -56,12 +55,14 @@ public class Forms
 
 				// Initialize your data structures with default values
 				courses = new ArrayList<>(); // Assuming this is a static variable somewhere
+				availableRooms = new ArrayList<>();
 				Student.setNextStudentID(1); // Default starting ID
 				Teacher.setNextTeacherID(1); // Default starting ID
 				GlobalVariables.setLetter('A'); // Default starting letter
 
-				// Update predefined courses with empty list or default values
+				// Update predefined courses with empty list or default value
 				updatePredefinedCourses(courses);
+				updatePredefinedRooms(availableRooms);
 
 				// No need to read from an empty file, so return from the method
 				return;
@@ -80,12 +81,14 @@ public class Forms
 			 ObjectInputStream ois = new ObjectInputStream(fis))
 		{
 			courses = (ArrayList<Course>) ois.readObject();
+			availableRooms = (ArrayList<Room>) ois.readObject();
 			Student.setNextStudentID(ois.readInt());
 			Teacher.setNextTeacherID(ois.readInt());
 			GlobalVariables.setLetter(ois.readChar());
 
 			// Update predefined courses with the read values
 			updatePredefinedCourses(courses);
+			updatePredefinedRooms(availableRooms);
 		}
 
 		catch (FileNotFoundException e)
@@ -110,34 +113,41 @@ public class Forms
      *
      * @param deserializedCourses The list of courses read from the file.
      */
-	private static void updatePredefinedCourses(ArrayList<Course> deserializedCourses) 
+	private static void updatePredefinedCourses(ArrayList<Course> deserializedCourses)
 	{
-	    for (Course course : deserializedCourses) 
-	    {
-	        switch (course.getCourseName()) 
-	        {
-	            case "Ciências":
-	                PredefinedCourses.sciencesSubjects.clear();
-	                PredefinedCourses.sciencesSubjects.addAll(course.getSubjects());
-	                updatePredefinedClasses(PredefinedCourses.sciences, course);
-	                break;
-	            case "Artes":
-	                PredefinedCourses.artsSubjects.clear();
-	                PredefinedCourses.artsSubjects.addAll(course.getSubjects());
-	                updatePredefinedClasses(PredefinedCourses.arts, course);
-	                break;
-	            case "Economia":
-	                PredefinedCourses.economySubjects.clear();
-	                PredefinedCourses.economySubjects.addAll(course.getSubjects());
-	                updatePredefinedClasses(PredefinedCourses.economy, course);
-	                break;
-	            case "Humanidades":
-	                PredefinedCourses.humanSciencesSubjects.clear();
-	                PredefinedCourses.humanSciencesSubjects.addAll(course.getSubjects());
-	                updatePredefinedClasses(PredefinedCourses.economy, course);
-	                break;
-	        }
-	    }
+		for (Course deserializedCourse : deserializedCourses)
+		{
+			Course predefinedCourse = findPredefinedCourseByName(deserializedCourse.getCourseName());
+			if (predefinedCourse != null)
+			{
+				predefinedCourse.setSubjects(deserializedCourse.getSubjects());
+				predefinedCourse.setClasses(deserializedCourse.getClasses());
+				// The subjects within each course should already have their teachers set,
+				// so there's no need for a separate updatePredefinedTeachers method.
+			}
+		}
+	}
+
+	private static Course findPredefinedCourseByName(String courseName)
+	{
+		// This method should return the predefined course object based on its name.
+		// For example:
+		switch (courseName) {
+			case "Ciências":
+				return PredefinedCourses.sciences;
+
+			case "Artes":
+				return PredefinedCourses.arts;
+
+			case "Economia":
+				return PredefinedCourses.economy;
+
+			case "Humanidades":
+				return PredefinedCourses.humanSciences;
+
+			default:
+				return null;
+		}
 	}
 
 	/**
@@ -149,46 +159,103 @@ public class Forms
 	{
 	    predefinedCourse.setClasses(deserializedCourse.getClasses());
 	}
-    
-    private static void createTimetable(SchoolClass schoolClass) 
-	{	
-		System.out.println("\n====== Formulário ========\n");
-		
-		for(int i = 0; i < schoolClass.getTimetable().size(); i++) 
+
+	private static void updatePredefinedTeachers(Course predefinedCourse, Course deserializedCourse)
+	{
+		for(int i = 0; i < predefinedCourse.getSubjects().size(); i++)
 		{
-			ArrayList<Subject> availableSubjects = schoolClass.getAvailableSubjects(schoolClass.getTimetable().get(i));
-			
-			if(schoolClass.getTimetable().get(i).getTimePeriod().get(0).equals(LocalTime.of(8, 30))) 
-			{
-				System.out.println(schoolClass.getTimetable().get(i).getDayOfWeek() + ": \n");
+			predefinedCourse.getSubjects().get(i).setTeachers(deserializedCourse.getSubjects().get(i).getTeachers());
+		}
+	}
+
+	private static void updatePredefinedRooms(ArrayList<Room> deserializedRooms)
+	{
+		if(!deserializedRooms.isEmpty()) PredefinedRooms.availableRooms.clear();
+		PredefinedRooms.availableRooms.addAll(deserializedRooms);
+	}
+
+	private static void createTimetable(SchoolClass schoolClass) {
+		System.out.println("\n====== Formulário ========\n");
+
+		for (int i = 0; i < schoolClass.getTimetable().size(); i++) {
+			TimeCell timeCell = schoolClass.getTimetable().get(i);
+			ArrayList<Subject> availableSubjects = schoolClass.getAvailableSubjects(timeCell);
+
+			if (timeCell.getTimePeriod().get(0).equals(LocalTime.of(8, 30))) {
+				System.out.println(timeCell.getDayOfWeek() + ": \n");
 			}
-			
-			System.out.println(schoolClass.getTimetable().get(i).timePeriodText() + "Adicionar Aula: \n");
+
+			System.out.println(timeCell.timePeriodText() + "Adicionar Aula: \n");
 			String aux = Read.aQuestion();
-			
-			if(aux.equals("sim")) 
-			{
+
+			if(aux.equals("voltar")) break;;
+
+			if (aux.equals("sim")) {
 				System.out.println();
-				System.out.println(schoolClass.getTimetable().get(i).timePeriodText() + "Escolha a disciplina: ");
-				
-				if(availableSubjects.size() != 0) 
-				{
+				System.out.println(timeCell.timePeriodText() + "Escolha a disciplina: \n");
+
+				if (!availableSubjects.isEmpty()) {
 					Subject auxSubject = Subject.aSubject(availableSubjects);
-					
-					for(Teacher teacher : schoolClass.getSubjectTeachers()) 
-					{
-						if(teacher.getSubjectTaught().equals(auxSubject)) teacher.getTimetable().get(i).setHasClass(true);
+
+					for (Teacher teacher : schoolClass.getSubjectTeachers()) {
+						if (teacher.getSubjectTaught().equals(auxSubject)) {
+							teacher.getTimetable().get(i).setHasClass(true);
+						}
 					}
-					
-					schoolClass.getTimetable().get(i).setSubject(auxSubject);
-					schoolClass.getTimetable().get(i).setHasClass(true);
+
+					timeCell.setSubject(auxSubject);
+					timeCell.setHasClass(true);
+
+					System.out.println();
+					System.out.println(timeCell.timePeriodText() + "Escolha a sala: \n");
+
+					// Get available rooms for the selected subject and time slot
+					ArrayList<Room> availableRooms = getSubjectsAvailableRooms(auxSubject, timeCell);
+
+					if (!availableRooms.isEmpty())
+					{
+						Room selectedRoom = Room.aRoom(availableRooms);
+
+						timeCell.setRoom(selectedRoom);
+						selectedRoom.getTimetable().get(i).setHasClass(true);
+					}
+
+					else
+					{
+						System.out.println("Não há salas disponíveis para esta disciplina e horário!\n");
+					}
 				}
-				
-				else System.out.println("\nNão há professores disponíveis a essa hora!\n");
+
+				else
+				{
+					System.out.println("Não há professores disponíveis a essa hora!\n");
+				}
 			}
 		}
-		
-		 System.out.println("\n======= Sucedido ========");
+
+		System.out.println("\n======= Sucedido ========");
+	}
+
+
+	public static ArrayList<Room> getSubjectsAvailableRooms(Subject subject, TimeCell timeCell)
+	{
+		ArrayList<Room> rooms = new ArrayList<>();
+
+		for(Room room : PredefinedRooms.availableRooms)
+		{
+			if (subject.getTypeOfRooms().contains(room.getTypeOfRoom()))
+			{
+				for(TimeCell aux : room.getTimetable())
+				{
+					if(aux.getTimePeriod().equals(timeCell.getTimePeriod()) && aux.getDayOfWeek().equals(timeCell.getDayOfWeek()) && !aux.getHasClass())
+					{
+						rooms.add(room);
+					}
+				}
+			}
+		}
+
+		return rooms;
 	}
 
     /**
@@ -214,7 +281,7 @@ public class Forms
 		System.out.println();
 		student.getEnrolledCourse().enrollClass(student);
 		
-		System.out.println("\nO ID do Aluno é: " + student.getStudentID());
+		System.out.println("O ID do Aluno é: " + student.getStudentID());
 	}
 	
 	/**
@@ -302,10 +369,12 @@ public class Forms
 	            	System.out.println("\nEscreva o ID do professor: \n");
 	       		 
 	       	     	int teacherIdToView = Read.anInt();
-	       	     
+
 	       	     	Teacher teacherToView = findTeacherById(teacherIdToView);
-	       	     	
-	       	     	selectedCourse.getClasses().get(classChoice).addTeacher(teacherToView);
+
+	       	     	if(teacherToView != null) selectedCourse.getClasses().get(classChoice).addTeacher(teacherToView);
+
+					else System.out.println("\nID do Professor Inválido!");
 	            } 
 	            
 	            else 
@@ -982,7 +1051,7 @@ public class Forms
         
         else 
         {
-            System.out.println("\nNão foram criados alunos!");
+            System.out.println("Não foram criados alunos!");
         }
     }
     

@@ -17,6 +17,7 @@ public class TimeCell implements Serializable
 	private String dayOfWeek;
 	private SchoolClass schoolClass;
 	private Subject subject;
+    private Room room;
 	private boolean hasClass;
 	
 	/**
@@ -98,7 +99,17 @@ public class TimeCell implements Serializable
     {
         return schoolClass;
     }
-    
+
+    public Room getRoom()
+    {
+        return room;
+    }
+
+    public void setRoom(Room room)
+    {
+        this.room = room;
+    }
+
     /**
      * Builds a string representation of the TimeCell including its time period and subject name.
      *
@@ -123,7 +134,7 @@ public class TimeCell implements Serializable
     	
     	for(int day = 0; day < DaysOfWeek.getUsefulDays().size(); day++) 
     	{
-    		System.out.println(DaysOfWeek.getUsefulDays().get(day) + ":");
+    		System.out.println(DaysOfWeek.getUsefulDays().get(day) + ":\n");
     		
     		for(int period = 0; period < 6; period++) 
         	{
@@ -131,7 +142,8 @@ public class TimeCell implements Serializable
     			
     			inc++;
         	}
-    		
+
+            System.out.println();
     	}
     	
     	System.out.println("\n======= Sucedido ========");

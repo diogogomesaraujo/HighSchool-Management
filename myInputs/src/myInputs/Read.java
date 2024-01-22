@@ -315,6 +315,7 @@ public class Read
 			{
 				System.out.println("1.	Sim");
 				System.out.println("2.	Não");
+				System.out.println("\n3.	Voltar");
 				
 				System.out.print("\n-> ");
 				BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
@@ -323,6 +324,8 @@ public class Read
 				if(s.equalsIgnoreCase("1")) return "sim";
 				
 				else if(s.equalsIgnoreCase("2")) return "não";
+
+				else if(s.equalsIgnoreCase("3")) return "voltar";
 				
 				else System.out.println("Opção Inválida!");
 			}
