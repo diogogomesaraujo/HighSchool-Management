@@ -105,6 +105,13 @@ public class Course implements Serializable
         }
         return null;
     }
+
+    public void enrollSubject(Teacher teacher)
+    {
+        Subject subject =  teacher.getSubjectTaught();
+
+        subject.addTeacher(teacher);
+    }
     
     /**
      * Enrolls a student in an available class within the course. If no available class is found 

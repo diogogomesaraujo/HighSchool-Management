@@ -22,7 +22,8 @@ public class Forms
 	 public static void writeInFile()
 	 {
 		 try (FileOutputStream fileOutputStream = new FileOutputStream("SavedData");
-			  ObjectOutputStream out = new ObjectOutputStream(fileOutputStream)) {
+			  ObjectOutputStream out = new ObjectOutputStream(fileOutputStream))
+		 {
 
 			 out.writeObject(PredefinedCourses.courses);
 			 out.writeObject(PredefinedRooms.availableRooms); // Write the list of available rooms
@@ -109,7 +110,6 @@ public class Forms
 		}
 	}
 
-
 	/**
      * Updates the list of predefined courses with the deserialized courses from the file.
      *
@@ -150,6 +150,7 @@ public class Forms
 			default:
 				return null;
 		}
+
 	}
 
 	/**
@@ -296,7 +297,7 @@ public class Forms
 		Form teacherForm = new Form("Criar Professor", questions, teacher);
 		
 		teacherForm.build();
-		teacher.getSubjectTaught().addTeacher(teacher);
+		teacher.getSubjectTaught().getTeachers().add(teacher);
 
 		System.out.println("\nO ID do Professor é: " + teacher.getTeacherID());
 	}
@@ -351,7 +352,7 @@ public class Forms
 	
 	        System.out.println("\nEscolha a turma para atribuir um professor:");
 	        
-	        if(selectedCourse.getClasses().size() != 0) 
+	        if(!selectedCourse.getClasses().isEmpty())
 	        {
 	        	displayClassList(selectedCourse.getClasses());
 	            
@@ -762,15 +763,18 @@ public class Forms
      */
 	 private static Teacher findTeacherById(int teacherID) 
 	 {
-		 for (Subject subject : PredefinedSubjects.subjects) 
+		 for (Course course : PredefinedCourses.courses)
 		 {
-             for (Teacher teacher : subject.getTeachers()) 
-             {
-                 if (teacher.getTeacherID() == teacherID) 
-                 {
-                     return teacher;
-                 }
-             }
+             for(Subject subject : course.getSubjects())
+			 {
+				 for(Teacher teacher : subject.getTeachers())
+				 {
+					 if(teacher.getTeacherID() == teacherID)
+					 {
+						 return teacher;
+					 }
+				 }
+			 }
          }
 		 
 		 return null;
@@ -1057,12 +1061,12 @@ public class Forms
 
 	    ArrayList<Teacher> teachers = getAllTeacher();
 	    
-	    if(teachers.size() != 0) 
+	    if(!teachers.isEmpty())
 	    {
-	        for(int i = 0; i < teachers.size(); i++) 
-	        {
-	            System.out.println(teachers.get(i).toString() + "\n");
-	        }
+            for (Teacher teacher : teachers)
+			{
+                System.out.println(teacher.toString() + "\n");
+            }
 	    } 
 	    
 	    else 
@@ -1291,9 +1295,15 @@ public class Forms
     {
         ArrayList<Teacher> allTeachers = new ArrayList<>();
         
-        for(Subject subject : PredefinedSubjects.subjects) 
+        for(Course course : PredefinedCourses.courses)
         {
-            allTeachers.addAll(subject.getTeachers());
+            for(Subject subject : course.getSubjects())
+			{
+				for(Teacher teacher : subject.getTeachers())
+				{
+					if(!allTeachers.contains(teacher)) allTeachers.add(teacher);
+				}
+			}
         }
         
         return allTeachers;
