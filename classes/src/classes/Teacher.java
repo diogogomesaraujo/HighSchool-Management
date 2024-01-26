@@ -23,6 +23,7 @@ public class Teacher extends Person implements Serializable
      */
     public Teacher() 
     {
+        super("", "", new Address(), LocalDate.now());
     	this.teacherID = generateTeacherID();
     	this.subjectTaught = null;
     	this.timetable = TimeCell.buildEmptyTimetable();
@@ -36,7 +37,7 @@ public class Teacher extends Person implements Serializable
      * @param address The teacher's address.
      * @param birthday The teacher's birthday.
      */
-    public Teacher(String name, String gender, String address, LocalDate birthday, int teacherID) 
+    public Teacher(String name, String gender, Address address, LocalDate birthday, int teacherID)
     {
     	super(name, gender, address, birthday);
         this.subjectTaught = null;
@@ -111,7 +112,7 @@ public class Teacher extends Person implements Serializable
                "Nome: " + getName() + "\n" +
                "Género: " + getGender() + "\n" +
                "Data de Nascimento: " + getBirthday() + "\n" +
-               "Endereço: " + getAddress() + "\n" +
+               "Endereço: " + getAddress().toString() + "\n" +
                "Disciplina Lecionada: " + (subjectTaught != null ? subjectTaught.getSubjectName() : "Não atribuída")
                ;
     }

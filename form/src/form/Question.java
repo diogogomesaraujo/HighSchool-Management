@@ -1,5 +1,6 @@
 package form;
 
+import classes.Address;
 import myInputs.Read;
 import java.util.ArrayList;
 
@@ -108,6 +109,9 @@ public class Question
             case "Subject":
             	output = Subject.aSubject();
             	break;
+            case "Address":
+                output = Address.anAddress();
+                break;
                 
             default:
                 output = null;

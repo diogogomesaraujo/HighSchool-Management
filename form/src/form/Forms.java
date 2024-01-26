@@ -264,8 +264,8 @@ public class Forms
 		
 		questions.add(new Question("Escreva o nome do aluno: ", "Name", "String"));
 		questions.add(new Question("Escreva o género do aluno: ", "Gender", "Gender"));
-		questions.add(new Question("Escreva a morada do aluno: ", "Address", "String"));
-		questions.add(new Question("Escreva a data de nascimento do aluno (ano-mês-dia): ", "Birthday", "LocalDate"));
+		questions.add(new Question("Escreva a morada do aluno (Código Postal, Rua, Porta, Freguesia, Cidade): ", "Address", "Address"));
+		questions.add(new Question("Escreva a data de nascimento do aluno (Ano-Mês-Dia): ", "Birthday", "LocalDate"));
 		questions.add(new Question("Escreva o curso do aluno: ", "EnrolledCourse", "Course"));
 		questions.add(new Question("Escreva a disciplina opcional do aluno: ", "OptionalSubject", "OptionalSubject"));
 		
@@ -290,7 +290,7 @@ public class Forms
 		
 		questions.add(new Question("Escreva o nome do professor: ", "Name", "String"));
 		questions.add(new Question("Escreva o género do professor: ", "Gender", "Gender"));
-		questions.add(new Question("Escreva a morada do professor: ", "Address", "String"));
+		questions.add(new Question("Escreva a morada do professor (Código Postal, Rua, Porta, Freguesia, Cidade): ", "Address", "Address"));
 		questions.add(new Question("Escreva a data de nascimento do professor (Ano-Mês-Dia): ", "Birthday", "LocalDate"));
 		questions.add(new Question("Escreva a disciplina do professor: ", "SubjectTaught", "Subject"));
 		
@@ -415,13 +415,13 @@ public class Forms
 	                break;
 
 	            case "Birthday":
-	                System.out.println("\nEscreva a nova data de nascimento do aluno: \n");
+	                System.out.println("\nEscreva a nova data de nascimento do aluno (Ano-Mês-Dia): \n");
 	                studentToEdit.setBirthday(Read.aLocalDate());
 	                break;
 
 	            case "Address":
-	                System.out.println("\nEscreva a nova morada do aluno: \n");
-	                studentToEdit.setAddress(Read.aString());
+	                System.out.println("\nEscreva a nova morada do aluno (Código Postal, Rua, Porta, Freguesia, Cidade): \n");
+	                studentToEdit.setAddress(Address.anAddress());
 	                break;
 
 	            case "EnrolledCourse and SchoolClass":
@@ -434,7 +434,7 @@ public class Forms
 	                System.out.println("\nEscreva o novo curso do aluno: \n");
 	                studentToEdit.setEnrolledCourse(Course.aCourse());
 
-	                System.out.println("\nEscreva a disciplina opcional do aluno: \n");
+	                System.out.println("\nEscreva a nova disciplina opcional do aluno: \n");
 	                studentToEdit.setOptionalSubject(Course.aOptionalSubject(studentToEdit.getEnrolledCourse()));
 
 	                studentToEdit.getEnrolledCourse().enrollClass(studentToEdit);
@@ -480,13 +480,13 @@ public class Forms
 	        
 	        if(parameterName.equals("Birthday")) 
 	        {
-	        	System.out.println("\nEscreva a nova data de nascimento do professor: \n");
+	        	System.out.println("\nEscreva a nova data de nascimento do professor (Ano-Mês-Dia): \n");
 	        	teacherToEdit.setBirthday(Read.aLocalDate());
 	        }
 	        
 	        if(parameterName.equals("Address")) 
 	        {
-	        	System.out.println("\nEscreva a nova morada do professor: \n");
+	        	System.out.println("\nEscreva a nova morada do professor (Código Postal, Rua, Porta, Freguesia, Cidade): \n");
 	        	teacherToEdit.setGender(Read.aString());
 	        }
 	        
@@ -1010,7 +1010,7 @@ public class Forms
 	    {
 	        if (selectedStudent.getStudentGrades().isEmpty()) 
 	        {
-	            System.out.println("\nO aluno não tem notas. Média: 0.0");
+	            System.out.println("\nO aluno não tem notas! Média: 0.0");
 	            return;
 	        }
 	
@@ -1026,7 +1026,7 @@ public class Forms
 	        double average = totalGrade / numberOfGrades;
 	        System.out.println("\nMédia do aluno " + selectedStudent.getName() + ": " + average);
 	    } else {
-	        System.out.println("\nAluno não encontrado.");
+	        System.out.println("\nO aluno não foi encontrado!");
 	    }
 	}
 
@@ -1048,7 +1048,7 @@ public class Forms
         
         else 
         {
-            System.out.println("Não foram criados alunos!");
+            System.out.println("\nNão foram criados alunos!");
         }
     }
     
@@ -1204,8 +1204,11 @@ public class Forms
 	        System.out.println("\nAluno com a melhor média: " + studentWithBestAverage.getName());
 	        
 	        System.out.println("\nMédia: " + highestAverage);
-	    } else {
-	        System.out.println("Nenhum aluno encontrado.");
+	    }
+
+		else
+		{
+	        System.out.println("\nNenhum aluno encontrado!");
 	    }
 	}
 

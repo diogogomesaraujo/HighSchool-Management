@@ -26,7 +26,7 @@ public class Student extends Person implements Serializable
      */
     public Student() 
     {
-        super("", "", "", LocalDate.now());
+        super("", "", new Address(), LocalDate.now());
         this.studentID = generateStudentID();
         this.studentGrades = new ArrayList<StudentGrade>();
     }
@@ -40,7 +40,7 @@ public class Student extends Person implements Serializable
      * @param address The student's address.
      * @param birthday The student's birthday.
      */
-    public Student(String name, String gender, String address, LocalDate birthday) 
+    public Student(String name, String gender, Address address, LocalDate birthday)
     {
         super(name, gender, address, birthday);
         this.studentID = generateStudentID();
@@ -122,7 +122,7 @@ public class Student extends Person implements Serializable
         return "Nome: " + getName() + "\n" +
                "Género: " + getGender() + "\n" +
                "Data de Nascimento: " + getBirthday() + "\n" +
-               "Endereço: " + getAddress() + "\n" +
+               "Endereço: " + getAddress().toString() + "\n" +
                "ID do Aluno: " + studentID + "\n" +
                "Curso Matriculado: " + (enrolledCourse != null ? enrolledCourse.getCourseName() : "Não Matriculado") + "\n" +
                "Turma Matriculada: " + (enrolledClass != null ? enrolledClass.getClassName() : "Não Matriculado")

@@ -34,13 +34,13 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [J
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/diogogomesaraujo/ScholarSphere
+$ git clone https://github.com/your-github-username/HighSchool-Management
 
 # Go into the repository
-$ cd ScholarSphere-main
+$ cd ScholarSphere
 
 # Run the application
-$ java -jar exe.jar
+$ java -jar out/artifacts/menu_jar/menu.jar
 ```
 > **Note**
 > If you're using Windows Subsystem for Linux (WSL), make sure you have Java installed in WSL to run the JAR file. Check by running `java -version` in the Bash shell. If you face any issues, you can alternatively run the JAR file using the Windows command prompt, provided Java is installed on your Windows system.
@@ -49,6 +49,5 @@ $ java -jar exe.jar
 Implementations for the near future:
 >* Organize the Forms Class;
 >* Better Statistics Based on the Given Data;
->* Mutiple Years and Professional Courses;
->* Correct Manipulation of Addresses.
+>* Multiple Years and Professional Courses;
 

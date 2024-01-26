@@ -14,7 +14,7 @@ public class Person implements Serializable
 	private String name;
 	private String gender;
 	private LocalDate birthday;
-	private String address;
+	private Address address;
 	
 	/**
      * Default constructor. Initializes a person with empty name, gender, address,
@@ -25,7 +25,7 @@ public class Person implements Serializable
 		this.name = "";
 		this.gender = "";
 		this.birthday = LocalDate.now();
-		this.address = "";
+		this.address = new Address();
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class Person implements Serializable
      * @param address The address of the person.
      * @param birthday The birthday of the person.
      */
-	public Person(String name, String gender, String address, LocalDate birthday) 
+	public Person(String name, String gender, Address address, LocalDate birthday)
 	{
 		this.name = name;
 		this.gender = gender;
@@ -68,11 +68,11 @@ public class Person implements Serializable
         this.birthday = birthday;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
     
