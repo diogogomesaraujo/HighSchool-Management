@@ -251,7 +251,7 @@ public class Read
 		while(true)
 		{
 			try
-			{	
+			{
 				return LocalDate.parse((aString()).trim());
 			}
 			catch(Exception e)

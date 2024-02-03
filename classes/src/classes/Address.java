@@ -3,10 +3,11 @@ package classes;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-public class Address
+public class Address implements Serializable
 {
     String postalCode;
     String street;
@@ -81,10 +82,10 @@ public class Address
         // Check if the input string has exactly five parts
         if (addressDetails.length != 5)
         {
-            throw new IllegalArgumentException("\nAs informações da morada não foram separadas corretamente!");
+            return null;
         }
 
-        return addressDetails;
+        else return addressDetails;
     }
 
     public static Address anAddress() // ex: 4700-256, Rua do São Bentinho, n22, Maximínos, Aveiro
@@ -94,13 +95,13 @@ public class Address
         {
             try
             {
-                System.out.print("\n-> ");
+                System.out.print("-> ");
                 BufferedReader in = new BufferedReader ( new InputStreamReader(System.in));
                 s = in.readLine();
 
                 String[] details = separatedAddressDetails(s);
 
-                if(isValidPostalCode(details[0]) && isValidStreetType(details[1]) && isValidResidenceNumber(details[2])
+                if(details != null && isValidPostalCode(details[0]) && isValidStreetType(details[1]) && isValidResidenceNumber(details[2])
                         && isValidParish(details[3]) && isValidCity(details[4]))
                 {
                     Address address = new Address();
@@ -114,11 +115,11 @@ public class Address
                     return address;
                 }
 
-                else System.out.println("\nInput Inválido!");
+                else System.out.println("\nInput Inválido!\n");
             }
             catch (IOException e)
             {
-                System.out.print("\nErro de Input!");
+                System.out.print("\nErro de Input!\n");
                 System.out.println();
             }
         }
