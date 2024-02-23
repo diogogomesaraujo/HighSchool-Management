@@ -176,7 +176,7 @@ public class Forms
 			TimeCell timeCell = schoolClass.getTimetable().get(i);
 			ArrayList<Subject> availableSubjects = schoolClass.getAvailableSubjects(timeCell);
 
-			if (timeCell.getTimePeriod().get(0).equals(LocalTime.of(8, 30))) {
+			if (timeCell.getTimePeriod().getFirst().equals(LocalTime.of(8, 30))) {
 				System.out.println(timeCell.getDayOfWeek() + ": \n");
 			}
 
@@ -297,7 +297,8 @@ public class Forms
 		Form teacherForm = new Form("Criar Professor", questions, teacher);
 		
 		teacherForm.build();
-		teacher.getSubjectTaught().getTeachers().add(teacher);
+		Subject subjectTaught = teacher.getSubjectTaught();
+		subjectTaught.addTeacher(teacher);
 
 		System.out.println("\nO ID do Professor é: " + teacher.getTeacherID());
 	}
@@ -313,7 +314,7 @@ public class Forms
 
 	    System.out.println("\nEscolha a turma para fazer o horário:");
 
-	    if (selectedCourse.getClasses().size() != 0) 
+	    if (!selectedCourse.getClasses().isEmpty())
 	    {
 	        displayClassList(selectedCourse.getClasses());
 
@@ -520,7 +521,7 @@ public class Forms
 
             System.out.println("\nEscolha a turma para fazer o horário:");
             
-            if(selectedCourse.getClasses().size() != 0) 
+            if(!selectedCourse.getClasses().isEmpty())
             {
             	displayClassList(selectedCourse.getClasses());
                 
@@ -676,7 +677,7 @@ public class Forms
 	
 	        System.out.println("\nEscolha a turma para ver os detalhes:");
 	        
-	        if(selectedCourse.getClasses().size() != 0) 
+	        if(!selectedCourse.getClasses().isEmpty())
 	        {
 	        	displayClassList(selectedCourse.getClasses());
 	            
@@ -864,11 +865,11 @@ public class Forms
 	    return totalGrades / numStudents;
 	}
 
-	private static void displayCourseList(ArrayList<Course> courses) 
+	private static void displayCourseList(ArrayList<Course> courses)
     {
         System.out.println("\nCursos Disponíveis:\n");
         
-        for (int i = 1; i <= courses.size(); i++) 
+        for (int i = 1; i <= courses.size(); i++)
         {
             System.out.println((i) + ".	" + courses.get(i - 1).getCourseName());
         }
@@ -1038,11 +1039,10 @@ public class Forms
 		System.out.println();
 
         ArrayList<Student> students = getAllStudentsEnrolled();
-        if(students.size() != 0) 
+        if(!students.isEmpty())
         {
-            for(int i = 0; i < students.size(); i++) 
-            {
-                System.out.println(students.get(i).toString() + "\n");
+            for (Student student : students) {
+                System.out.println(student.toString() + "\n");
             }
         }
         
@@ -1081,12 +1081,12 @@ public class Forms
 	public static void showAllClasses() 
 	{
 	    ArrayList<SchoolClass> classes = getAllClasses();
-	    if(classes.size() != 0) 
+	    if(!classes.isEmpty())
 	    {
-	        for(int i = 0; i < classes.size(); i++) 
-	        {
-	            System.out.println(classes.get(i).toString() + "\n");
-	        }
+            for (SchoolClass aClass : classes)
+			{
+                System.out.println(aClass.toString() + "\n");
+            }
 	    } 
 	    
 	    else 
@@ -1108,12 +1108,12 @@ public class Forms
 	        
 	        for(Course course : moreStudents)
 	        {
-	            System.out.println("" + course.getCourseName());
+	            System.out.println(course.getCourseName());
 	        }
 	        
 	        int numStudents = 0;
 	        
-	        for (SchoolClass schoolClass : moreStudents.get(0).getClasses())
+	        for (SchoolClass schoolClass : moreStudents.getFirst().getClasses())
 	        {
 	            numStudents += schoolClass.getStudents().size(); // it is not recognizing different classes
 	        }

@@ -3,6 +3,7 @@ package classes;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.io.Serializable;
+import java.util.Collections;
 
 /**
  * Represents a time slot in a school timetable. It includes the time period, day of the week,
@@ -126,29 +127,39 @@ public class TimeCell implements Serializable
      *
      * @param timetable The list of TimeCells representing the timetable.
      */
-    public static void writeTimetable(ArrayList<TimeCell> timetable) 
-    {	
-    	int inc = 0;
-    	
-    	System.out.println("\n======= Horário =======\n");
-    	
-    	for(int day = 0; day < DaysOfWeek.getUsefulDays().size(); day++) 
-    	{
-    		System.out.println(DaysOfWeek.getUsefulDays().get(day) + ":\n");
-    		
-    		for(int period = 0; period < 6; period++) 
-        	{
-    			System.out.println(timetable.get(inc).build());
-    			
-    			inc++;
-        	}
+    public static void writeTimetable(ArrayList<TimeCell> timetable)
+    {
+        System.out.println("\n======= Horário =======\n");
 
-            System.out.println();
-    	}
-    	
-    	System.out.println("\n======= Sucedido ========");
+        // Header
+        System.out.printf("%-15s %-15s %-10s %s\n", "Dia", "Período", "Sala", "Disciplina");
+        System.out.println(String.join("", Collections.nCopies(60, "-"))); // Separator
+
+        String lastDay = null; // Initialize to null to handle the first entry differently
+
+        for(TimeCell cell : timetable)
+        {
+            String roomName = (cell.getRoom() != null) ? cell.getRoom().getNumber() : "N/A";
+            String subjectName = (cell.getSubject() != null) ? cell.getSubject().getSubjectName() : "Livre";
+            String currentDay = cell.getDayOfWeek();
+
+            // If it's a new day and not the first entry, add an extra newline for separation
+            if (lastDay != null && !currentDay.equals(lastDay)) {
+                System.out.println();
+            }
+
+            System.out.printf("%-15s %-15s %-10s %s\n",
+                    currentDay,
+                    cell.timePeriodText(),
+                    roomName,
+                    subjectName);
+
+            lastDay = currentDay; // Update lastDay at the end of the loop
+        }
+
+        System.out.println("\n=========================");
     }
-    
+
     /**
      * Builds an empty timetable with predefined time slots and days of the week.
      *
