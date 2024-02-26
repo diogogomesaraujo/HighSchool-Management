@@ -11,8 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d81038d9-560a-4f3a-90a8-41ea4da2fc2d" name="Changes" comment="addresses fixed but discovered a new teachers error.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/src/classes/TimeCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/classes/src/classes/TimeCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SavedData" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/form/src/form/Forms.java" beforeDir="false" afterPath="$PROJECT_DIR$/form/src/form/Forms.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/menu_jar/menu.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/menu_jar/menu.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +108,11 @@
       <workItem from="1708604204910" duration="62000" />
       <workItem from="1708705219906" duration="4000" />
       <workItem from="1708706901240" duration="72000" />
-      <workItem from="1708727486689" duration="1754000" />
+      <workItem from="1708727486689" duration="2093000" />
+      <workItem from="1708730708232" duration="1872000" />
+      <workItem from="1708942683813" duration="2489000" />
+      <workItem from="1708956585219" duration="370000" />
+      <workItem from="1708959748829" duration="1364000" />
     </task>
     <task id="LOCAL-00001" summary="no file exception no longer showing">
       <option name="closed" value="true" />
