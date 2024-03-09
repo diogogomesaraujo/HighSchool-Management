@@ -57,6 +57,6 @@ public interface PredefinedSubjects {
 
     /** Compiled list of all predefined subjects. */
     public static final ArrayList<Subject> subjects = new ArrayList<Subject>(Arrays.asList(
-            portuguese, maths, foreignLanguage, philosophy, physicalEducation, physicsAndChemestry,
-            biology, history, macs, geography, drawing, geometry, historyOfArt, economy, literature));
+            macs, drawing, portuguese, geometry, physicalEducation, philosophy,
+            historyOfArt, geography, maths, biology, physicsAndChemestry, foreignLanguage, economy, history, literature));
 }

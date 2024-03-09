@@ -12,8 +12,9 @@
     <list default="true" id="d81038d9-560a-4f3a-90a8-41ea4da2fc2d" name="Changes" comment="addresses fixed but discovered a new teachers error.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SavedData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/src/classes/PredefinedSubjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/classes/src/classes/PredefinedSubjects.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/src/classes/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/classes/src/classes/Subject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/form/src/form/Forms.java" beforeDir="false" afterPath="$PROJECT_DIR$/form/src/form/Forms.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/menu_jar/menu.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/menu_jar/menu.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,6 +114,15 @@
       <workItem from="1708942683813" duration="2489000" />
       <workItem from="1708956585219" duration="370000" />
       <workItem from="1708959748829" duration="1364000" />
+      <workItem from="1708961207232" duration="733000" />
+      <workItem from="1709031937645" duration="273000" />
+      <workItem from="1709035446903" duration="10000" />
+      <workItem from="1709035668902" duration="10000" />
+      <workItem from="1709036566023" duration="5000" />
+      <workItem from="1709130183202" duration="61000" />
+      <workItem from="1709562314198" duration="1728000" />
+      <workItem from="1709564433471" duration="609000" />
+      <workItem from="1710017685615" duration="3579000" />
     </task>
     <task id="LOCAL-00001" summary="no file exception no longer showing">
       <option name="closed" value="true" />

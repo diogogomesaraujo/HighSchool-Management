@@ -88,6 +88,7 @@ public class Forms
 			GlobalVariables.setLetter(ois.readChar());
 
 			// Update predefined courses with the read values
+			PredefinedSubjects.subjects.clear();
 			updatePredefinedCourses(courses);
 			updatePredefinedRooms(availableRooms);
 		}
@@ -124,6 +125,11 @@ public class Forms
 				predefinedCourse.setClasses(deserializedCourse.getClasses());
 				// The subjects within each course should already have their teachers set,
 				// so there's no need for a separate updatePredefinedTeachers method.
+
+				for(Subject subject : predefinedCourse.getSubjects())
+				{
+					if(!PredefinedSubjects.subjects.contains(subject)) PredefinedSubjects.subjects.add(subject);
+				}
 			}
 		}
 	}
@@ -1296,7 +1302,6 @@ public class Forms
 				}
 			}
         }
-        
         return allTeachers;
     }
     
