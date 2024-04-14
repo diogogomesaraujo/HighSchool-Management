@@ -47,7 +47,7 @@ $ java -jar out/artifacts/menu_jar/menu.jar
 
 ## In the Future
 Implementations for the near future:
->* Organize the Forms Class;
 >* Better Statistics Based on the Given Data;
+>* Better Data Presentation;
 >* Multiple Years and Professional Courses;
 

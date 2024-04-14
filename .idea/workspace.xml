@@ -10,10 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d81038d9-560a-4f3a-90a8-41ea4da2fc2d" name="Changes" comment="addresses fixed but discovered a new teachers error.">
+      <change afterPath="$PROJECT_DIR$/form/src/Statistics.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SavedData" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/src/classes/PredefinedSubjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/classes/src/classes/PredefinedSubjects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/src/classes/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/classes/src/classes/Subject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/form/src/form/Forms.java" beforeDir="false" afterPath="$PROJECT_DIR$/form/src/form/Forms.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +30,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -42,6 +44,9 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2bFBs6z8JSgqtbPaMn1ZD2v5tdb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -122,7 +127,11 @@
       <workItem from="1709130183202" duration="61000" />
       <workItem from="1709562314198" duration="1728000" />
       <workItem from="1709564433471" duration="609000" />
-      <workItem from="1710017685615" duration="3579000" />
+      <workItem from="1710017685615" duration="5583000" />
+      <workItem from="1710176938201" duration="4714000" />
+      <workItem from="1710952099192" duration="253000" />
+      <workItem from="1710952355362" duration="177000" />
+      <workItem from="1713053318810" duration="3403000" />
     </task>
     <task id="LOCAL-00001" summary="no file exception no longer showing">
       <option name="closed" value="true" />

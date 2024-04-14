@@ -177,7 +177,7 @@ public class Forms
 			System.out.println(timeCell.timePeriodText() + "Adicionar Aula: \n");
 			String aux = Read.aQuestion();
 
-			if(aux.equals("voltar")) break;;
+			if(aux.equals("voltar")) break;
 
 			if (aux.equals("sim")) {
 				System.out.println();
@@ -302,7 +302,7 @@ public class Forms
      */
 	public static void createTimetableForm() 
 	{
-	    System.out.println("\nEscolha um curso da turma para fazer o horário: ");
+	    System.out.println("\nEscolha um curso da turma para fazer o horário: \n");
 
 	    Course selectedCourse = Course.aCourse();
 
@@ -942,7 +942,7 @@ public class Forms
      */
     public static void deleteStudent() 
     {
-        System.out.println("\nEscreva o ID do aluno que quer apagar:");
+        System.out.println("\nEscreva o ID do aluno que quer apagar:\n");
         
         int aluno = Read.anInt();
         
@@ -973,7 +973,7 @@ public class Forms
      */
     public static void deleteTeacher() 
     {
-        System.out.println("\nEscreva o ID do professor que quer apagar:");
+        System.out.println("\nEscreva o ID do professor que quer apagar:\n");
         
         int teacher = Read.anInt();
         
@@ -982,7 +982,7 @@ public class Forms
         if(ateacher != null) 
         {
             ateacher.getSubjectTaught().removeTeacher(ateacher);
-            System.out.println("\nProfessor removido!\n");
+            System.out.println("\nProfessor removido!");
         } 
         
         else 
@@ -1035,14 +1035,17 @@ public class Forms
         ArrayList<Student> students = getAllStudentsEnrolled();
         if(!students.isEmpty())
         {
-            for (Student student : students) {
-                System.out.println(student.toString() + "\n");
+            for (int i = 0; i < students.size(); i++)
+			{
+				System.out.println(students.get(i).toString());
+
+				if(i != (students.size() - 1)) System.out.println();
             }
         }
         
         else 
         {
-            System.out.println("\nNão foram criados alunos!");
+            System.out.println("Não foram criados alunos!");
         }
     }
     
@@ -1057,15 +1060,17 @@ public class Forms
 	    
 	    if(!teachers.isEmpty())
 	    {
-            for (Teacher teacher : teachers)
+            for (int i = 0; i < teachers.size(); i++)
 			{
-                System.out.println(teacher.toString() + "\n");
+                System.out.println(teachers.get(i).toString());
+
+				if(i != (teachers.size() - 1)) System.out.println();
             }
 	    } 
 	    
 	    else 
 	    {
-	        System.out.println("\nNão foram criados professores!");
+	        System.out.println("Não foram criados professores!");
 	    }
 	}
 
@@ -1077,9 +1082,11 @@ public class Forms
 	    ArrayList<SchoolClass> classes = getAllClasses();
 	    if(!classes.isEmpty())
 	    {
-            for (SchoolClass aClass : classes)
+            for (int i = 0; i < classes.size(); i++)
 			{
-                System.out.println(aClass.toString() + "\n");
+                System.out.println(classes.get(i).toString());
+
+				if(i != (classes.size() - 1)) System.out.println();
             }
 	    } 
 	    
